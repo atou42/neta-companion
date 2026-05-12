@@ -31,11 +31,13 @@ const spritePlayingTune = document.getElementById("spritePlayingTune");
 const spriteIdleTune = document.getElementById("spriteIdleTune");
 const spriteSpecialTune = document.getElementById("spriteSpecialTune");
 const spriteShuffleTune = document.getElementById("spriteShuffleTune");
+const spriteWalkTune = document.getElementById("spriteWalkTune");
 const spriteSizeValue = document.getElementById("spriteSizeValue");
 const spritePlayingValue = document.getElementById("spritePlayingValue");
 const spriteIdleValue = document.getElementById("spriteIdleValue");
 const spriteSpecialValue = document.getElementById("spriteSpecialValue");
 const spriteShuffleValue = document.getElementById("spriteShuffleValue");
+const spriteWalkValue = document.getElementById("spriteWalkValue");
 const spriteTuneStorageKey = "netaSpriteTune";
 const playerModeStorageKey = "netaFmPlayerMode";
 const spriteTuneDefaults = {
@@ -44,6 +46,7 @@ const spriteTuneDefaults = {
   idleSpeed: 1,
   specialSpeed: 1,
   shuffleEvery: 9,
+  walkEvery: 14,
 };
 
 let currentIndex = 0;
@@ -199,6 +202,7 @@ function nextPlayingAction() {
 }
 
 function setPlayingSpriteAction(force = false) {
+  if (spriteDragger?.classList.contains("walking")) return;
   if (!force && playingActionNames.includes(spriteAction)) return;
   setSpriteAction(pickPlayingAction());
 }
@@ -338,6 +342,7 @@ function readSpriteTune() {
       idleSpeed: clampNumber(saved.idleSpeed, .6, 1.4, spriteTuneDefaults.idleSpeed),
       specialSpeed: clampNumber(saved.specialSpeed, .6, 1.4, spriteTuneDefaults.specialSpeed),
       shuffleEvery: clampNumber(saved.shuffleEvery, 5, 16, spriteTuneDefaults.shuffleEvery),
+      walkEvery: clampNumber(saved.walkEvery, 0, 30, spriteTuneDefaults.walkEvery),
     };
   } catch {
     return { ...spriteTuneDefaults };
@@ -355,11 +360,13 @@ function updateSpriteTuneUi() {
   if (spriteIdleTune) spriteIdleTune.value = spriteTune.idleSpeed.toFixed(2);
   if (spriteSpecialTune) spriteSpecialTune.value = spriteTune.specialSpeed.toFixed(2);
   if (spriteShuffleTune) spriteShuffleTune.value = String(Math.round(spriteTune.shuffleEvery));
+  if (spriteWalkTune) spriteWalkTune.value = String(Math.round(spriteTune.walkEvery));
   if (spriteSizeValue) spriteSizeValue.textContent = `${Math.round(spriteTune.size * 100)}%`;
   if (spritePlayingValue) spritePlayingValue.textContent = `${spriteTune.playingSpeed.toFixed(2)}×`;
   if (spriteIdleValue) spriteIdleValue.textContent = `${spriteTune.idleSpeed.toFixed(2)}×`;
   if (spriteSpecialValue) spriteSpecialValue.textContent = `${spriteTune.specialSpeed.toFixed(2)}×`;
   if (spriteShuffleValue) spriteShuffleValue.textContent = `${Math.round(spriteTune.shuffleEvery)}s`;
+  if (spriteWalkValue) spriteWalkValue.textContent = spriteTune.walkEvery <= 0 ? "Off" : `${Math.round(spriteTune.walkEvery)}s`;
 }
 
 function setSpriteTuneValue(key, value) {
@@ -369,10 +376,12 @@ function setSpriteTuneValue(key, value) {
   if (key === "idleSpeed") next.idleSpeed = clampNumber(value, .6, 1.4, spriteTuneDefaults.idleSpeed);
   if (key === "specialSpeed") next.specialSpeed = clampNumber(value, .6, 1.4, spriteTuneDefaults.specialSpeed);
   if (key === "shuffleEvery") next.shuffleEvery = clampNumber(value, 5, 16, spriteTuneDefaults.shuffleEvery);
+  if (key === "walkEvery") next.walkEvery = clampNumber(value, 0, 30, spriteTuneDefaults.walkEvery);
   spriteTune = next;
   updateSpriteTuneUi();
   saveSpriteTune();
   if (key === "shuffleEvery" && currentStatus === "playing") schedulePlayingShuffle();
+  if (key === "walkEvery") updateSpriteWalkForStatus(currentStatus);
 }
 
 function speedForSpriteAction(actionName) {
@@ -602,6 +611,7 @@ function setupSpriteTune() {
   spriteIdleTune?.addEventListener("input", (event) => setSpriteTuneValue("idleSpeed", event.currentTarget.value));
   spriteSpecialTune?.addEventListener("input", (event) => setSpriteTuneValue("specialSpeed", event.currentTarget.value));
   spriteShuffleTune?.addEventListener("input", (event) => setSpriteTuneValue("shuffleEvery", event.currentTarget.value));
+  spriteWalkTune?.addEventListener("input", (event) => setSpriteTuneValue("walkEvery", event.currentTarget.value));
 }
 
 function buildWaveform() {
@@ -761,18 +771,27 @@ function setupSpriteDrag() {
     spriteDragger.classList.remove("walking", "walk-left", "walk-right");
   }
 
-  function scheduleSpriteWalk(delay = 12000 + Math.random() * 16000) {
+  function canScheduleSpriteWalk() {
+    return spriteTune.walkEvery > 0 && (currentStatus === "ready" || currentStatus === "playing");
+  }
+
+  function scheduleSpriteWalk(delay) {
     window.clearTimeout(walkTimer);
-    walkTimer = window.setTimeout(startSpriteWalk, delay);
+    if (!canScheduleSpriteWalk()) return;
+    const nextDelay = Number.isFinite(delay)
+      ? delay
+      : spriteTune.walkEvery * 1000 + Math.random() * Math.max(1800, spriteTune.walkEvery * 420);
+    walkTimer = window.setTimeout(startSpriteWalk, nextDelay);
   }
 
   function startSpriteWalk() {
-    if (dragging || walking || currentStatus !== "ready") {
+    if (dragging || walking || !canScheduleSpriteWalk()) {
       scheduleSpriteWalk();
       return;
     }
     walking = true;
     clearIdleShuffle();
+    clearPlayingShuffle();
     const rect = spriteDragger.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -801,17 +820,20 @@ function setupSpriteDrag() {
       walking = false;
       spriteDragger.classList.remove("walking", "walk-left", "walk-right");
       if (currentStatus === "ready") setIdleSpriteAction();
-      else if (spriteActions[currentStatus]) setSpriteAction(currentStatus);
+      else if (currentStatus === "playing") {
+        setPlayingSpriteAction(true);
+        schedulePlayingShuffle();
+      } else if (spriteActions[currentStatus]) setSpriteAction(currentStatus);
       scheduleSpriteWalk();
     }, walkDuration + 80);
   }
 
   updateSpriteWalkForStatus = (status) => {
-    if (status !== "ready") {
+    if ((status !== "ready" && status !== "playing") || spriteTune.walkEvery <= 0) {
       stopSpriteWalk();
       return;
     }
-    scheduleSpriteWalk(8000 + Math.random() * 10000);
+    scheduleSpriteWalk(Math.max(900, spriteTune.walkEvery * 1000 * .55 + Math.random() * 3200));
   };
 
   function restoreSpriteActionAfterDrag() {
@@ -823,6 +845,7 @@ function setupSpriteDrag() {
       if (playingActionNames.includes(grabbedPreviousAction)) setSpriteAction(grabbedPreviousAction);
       else setPlayingSpriteAction(true);
       schedulePlayingShuffle();
+      scheduleSpriteWalk();
     } else if (spriteActions[currentStatus]) {
       setSpriteAction(currentStatus);
     } else {
@@ -849,6 +872,7 @@ function setupSpriteDrag() {
     if (currentStatus === "playing") {
       nextAction = nextPlayingAction();
       schedulePlayingShuffle();
+      scheduleSpriteWalk();
     } else if (currentStatus === "ready") {
       nextAction = nextIdleAction();
       scheduleIdleShuffle();

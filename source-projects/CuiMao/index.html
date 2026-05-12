@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#f3e2ba" />
+<title>Neta</title>
+<meta name="description" content="Neta" />
+<style>
+  :root {
+    --bg-fallback: #f3e2ba;        /* bg.png 加载失败时的兜底米黄 */
+    --ink:        #2a1a0e;         /* 深棕，主要文字 */
+    --ink-soft:   #6b4f3a;         /* 柔和棕色，次要文字 */
+    --accent:     #d95791;         /* 与 cursor.png 的粉紫色呼应 */
+    --matte:      #fbf2dd;         /* 圆形画框内的暖奶油底（比 bg 更亮，区隔人物与背景）*/
+    --shadow:     rgba(40, 24, 12, 0.30); /* 人物投影 */
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-fallback) url('bg.png') no-repeat center / cover fixed;
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue",
+                 "Microsoft YaHei", "Segoe UI", sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: none;
+  }
+
+  @media (hover: none) {
+    body { cursor: auto; }
+    .cursor { display: none !important; }
+  }
+
+  .stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 人像容器：sprite 透明背景 + 仅柔和投影（圆环画在 ::after 上）*/
+  .portrait {
+    position: relative;
+    width: min(72vmin, 600px);
+    height: min(72vmin, 600px);
+    border-radius: 50%;
+    background: url('sprite.webp') no-repeat 0% 0% / 1100% 1100%;
+    will-change: background-position;
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
+    box-shadow:
+      0 22px 50px var(--shadow),
+      0 4px 10px rgba(40, 24, 12, 0.18);
+  }
+
+  /* 高清"正面凝视"图层：NEAR 模式时叠加显示 */
+  .portrait-front {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    z-index: 1;
+  }
+  .portrait-front.show { opacity: 1; }
+
+  /* 顶部标题 */
+  .top-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .top-bar { top: 30px; }
+
+  .title {
+    letter-spacing: 0.18em;
+    font-size: 14px;
+    color: var(--ink);
+    text-transform: uppercase;
+    font-weight: 800;
+    text-shadow: 0 1px 0 rgba(255, 245, 220, 0.6);
+    background: rgba(255, 240, 210, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(80, 50, 30, 0.18);
+  }
+  .title .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 0 10px;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(200, 112, 63, 0.7);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: translateY(-2px) scale(1); }
+    50%      { opacity: 0.4; transform: translateY(-2px) scale(0.6); }
+  }
+
+  /* 自定义光标：cursor.png 即时跟手 */
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    margin-top: -6px;
+    margin-left: -6px;
+    background-image: url('cursor.png?v=clean-edges-2');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 100;
+    will-change: transform;
+    transform: translate3d(-100px, -100px, 0);
+    transition: none;
+    filter: drop-shadow(0 5px 10px rgba(60, 24, 55, 0.38));
+  }
+
+  /* 加载层 */
+  .loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-fallback);
+    z-index: 20;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loader .spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid rgba(60, 30, 12, 0.12);
+    border-top-color: var(--accent);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loader .label {
+    position: absolute;
+    bottom: 32%;
+    color: var(--ink-soft);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  /* 校准面板 */
+  .calib {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(255, 240, 210, 0.86);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(80, 50, 30, 0.18);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    pointer-events: auto;
+    z-index: 6;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .calib.show { opacity: 1; transform: translateY(0); }
+  .calib b { color: var(--ink); font-weight: 700; }
+  .calib .row { display: flex; align-items: center; gap: 8px; }
+  .calib button {
+    background: rgba(255, 250, 235, 0.7);
+    color: var(--ink);
+    border: 1px solid rgba(80, 50, 30, 0.22);
+    border-radius: 6px;
+    padding: 2px 8px;
+    cursor: none;
+    font-size: 11px;
+    font-family: inherit;
+  }
+  .calib button:hover { background: rgba(200, 112, 63, 0.25); }
+
+  /* debug 浮层 */
+  .debug {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    font-size: 11px;
+    color: var(--ink-soft);
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: rgba(255, 240, 210, 0.78);
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(80, 50, 30, 0.18);
+    pointer-events: none;
+    z-index: 6;
+    line-height: 1.5;
+  }
+  .debug.hidden { display: none; }
+</style>
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <div class="label">Loading…</div>
+  </div>
+
+  <div class="top-bar">
+    <div class="title">Neta</div>
+  </div>
+
+  <div class="stage">
+    <div class="portrait" id="portrait">
+      <img class="portrait-front" id="portraitFront" src="frame_front.webp" alt="" decoding="async" />
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <div class="debug hidden" id="debug"></div>
+
+  <div class="calib" id="calib">
+    <div class="row">
+      <span>校准角度偏移</span>
+      <b id="offsetVal">0°</b>
+      <button data-d="-5">−5°</button>
+      <button data-d="-1">−1°</button>
+      <button data-d="1">+1°</button>
+      <button data-d="5">+5°</button>
+      <button id="resetBtn">重置</button>
+      <button id="closeBtn">×</button>
+    </div>
+    <div class="row" style="margin-top:6px; opacity:0.7;">
+      ← / → 微调 · Shift+← /→ 加速 · 按 C 切换 · 按 D 调试浮层
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ============================================================
+  //  Sprite sheet 配置
+  //  布局：11 列 × 11 行 = 121 帧
+  //  每帧 640×640（原视频分辨率），背景透明（绿幕 chromakey 抠出），
+  //  存为 sprite.webp。
+  // ============================================================
+  const COLS = 11;
+  const ROWS = 11;
+  const FRAMES = 121;
+
+  // ============================================================
+  //  角度 → 帧号 查找表
+  //
+  //  当前人物视频的方向顺序是：正面 → 右 → 下 → 左。
+  //  按这条素材自己的关键帧重新标定，避免沿用旧素材方向表。
+  // ============================================================
+
+  const FRAME_UP   = 0;    // 正上方 / 初始使用正面帧
+  const UP_WINDOW  = 10;   // ±10° 内锁定正面帧，消除小幅抖动闪烁
+
+  const ANGLE_KEYS = [
+    // 上 → 右：逐渐转向屏幕右侧
+    [ UP_WINDOW,   0 ],
+    [ 30,         12 ],
+    [ 45,         18 ],
+    [ 60,         24 ],
+    [ 75,         30 ],
+    [ 90,         36 ],
+    // 右 → 下
+    [105,         42 ],
+    [120,         48 ],
+    [135,         54 ],
+    [150,         60 ],
+    [165,         66 ],
+    [180,         72 ],
+    // 下 → 左
+    [195,         78 ],
+    [210,         84 ],
+    [225,         90 ],
+    [240,         96 ],
+    [255,        102 ],
+    [270,        108 ],
+    // 左 → 上：回到正面
+    [285,        112 ],
+    [300,        116 ],
+    [315,        120 ],
+    [330,        120 ],
+    [360 - UP_WINDOW, 0 ],
+  ];
+
+  function angleToFrame(deg) {
+    deg = ((deg % 360) + 360) % 360;
+    if (deg >= 360 - UP_WINDOW || deg <= UP_WINDOW) return FRAME_UP;
+    for (let i = 0; i < ANGLE_KEYS.length - 1; i++) {
+      const [a0, f0] = ANGLE_KEYS[i];
+      const [a1, f1] = ANGLE_KEYS[i + 1];
+      if (deg >= a0 && deg <= a1) {
+        const t = (a1 === a0) ? 0 : (deg - a0) / (a1 - a0);
+        const f = f0 + (f1 - f0) * t;
+        return ((Math.round(f) % FRAMES) + FRAMES) % FRAMES;
+      }
+    }
+    return FRAME_UP;
+  }
+
+  // ============================================================
+  //  距离阈值：鼠标进入人物中心 18% 半径内时，才淡入显示高分辨率
+  //  正面凝视图（frame_front.webp）—— 小范围确保只在贴近脸部时触发。
+  // ============================================================
+  const NEAR_RATIO = 0.18;
+
+  // ============================================================
+  //  DOM
+  // ============================================================
+  const portraitEl  = document.getElementById('portrait');
+  const frontEl     = document.getElementById('portraitFront');
+  const cursorEl    = document.getElementById('cursor');
+  const loaderEl    = document.getElementById('loader');
+  const calibEl     = document.getElementById('calib');
+  const offsetVal   = document.getElementById('offsetVal');
+  const debugEl     = document.getElementById('debug');
+
+  portraitEl.style.backgroundSize = `${COLS * 100}% ${ROWS * 100}%`;
+
+  // ============================================================
+  //  状态
+  // ============================================================
+  const params = new URLSearchParams(location.search);
+  const urlOffsetDeg = parseFloat(params.get('offset'));
+  let offsetDeg = Number.isFinite(urlOffsetDeg) ? urlOffsetDeg : 0;
+
+  let mouseX = -1000;
+  let mouseY = -1000;
+
+  let portraitRect = null;
+  let lastRenderedFrame = -1;
+  let isNear = false;
+  let renderScheduled = false;
+
+  function updateRect() { portraitRect = portraitEl.getBoundingClientRect(); }
+  window.addEventListener('resize', updateRect);
+  window.addEventListener('scroll', updateRect, { passive: true });
+
+  // ============================================================
+  //  渲染
+  // ============================================================
+  function setFrame(idx) {
+    if (idx === lastRenderedFrame) return;
+    lastRenderedFrame = idx;
+    const col = idx % COLS;
+    const row = (idx / COLS) | 0;
+    const px = (col / (COLS - 1)) * 100;
+    const py = (row / (ROWS - 1)) * 100;
+    portraitEl.style.backgroundPosition = `${px}% ${py}%`;
+  }
+
+  function setNear(near) {
+    if (near === isNear) return;
+    isNear = near;
+    frontEl.classList.toggle('show', near);
+  }
+
+  function render() {
+    renderScheduled = false;
+    if (!portraitRect) updateRect();
+
+    const cx = portraitRect.left + portraitRect.width  * 0.5;
+    const cy = portraitRect.top  + portraitRect.height * 0.5;
+    const dx = mouseX - cx;
+    const dy = mouseY - cy;
+    const dist = Math.hypot(dx, dy);
+    const radius = portraitRect.width * 0.5;
+
+    if (dist < radius * NEAR_RATIO) {
+      setNear(true);
+      // 让 sprite 背景也定位到 frame 0，以防 frame_front.webp 加载失败时
+      // 不至于显示一个错乱的视线方向；同时也是 frame_front 淡入前的兜底
+      setFrame(0);
+      return;
+    }
+    setNear(false);
+
+    let deg = Math.atan2(dx, -dy) * 180 / Math.PI;
+    if (deg < 0) deg += 360;
+    deg = (deg + offsetDeg) % 360;
+    if (deg < 0) deg += 360;
+
+    setFrame(angleToFrame(deg));
+  }
+
+  function scheduleRender() {
+    if (renderScheduled) return;
+    renderScheduled = true;
+    requestAnimationFrame(render);
+  }
+
+  // ============================================================
+  //  指针事件
+  // ============================================================
+  function setPointer(x, y) {
+    mouseX = x;
+    mouseY = y;
+    cursorEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    scheduleRender();
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    setPointer(e.clientX, e.clientY);
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouseX = -1000;
+    mouseY = -1000;
+    setNear(true);
+    setFrame(0);
+  });
+
+  function touchHandler(e) {
+    if (e.touches && e.touches[0]) {
+      setPointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }
+  window.addEventListener('touchstart', touchHandler, { passive: true });
+  window.addEventListener('touchmove',  touchHandler, { passive: true });
+
+  // ============================================================
+  //  Sprite 与 front 图预加载
+  // ============================================================
+  let spriteReady = false;
+  let frontReady  = false;
+
+  function tryHideLoader() {
+    if (spriteReady && frontReady) {
+      updateRect();
+      requestAnimationFrame(() => loaderEl.classList.add('hidden'));
+    }
+  }
+
+  const spriteImg = new Image();
+  spriteImg.onload  = () => { spriteReady = true; tryHideLoader(); };
+  spriteImg.onerror = () => { spriteReady = true; tryHideLoader(); };
+  spriteImg.src = 'sprite.webp';
+
+  if (frontEl.complete) { frontReady = true; }
+  else {
+    frontEl.addEventListener('load',  () => { frontReady = true; tryHideLoader(); });
+    frontEl.addEventListener('error', () => { frontReady = true; tryHideLoader(); });
+  }
+  // 初始进入 NEAR 模式（鼠标尚未进入页面）
+  setNear(true);
+  setFrame(0);
+
+  // 兜底：5 秒后无论如何隐藏 loader
+  setTimeout(() => { spriteReady = frontReady = true; tryHideLoader(); }, 5000);
+
+  // ============================================================
+  //  校准面板
+  // ============================================================
+  function setOffset(v) {
+    offsetDeg = ((v % 360) + 360) % 360;
+    if (offsetDeg > 180) offsetDeg -= 360;
+    offsetVal.textContent = `${offsetDeg.toFixed(0)}°`;
+    scheduleRender();
+  }
+  setOffset(offsetDeg);
+
+  function showCalib(show) { calibEl.classList.toggle('show', show); }
+
+  document.querySelectorAll('.calib button[data-d]').forEach((btn) => {
+    btn.addEventListener('click', () => setOffset(offsetDeg + parseFloat(btn.dataset.d)));
+  });
+  document.getElementById('resetBtn').addEventListener('click', () => setOffset(0));
+  document.getElementById('closeBtn').addEventListener('click', () => showCalib(false));
+
+  window.addEventListener('keydown', (e) => {
+    const step = e.shiftKey ? 5 : 1;
+    if (e.key === 'ArrowLeft')  { setOffset(offsetDeg - step); showCalib(true); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { setOffset(offsetDeg + step); showCalib(true); e.preventDefault(); }
+    if (e.key === 'c' || e.key === 'C') { showCalib(!calibEl.classList.contains('show')); }
+    if (e.key === 'd' || e.key === 'D') { debugEl.classList.toggle('hidden'); }
+    if (e.key === '0') setOffset(0);
+  });
+
+  // ============================================================
+  //  Debug 浮层
+  // ============================================================
+  if (params.get('debug') === '1') debugEl.classList.remove('hidden');
+
+  function updateDebug() {
+    if (debugEl.classList.contains('hidden')) return;
+    debugEl.innerHTML =
+      `mouse: ${Math.round(mouseX)}, ${Math.round(mouseY)}<br>` +
+      `frame: ${lastRenderedFrame} ${isNear ? '(NEAR)' : ''}<br>` +
+      `offset: ${offsetDeg.toFixed(1)}°<br>` +
+      `sprite: ${spriteReady ? 'ok' : '...'} · front: ${frontReady ? 'ok' : '...'}`;
+  }
+  setInterval(updateDebug, 80);
+})();
+</script>
+</body>
+</html>

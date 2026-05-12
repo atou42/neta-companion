@@ -1,0 +1,28 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "芙莉莲。Q版像素风网页 companion sprite 概念图。完整站姿，手持法杖，适合之后制作 192x208 sprite。单个角色，不是 spritesheet，透明背景或干净浅色背景，无文字，无 UI，无场景。",
+    "size": "2048x2048"
+  },
+  "response": {
+    "created": 1778468670,
+    "data": [
+      {
+        "url": "https://oss.filenest.top/uploads/8addcd32-2e8e-4d0c-8bfa-b3f79d1538f7.png"
+      }
+    ],
+    "usage": {
+      "total_tokens": 3788,
+      "input_tokens": 220,
+      "output_tokens": 3568,
+      "input_tokens_details": {
+        "text_tokens": 220,
+        "image_tokens": 0
+      }
+    }
+  },
+  "files": [
+    "output/image2/frieren-direct/frieren-direct-concept_001.png"
+  ]
+}

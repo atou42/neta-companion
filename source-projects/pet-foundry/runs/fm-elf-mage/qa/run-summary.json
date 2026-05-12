@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "run_dir": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage",
+  "spritesheet": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/final/spritesheet.webp",
+  "validation": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/final/validation.json",
+  "contact_sheet": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/qa/contact-sheet.png",
+  "review": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/qa/review.json",
+  "videos": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/qa/videos",
+  "package": "/Users/atou/.codex/pets/fm-silver-elf-mage"
+}

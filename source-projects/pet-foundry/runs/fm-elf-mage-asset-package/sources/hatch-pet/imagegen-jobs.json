@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-05-11T01:43:09.015204+00:00",
+  "run_dir": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage",
+  "primary_generation_skill": "$imagegen",
+  "jobs": [
+    {
+      "id": "base",
+      "kind": "base-pet",
+      "status": "complete",
+      "prompt_file": "prompts/base-pet.md",
+      "input_images": [],
+      "output_path": "decoded/base.png",
+      "depends_on": [],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": false,
+      "allow_prompt_only_generation": true,
+      "recording_owner": "parent",
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/base-retry-1/base_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "fe61184203458cf16cc00b138088cba28f39b85a68e1fe3b5567e355521d86a5",
+      "output_sha256": "fe61184203458cf16cc00b138088cba28f39b85a68e1fe3b5567e355521d86a5",
+      "completed_at": "2026-05-11T01:46:35.458359+00:00",
+      "metadata": {
+        "width": 1024,
+        "height": 1024,
+        "mode": "RGBA",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/base-retry-1/base_response.json",
+        "metadata_sha256": "84782326367d3893a9e7d985a740461db979c38b4a17b0ea319d01f210092e34",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "1024x1024",
+        "prompt_sha256": "e34c43b708688cb92db837542fa8b04a74508346827d1dca6f7cee27a27303e5"
+      },
+      "canonical_reference_path": "references/canonical-base.png"
+    },
+    {
+      "id": "idle",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/idle.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/idle.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/idle.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "repair_attempt": 2,
+      "previous_outputs": [
+        {
+          "attempt": 1,
+          "path": "decoded/repair-archive/idle-attempt-1-previous.png",
+          "archived_at": "2026-05-11T01:59:01.331114+00:00"
+        },
+        {
+          "attempt": 2,
+          "path": "decoded/repair-archive/idle-attempt-2-previous.png",
+          "archived_at": "2026-05-11T02:04:46.753498+00:00"
+        }
+      ],
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/idle-repair-2/idle_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "7535018178a4ae0d8358a25b4b62163b701c4c09ce4ef14962b92dd1de3816b2",
+      "output_sha256": "7535018178a4ae0d8358a25b4b62163b701c4c09ce4ef14962b92dd1de3816b2",
+      "completed_at": "2026-05-11T02:06:13.785184+00:00",
+      "metadata": {
+        "width": 2048,
+        "height": 1152,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/idle-repair-2/idle_response.json",
+        "metadata_sha256": "5a8e130eb924709a244d964b0e0d8bcc724da2614aeb0cf2d6606030f64abbd6",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "2048x1152",
+        "prompt_sha256": "21beefa01f4825525b08f46773cd6f147ccfa7b2466d8d06f1a1ce1dd39403c1",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/idle.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "running-right",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/running-right.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/running-right.png",
+          "role": "layout guide for 8 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/running-right.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/running-right/running-right_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "9d527d83af956a4ba37362386670ac33bd5de68a95d4373e0a854218d7f88806",
+      "output_sha256": "9d527d83af956a4ba37362386670ac33bd5de68a95d4373e0a854218d7f88806",
+      "completed_at": "2026-05-11T01:53:54.983893+00:00",
+      "metadata": {
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/running-right/running-right_response.json",
+        "metadata_sha256": "7483ed61d34e140a82cee71228f1557f74900dac20e678d3b82ed1a1d5560f26",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "1536x1024",
+        "prompt_sha256": "1f5afa2c28bc002ee8da9c102a8275808975657d621df6697d31fe66112d12a9",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/running-right.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "running-left",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/running-left.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/running-left.png",
+          "role": "layout guide for 8 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        },
+        {
+          "path": "decoded/running-right.png",
+          "role": "rightward gait reference for leftward row decision"
+        }
+      ],
+      "output_path": "decoded/running-left.png",
+      "depends_on": [
+        "base",
+        "running-right"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base",
+        "running-right"
+      ],
+      "mirror_policy": {
+        "may_derive_from": "running-right",
+        "derivation": "horizontal-mirror",
+        "requires_explicit_approval": true,
+        "fallback_generation_skill": "$imagegen"
+      },
+      "recording_owner": "parent",
+      "source_path": "decoded/running-right.png",
+      "source_provenance": "deterministic-mirror",
+      "derived_from": "running-right",
+      "source_sha256": "9d527d83af956a4ba37362386670ac33bd5de68a95d4373e0a854218d7f88806",
+      "output_sha256": "4615c31d39132a8033326cc8898c3ef382e32527db5c7f3181cb9c45ad322ae8",
+      "completed_at": "2026-05-11T01:57:59.586499+00:00",
+      "metadata": {
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "format": "PNG"
+      },
+      "mirror_decision": {
+        "approved": true,
+        "approved_at": "2026-05-11T01:57:59.586499+00:00",
+        "note": "The rightward row is a symmetric chibi gait with no text or handed asymmetric mark; mirroring preserves identity and gives a stable leftward utility row."
+      }
+    },
+    {
+      "id": "waving",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/waving.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/waving.png",
+          "role": "layout guide for 4 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/waving.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/waving-improve-1/waving_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "4caa36b566cbce54e4bf387881b2c5a795048340018b4fd9098e1d4fbaae4eda",
+      "output_sha256": "4caa36b566cbce54e4bf387881b2c5a795048340018b4fd9098e1d4fbaae4eda",
+      "completed_at": "2026-05-11T02:14:43.098583+00:00",
+      "metadata": {
+        "width": 2048,
+        "height": 1152,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/waving-improve-1/waving_response.json",
+        "metadata_sha256": "436e15c46eb454a33e4c3805521d10d893938a71d3afc483534c005687b020a1",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "2048x1152",
+        "prompt_sha256": "3b78e0e5d5fcaf52fd6f9fe0693f39b4a362bf913eb8f205acf9ee30b906d2b7",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/waving.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "jumping",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/jumping.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/jumping.png",
+          "role": "layout guide for 5 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/jumping.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/jumping/jumping_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "b1e29b58b83ec327271b0b18864519358c85a99550221185e0cc55a966eb49fe",
+      "output_sha256": "b1e29b58b83ec327271b0b18864519358c85a99550221185e0cc55a966eb49fe",
+      "completed_at": "2026-05-11T01:54:52.749351+00:00",
+      "metadata": {
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGBA",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/jumping/jumping_response.json",
+        "metadata_sha256": "3b38755ffbdd87b3d153fc1fcbbd49e6680a4ca808677e3c9ba7322db5ddc048",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "1536x1024",
+        "prompt_sha256": "4149c77e8d2266b176e88167259dfafc76a5c870572201974433aa8c168c32a0",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/jumping.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "failed",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/failed.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/failed.png",
+          "role": "layout guide for 8 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/failed.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "repair_attempt": 1,
+      "previous_outputs": [
+        {
+          "attempt": 1,
+          "path": "decoded/repair-archive/failed-attempt-1-previous.png",
+          "archived_at": "2026-05-11T02:11:52.467245+00:00"
+        }
+      ],
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/failed-improve-1/failed_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "2905ad792fb972fe7b07d6ae24477bab88da7585bd4a6fde83050b1f94dafb86",
+      "output_sha256": "2905ad792fb972fe7b07d6ae24477bab88da7585bd4a6fde83050b1f94dafb86",
+      "completed_at": "2026-05-11T02:16:03.443400+00:00",
+      "metadata": {
+        "width": 2048,
+        "height": 1152,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/failed-improve-1/failed_response.json",
+        "metadata_sha256": "38c7715c3a0fc307b7fd0cdd7de2a21b82044ef39068523a4e3efc1b0b97bd76",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "2048x1152",
+        "prompt_sha256": "88c9b9d9475d75b7a5af20454cd9aac26cc8777ecd2ba39984d3405cfdc9b4fa",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/failed.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "waiting",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/waiting.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/waiting.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/waiting.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "repair_attempt": 1,
+      "previous_outputs": [
+        {
+          "attempt": 1,
+          "path": "decoded/repair-archive/waiting-attempt-1-previous.png",
+          "archived_at": "2026-05-11T01:59:01.332988+00:00"
+        }
+      ],
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/waiting-repair-1/waiting_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "8aa4a978e34f5f9b90271b4641e7c2e8b97aa3b2f44fa4dbe2bfb6fab1902fad",
+      "output_sha256": "8aa4a978e34f5f9b90271b4641e7c2e8b97aa3b2f44fa4dbe2bfb6fab1902fad",
+      "completed_at": "2026-05-11T02:02:22.335722+00:00",
+      "metadata": {
+        "width": 2048,
+        "height": 1152,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/waiting-repair-1/waiting_response.json",
+        "metadata_sha256": "7d2bf7e04b557ba3ed51c8b995c8f8db88dc92f373de54f740ebf1b03f96e7ff",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "2048x1152",
+        "prompt_sha256": "02fbf58bf7be76742a3d5c013c33e3c3244cf1b1a336b6b6e9bda9b4fbe7c49c",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/waiting.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "running",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/running.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/running.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/running.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "repair_attempt": 1,
+      "previous_outputs": [
+        {
+          "attempt": 1,
+          "path": "decoded/repair-archive/running-attempt-1-previous.png",
+          "archived_at": "2026-05-11T01:59:01.334349+00:00"
+        }
+      ],
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/running-repair-1/running_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "269e967e28293901a09a40caa4f559111724710a97f59d2f9d7848651787ee92",
+      "output_sha256": "269e967e28293901a09a40caa4f559111724710a97f59d2f9d7848651787ee92",
+      "completed_at": "2026-05-11T02:03:23.525284+00:00",
+      "metadata": {
+        "width": 2048,
+        "height": 1152,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/running-repair-1/running_response.json",
+        "metadata_sha256": "ef360a6cb3e814be3b6c6bb4bbc9e8079210f96415fbd963c1364c2f7849d017",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "2048x1152",
+        "prompt_sha256": "abf34ea6fe65a0798e08920f394a106909d38ff5dfe0752faeec731e0ff255c2",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/running.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    },
+    {
+      "id": "review",
+      "kind": "row-strip",
+      "status": "complete",
+      "prompt_file": "prompts/rows/review.md",
+      "input_images": [
+        {
+          "path": "references/layout-guides/review.png",
+          "role": "layout guide for 6 frame slots; use for spacing only, do not copy guide lines"
+        },
+        {
+          "path": "references/canonical-base.png",
+          "role": "canonical identity reference"
+        },
+        {
+          "path": "decoded/base.png",
+          "role": "approved base pet"
+        }
+      ],
+      "output_path": "decoded/review.png",
+      "depends_on": [
+        "base"
+      ],
+      "generation_skill": "$imagegen",
+      "requires_grounded_generation": true,
+      "allow_prompt_only_generation": false,
+      "identity_reference_paths": [
+        "references/canonical-base.png",
+        "decoded/base.png"
+      ],
+      "parallelizable_after": [
+        "base"
+      ],
+      "mirror_policy": {},
+      "recording_owner": "parent",
+      "source_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/review/review_001.png",
+      "source_provenance": "image2",
+      "source_sha256": "313448d4dff50f80906ffe81c28502d368f4979649a4bc98eed3f317ebf6a019",
+      "output_sha256": "313448d4dff50f80906ffe81c28502d368f4979649a4bc98eed3f317ebf6a019",
+      "completed_at": "2026-05-11T01:56:54.161789+00:00",
+      "metadata": {
+        "width": 1536,
+        "height": 1024,
+        "mode": "RGB",
+        "format": "PNG"
+      },
+      "source_provider": {
+        "name": "image2",
+        "metadata_path": "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/review/review_response.json",
+        "metadata_sha256": "cded6e7af585f312c7c8217ac6757e3bcd25e0e19820568198820919eaf02508",
+        "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+        "model": "gpt-image-2",
+        "size": "1536x1024",
+        "prompt_sha256": "7e75c4665569b81138ff32c61f20f28f9488b2707143a1b6123c3857c2307f8d",
+        "input_images": [
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/review.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+          "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png"
+        ]
+      }
+    }
+  ],
+  "canonical_identity_reference": {
+    "path": "references/canonical-base.png",
+    "source_job": "base",
+    "sha256": "fe61184203458cf16cc00b138088cba28f39b85a68e1fe3b5567e355521d86a5",
+    "metadata": {
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "format": "PNG"
+    }
+  }
+}

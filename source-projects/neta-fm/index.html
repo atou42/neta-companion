@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#120927" />
+  <title>Neta FM</title>
+  <meta name="description" content="Neta FM — deep violet web radio console." />
+  <style>
+    :root {
+      --bg: #07040f;
+      --shell: rgba(18, 9, 39, .84);
+      --black: rgba(7, 4, 14, .92);
+      --black-strong: #07040e;
+      --text: #faf2ff;
+      --muted: rgba(250, 242, 255, .68);
+      --dim: rgba(250, 242, 255, .42);
+      --line: rgba(255, 130, 220, .32);
+      --line-soft: rgba(255, 255, 255, .12);
+      --violet: #ac46ff;
+      --violet-2: #7e3cff;
+      --pink: #ff48a4;
+      --hot: #ff477c;
+      --cream: #faf2ff;
+      --shadow: rgba(0,0,0,.42);
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 8% 24%, rgba(255, 55, 180, .32), transparent 28%),
+        radial-gradient(circle at 82% 4%, rgba(116, 56, 255, .46), transparent 34%),
+        radial-gradient(circle at 82% 88%, rgba(255, 75, 150, .24), transparent 34%),
+        linear-gradient(145deg, #080512, #17072c 44%, #381883 100%);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image:
+        linear-gradient(135deg, rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 46px 46px, 100% 58px;
+      mask-image: linear-gradient(90deg, rgba(0,0,0,.95), rgba(0,0,0,.76));
+    }
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .16; z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+      mix-blend-mode: screen;
+    }
+    button, input { font: inherit; }
+    button { border: 0; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .app { width: min(1370px, calc(100vw - 28px)); min-height: 100svh; margin: 0 auto; padding: 28px 0; display: grid; grid-template-columns: 94px minmax(0, 1fr); gap: 24px; }
+    .rail { position: sticky; top: 28px; height: calc(100svh - 56px); min-height: 640px; border: 1px solid var(--line); border-radius: 31px; background: rgba(7,4,14,.94); box-shadow: 0 28px 80px var(--shadow); padding: 22px 10px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .logo { width: 54px; height: 54px; border-radius: 18px; background: var(--cream); color: #2a1246; display: grid; place-items: center; font-size: 30px; font-weight: 950; letter-spacing: -.1em; }
+    .nav { display: grid; gap: 14px; margin-top: 30px; }
+    .nav-btn { width: 50px; height: 50px; border-radius: 17px; display: grid; place-items: center; background: rgba(255,255,255,.08); border: 1px solid rgba(255,130,220,.28); color: rgba(250,242,255,.72); transition: transform .16s ease, background .16s ease; }
+    .nav-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.13); }
+    .nav-btn.active { background: linear-gradient(135deg, var(--violet), var(--pink)); color: #fff7ff; border-color: transparent; box-shadow: 0 14px 30px rgba(172,70,255,.28); }
+    .rail-label { margin-top: auto; color: var(--pink); font-size: 10px; letter-spacing: .18em; font-weight: 800; writing-mode: vertical-rl; }
+    .shell { border: 1px solid var(--line); border-radius: 46px; background: var(--shell); box-shadow: 0 34px 110px var(--shadow); padding: 34px; min-width: 0; }
+    .topbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 24px; }
+    .brand h1 { margin: 0; font-size: clamp(28px, 3vw, 36px); letter-spacing: .07em; line-height: 1; }
+    .brand p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+    .signal-pill { display: inline-flex; align-items: center; gap: 14px; min-height: 50px; padding: 7px 13px 7px 18px; border-radius: 999px; background: rgba(7,4,14,.88); border: 1px solid var(--line); color: var(--muted); font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: nowrap; }
+    .signal-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 18px rgba(172,70,255,.9); }
+    .signal-dot.playing { background: var(--pink); box-shadow: 0 0 24px rgba(255,72,164,.9); }
+    .signal-dot.error { background: var(--hot); box-shadow: 0 0 24px rgba(255,71,124,.9); }
+    .onair { padding: 12px 16px; border-radius: 999px; background: var(--pink); color: #fff7ff; font-weight: 900; letter-spacing: .08em; }
+    .view { display: none; } .view.active { display: block; }
+    .player-grid { display: grid; grid-template-columns: minmax(0, 1fr) 362px; gap: 28px; }
+    .hero-card, .queue-card, .notes-card, .dock, .settings-card, .expanded-card { border: 1px solid var(--line); background: rgba(7,4,14,.88); border-radius: 36px; box-shadow: 0 22px 70px rgba(0,0,0,.25); }
+    .hero-card { padding: 28px; min-height: 544px; display: grid; grid-template-columns: minmax(260px, .86fr) minmax(300px, 1fr); gap: 30px; align-items: stretch; overflow: hidden; }
+    .title-panel, .visual-panel { border-radius: 30px; border: 1px solid rgba(255,130,220,.22); background: rgba(32, 12, 68, .62); position: relative; overflow: hidden; }
+    .title-panel { padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+    .kicker { color: var(--pink); font-size: 12px; letter-spacing: .08em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; text-transform: uppercase; }
+    .accent-lines { margin-top: 48px; display: grid; gap: 8px; }
+    .accent-lines span { height: 4px; border-radius: 999px; background: var(--pink); width: 140px; } .accent-lines span:nth-child(2) { background: var(--violet); width: 82px; }
+      .track-title { font-size: clamp(58px, 7vw, 112px); line-height: .8; letter-spacing: -.08em; color: var(--cream); text-shadow: 0 18px 60px rgba(172,70,255,.18); word-break: keep-all; }
+    .track-sub { margin: 10px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .visual-panel { min-height: 420px; display: grid; place-items: center; touch-action: pan-y; user-select: none; cursor: grab; }
+    .visual-panel:active { cursor: grabbing; }
+    .disc-hint { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); color: rgba(250,242,255,.48); font-size: 11px; letter-spacing: .12em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; pointer-events: none; }
+    .wave { position: absolute; top: 34px; left: 50%; transform: translateX(-50%); height: 150px; display: flex; align-items: center; gap: 9px; }
+    .wave span { width: 8px; height: var(--h); border-radius: 999px; background: var(--c); animation: bounce 1.8s ease-in-out infinite; animation-delay: var(--d); opacity: .92; }
+    @keyframes bounce { 0%,100% { transform: scaleY(.72); opacity: .62; } 50% { transform: scaleY(1.08); opacity: 1; } }
+    .paused .wave span, .ready .wave span, .error .wave span { animation-play-state: paused; opacity: .42; }
+    .disc-neighbor { display:none; }
+    .radar { width: min(78%, 330px); aspect-ratio: 1; border-radius: 50%; position: relative; background: radial-gradient(circle, #05030b 0 44%, transparent 45%), repeating-radial-gradient(circle, transparent 0 22px, rgba(255,255,255,.22) 23px, transparent 24px); border: 1px solid rgba(255,130,220,.3); box-shadow: inset 0 0 0 28px rgba(0,0,0,.16), 0 0 70px rgba(172,70,255,.16); transition: transform .18s ease, opacity .18s ease; will-change: transform, opacity; }
+    .radar::before { content:""; position:absolute; inset:-34px; border-radius:50%; border: 5px solid transparent; border-top-color: var(--pink); border-left-color: var(--pink); transform: rotate(-35deg); opacity:.86; animation: sweep 6s linear infinite; }
+    .radar::after { content:""; position:absolute; left:50%; top:50%; width:80px; height:80px; transform:translate(-50%,-50%); border-radius:50%; background: radial-gradient(circle, #07040e 0 13%, var(--pink) 14% 34%, var(--violet) 35% 100%); box-shadow: 0 0 42px rgba(255,72,164,.28); }
+    @keyframes sweep { to { transform: rotate(325deg); } }
+    @keyframes discNext { 0% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; } 44% { transform: translateX(62%) rotate(38deg) scale(.86); opacity:.25; } 45% { transform: translateX(-62%) rotate(-38deg) scale(.86); opacity:.25; } 100% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; } }
+    @keyframes discPrev { 0% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; } 44% { transform: translateX(-62%) rotate(-38deg) scale(.86); opacity:.25; } 45% { transform: translateX(62%) rotate(38deg) scale(.86); opacity:.25; } 100% { transform: translateX(0) rotate(0deg) scale(1); opacity:1; } }
+    .visual-panel.swap-next .radar { animation: discNext .46s cubic-bezier(.2,.8,.2,1); }
+    .visual-panel.swap-prev .radar { animation: discPrev .46s cubic-bezier(.2,.8,.2,1); }
+    .paused .radar::before, .ready .radar::before, .error .radar::before { animation-play-state: paused; opacity:.36; }
+    .error-state { display:none; padding: 28px; border-radius: 30px; background: rgba(255,71,124,.08); border: 1px solid rgba(255,71,124,.38); }
+    .error .normal-state { display:none; } .error .error-state { display:flex; flex-direction:column; justify-content:center; grid-column: 1 / -1; min-height: 420px; }
+    .error-title { margin: 0; font-size: clamp(52px, 7vw, 92px); line-height: .9; letter-spacing: -.06em; }
+    .error-state p { color: var(--muted); max-width: 680px; line-height: 1.6; }
+    .error-actions { display:flex; gap:14px; flex-wrap:wrap; margin-top:20px; }
+    .side-stack { display: grid; gap: 20px; grid-template-rows: minmax(0, 1fr) auto; }
+    .queue-card, .notes-card { padding: 22px; min-width: 0; }
+    .card-head { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:16px; color:var(--muted); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; text-transform:uppercase; }
+    .queue-list { display:grid; gap:8px; max-height: 360px; overflow:auto; padding-right:3px; }
+    .queue-item { width:100%; display:grid; grid-template-columns:40px minmax(0,1fr) auto; gap:14px; align-items:center; padding:12px; border-radius:22px; border:1px solid transparent; background:transparent; text-align:left; transition:.16s ease; }
+    .queue-item:hover { background: rgba(255,255,255,.06); }
+    .queue-item.active { background: rgba(172,70,255,.28); border-color: rgba(255,86,184,.46); }
+    .queue-item.error-track { background: rgba(255,71,124,.18); border-color: rgba(255,71,124,.36); }
+    .num { width:40px; height:40px; border-radius:16px; display:grid; place-items:center; background:rgba(255,255,255,.1); color:rgba(250,242,255,.72); font-size:12px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    .queue-item.active .num { background: var(--violet); color:#fff; } .queue-item.error-track .num { background: var(--hot); color:#fff; }
+    .qt { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:800; font-size:14px; } .qa { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--muted); font-size:12px; margin-top:4px; } .time { color:var(--muted); font-size:12px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    .notes { display:grid; gap:10px; max-height:210px; overflow:auto; } .note { border-radius:22px; padding:14px 16px; background: var(--cream); color:#2a1246; line-height:1.45; animation: rise .24s ease both; } .note small { display:block; color:var(--violet); font-size:11px; letter-spacing:.06em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin-bottom:6px; } .note p { margin:0; font-size:14px; }
+    @keyframes rise { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    .dock { margin-top: 26px; padding: 24px; display:grid; grid-template-columns:260px minmax(0,1fr) auto; gap:24px; align-items:center; }
+    .mini { display:flex; gap:16px; align-items:center; min-width:0; } .thumb { width:76px; height:76px; border-radius:23px; background: linear-gradient(135deg, var(--violet), var(--pink)); position:relative; flex:0 0 auto; } .thumb::after { content:""; position:absolute; inset:22px; border-radius:50%; background:var(--pink); }
+    .song { font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .artist { color:var(--muted); font-size:13px; margin-top:6px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .progress-wrap { min-width:0; } .progress-meta { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; margin-top:9px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    .progress { width:100%; height:10px; appearance:none; border-radius:999px; background: linear-gradient(to right, var(--pink) 0 var(--progress,0%), rgba(255,255,255,.22) var(--progress,0%) 100%); outline:none; }
+    .progress::-webkit-slider-thumb, .volume::-webkit-slider-thumb { appearance:none; width:20px; height:20px; border-radius:50%; background:var(--cream); border:4px solid var(--violet); box-shadow:0 6px 18px rgba(0,0,0,.35); }
+    .progress::-moz-range-thumb, .volume::-moz-range-thumb { width:14px; height:14px; border-radius:50%; background:var(--cream); border:4px solid var(--violet); }
+    .buttons { display:flex; gap:12px; align-items:center; }
+    .btn { min-width:56px; min-height:52px; padding:0 16px; border-radius:18px; background:rgba(255,255,255,.1); border:1px solid rgba(255,130,220,.32); color:var(--text); font-weight:900; font-size:11px; letter-spacing:.06em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    .btn.primary { background:var(--cream); color:#2a1246; border-color:transparent; } .btn.danger { background: var(--hot); color:#fff; border-color:transparent; }
+    .mode-btn.active { background: linear-gradient(135deg, var(--violet), var(--pink)); color:#fff; }
+    .volume-box { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:12px; margin-top:14px; } .volume { width:100%; accent-color:var(--pink); }
+    .expanded-layout { display:grid; grid-template-columns: minmax(320px,.7fr) minmax(0,1fr); gap:28px; } .expanded-card { padding:28px; min-height:640px; }
+    .expanded-now { display:flex; flex-direction:column; justify-content:space-between; } .expanded-now .track-title { font-size: clamp(72px, 8vw, 120px); }
+    .expanded-queue { display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; max-height:560px; overflow:auto; }
+    .film-strip { display:none; }
+    .film-list { display:flex; gap:12px; overflow-x:auto; padding:0 2px 2px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .film-list::-webkit-scrollbar { display:none; }
+    .film-item { position:relative; flex:0 0 auto; min-width:118px; border-radius:999px; border:1px solid rgba(255,130,220,.26); background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.045)); color:var(--text); padding:10px 14px 10px 28px; display:block; text-align:left; scroll-snap-align:start; }
+    .film-item::before { content:""; position:absolute; left:12px; top:50%; width:8px; height:8px; border-radius:50%; transform:translateY(-50%); background:rgba(250,242,255,.34); box-shadow:0 0 0 4px rgba(255,255,255,.04); }
+    .film-item.active { background:linear-gradient(135deg, rgba(172,70,255,.78), rgba(255,72,164,.60)); border-color:transparent; }
+    .film-item.active::before { background:var(--pink); box-shadow:0 0 18px rgba(255,72,164,.55); }
+    .film-no { display:none; }
+    .film-name { display:block; max-width:92px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:11px; font-weight:900; }
+    .settings-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:18px; } .setting { padding:18px; border-radius:24px; background:rgba(7,4,14,.72); border:1px solid var(--line); } .setting h3 { margin:0 0 12px; } .toggle { display:flex; justify-content:space-between; align-items:center; gap:16px; color:var(--muted); }
+    .switch { width:54px; height:30px; border-radius:999px; background:rgba(255,255,255,.14); position:relative; flex:0 0 auto; } .switch::after { content:""; position:absolute; width:24px; height:24px; top:3px; left:3px; border-radius:50%; background:var(--cream); transition:.18s; } .switch.on { background:var(--violet); } .switch.on::after { left:27px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+    @media (max-width: 1050px) { .app { grid-template-columns:1fr; width:min(760px, calc(100vw - 18px)); padding:14px 0; } .rail { position:static; height:auto; min-height:0; flex-direction:row; border-radius:28px; padding:12px; } .nav { display:flex; margin:0; } .rail-label { writing-mode:initial; margin-left:auto; } .shell { padding:18px; border-radius:34px; } .player-grid, .expanded-layout { grid-template-columns:1fr; } .hero-card { grid-template-columns:1fr; min-height:0; } .visual-panel { min-height:360px; } .side-stack { grid-template-rows:auto; } .dock { grid-template-columns:1fr; } .buttons { justify-content:center; flex-wrap:wrap; } .expanded-queue { grid-template-columns:1fr; } }
+    @media (max-width: 520px) {
+      body { overflow-x:hidden; }
+      .app { width:100%; min-height:100svh; padding:0; display:block; }
+      .rail { position:fixed; top:18px; right:14px; left:auto; bottom:auto; transform:none; z-index:20; width:188px; height:44px; min-height:0; flex-direction:row; justify-content:center; gap:5px; border-radius:999px; padding:5px 7px; background:rgba(7,4,14,.58); backdrop-filter:blur(24px); border-color:rgba(255,130,220,.22); }
+      .logo, .rail-label { display:none; }
+      .nav { display:flex; gap:5px; margin:0; }
+      .nav-btn { width:32px; height:32px; border-radius:13px; font-size:13px; }
+      .shell { min-height:100svh; max-height:100svh; padding:14px; border-radius:0; display:flex; flex-direction:column; overflow:hidden; }
+      .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; min-height:48px; padding-right:198px; }
+      .brand h1 { font-size:20px; letter-spacing:.02em; }
+      .brand p, .signalText { display:none; }
+      .signal-pill { display:none; margin:0; min-height:34px; width:auto; padding:6px 9px; gap:7px; }
+      #signalText, #volumeLabel { display:none; }
+      .onair { padding:8px 11px; font-size:10px; }
+      .player-grid { display:block; }
+      .side-stack { display:none; }
+      .hero-card { min-height:0; height:auto; padding:0; border:0; background:transparent; box-shadow:none; display:grid; grid-template-columns:1fr; gap:0; overflow:visible; }
+      .title-panel { min-height:0; height:0; padding:0; border:0; overflow:visible; background:transparent; z-index:2; pointer-events:none; }
+      .title-panel > div:first-child { position:absolute; left:24px; top:28px; z-index:4; }
+      .accent-lines { display:none; }
+      .title-panel > div:last-child { position:absolute; left:24px; top:118px; z-index:5; max-width:200px; }
+      .track-title { font-size:58px; line-height:.86; letter-spacing:-.075em; max-width:260px; }
+      .track-sub { margin-top:6px; max-width:196px; font-size:12px; }
+      .visual-panel { min-height:466px; border-radius:34px; background:rgba(7,4,14,.92); border-color:rgba(255,130,220,.38); overflow:hidden; }
+      .visual-panel::before, .visual-panel::after { display:none; }
+      .disc-neighbor { display:block; position:absolute; top:50%; width:112px; aspect-ratio:1; border-radius:50%; transform:translateY(-50%); border:1px solid rgba(250,242,255,.20); background:repeating-radial-gradient(circle, transparent 0 18px, rgba(255,255,255,.14) 19px, transparent 20px); opacity:.52; pointer-events:none; }
+      .disc-neighbor::after { content:""; position:absolute; inset:42px; border-radius:50%; background:rgba(255,72,164,.38); }
+      .disc-neighbor-prev { left:-70px; }
+      .disc-neighbor-next { right:-70px; }
+      .disc-hint { display:none; }
+      .wave { top:72px; left:64%; transform:translateX(-50%) scale(.72); transform-origin:center; }
+      .radar { width:280px; margin-top:70px; }
+      .radar::before { inset:-24px; }
+      .dock { margin-top:14px; padding:16px; border-radius:30px; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+      .mini { grid-column:1; }
+      .thumb { width:58px; height:58px; border-radius:18px; }
+      .thumb::after { inset:18px; }
+      .song { font-size:14px; }
+      .artist { font-size:11px; }
+      .progress-wrap { grid-column:1 / -1; order:3; }
+      .buttons { grid-column:2; grid-row:1; gap:8px; flex-wrap:nowrap; }
+      .btn { min-width:38px; min-height:38px; padding:0 10px; border-radius:15px; font-size:0; }
+      #prevBtn::before { content:'‹'; font-size:20px; }
+      #playBtn::before { content:'Ⅱ'; font-size:14px; }
+      #playBtn:not(.is-playing)::before { content:'▶'; }
+      #nextBtn::before { content:'›'; font-size:20px; }
+      .btn.primary { background:var(--cream); }
+      .film-strip { display:block; margin-top:14px; border:1px solid rgba(255,130,220,.26); background:linear-gradient(180deg, rgba(7,4,14,.78), rgba(7,4,14,.56)); border-radius:28px; padding:12px 14px 10px; }
+      .film-head { color:var(--muted); font-size:10px; letter-spacing:.12em; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+      .film-head::after { content:""; height:1px; flex:1; background:linear-gradient(90deg, rgba(255,72,164,.45), transparent); }
+      .queue-card, .notes-card, .expanded-card, .settings-card { border-radius:28px; padding:16px; }
+      .expanded-layout, .settings-grid { grid-template-columns:1fr; }
+      .expanded-now { display:none; }
+      .expanded-card { min-height:0; }
+      .expanded-queue { grid-template-columns:1fr; max-height:calc(100svh - 190px); padding-bottom:70px; }
+      #notesView .expanded-card, #settingsView .expanded-card { padding-bottom:86px; }
+      .error .error-state { min-height:466px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <aside class="rail" aria-label="Neta FM navigation">
+      <div class="logo">N</div>
+      <nav class="nav">
+        <button class="nav-btn active" data-view="player" aria-label="Now playing">▶</button>
+        <button class="nav-btn" data-view="queue" aria-label="Queue">≋</button>
+        <button class="nav-btn" data-view="notes" aria-label="DJ notes">✦</button>
+        <button class="nav-btn" data-view="settings" aria-label="Settings">◎</button>
+      </nav>
+      <div class="rail-label">NIGHT</div>
+    </aside>
+    <section class="shell">
+      <header class="topbar">
+        <div class="brand"><h1>NETA FM</h1><p>deep violet signal garden / browser radio console</p></div>
+        <div class="signal-pill"><span id="signalDot" class="signal-dot"></span><span id="signalText">VIOLET SIGNAL READY</span><span id="onAir" class="onair">READY</span><span id="volumeLabel">82%</span></div>
+      </header>
+
+      <section id="playerView" class="view active">
+        <div class="player-grid">
+          <section id="heroCard" class="hero-card ready">
+            <div class="title-panel normal-state">
+              <div><div id="kicker" class="kicker">SIGNAL GARDEN // 001</div><div class="accent-lines"><span></span><span></span></div></div>
+              <div><h2 id="trackTitle" class="track-title">Late<br/>Signal</h2><p id="trackSub" class="track-sub">Madza / pink-violet night opener</p></div>
+            </div>
+            <div class="visual-panel normal-state">
+              <div class="disc-neighbor disc-neighbor-prev" aria-hidden="true"></div><div class="disc-neighbor disc-neighbor-next" aria-hidden="true"></div><div id="wave" class="wave"></div><div id="disc" class="radar" role="button" tabindex="0" aria-label="换碟：点击下一首，左右滑动切歌"></div><div class="disc-hint">TAP / SWIPE DISC</div>
+            </div>
+            <div class="error-state"><div class="kicker">BROKEN LINK TEST</div><h2 class="error-title">No fake<br/>playback.</h2><p id="errorText">The audio URL failed. Neta FM shows the problem clearly and lets the listener skip.</p><div class="error-actions"><button id="skipBtn" class="btn danger">SKIP TRACK</button><button id="copyErrorBtn" class="btn">COPY ERROR</button></div></div>
+          </section>
+          <aside class="side-stack">
+            <section class="queue-card"><div class="card-head"><span>QUEUE / VIOLET SIGNALS</span><span id="queueCount">0</span></div><div id="queueList" class="queue-list"></div></section>
+            <section class="notes-card"><div class="card-head"><span>DJ NOTES / PINK STATIC</span><span>LIVE</span></div><div id="notesList" class="notes"></div></section>
+          </aside>
+        </div>
+        <section class="dock">
+          <div class="mini"><div class="thumb"></div><div style="min-width:0"><div id="miniTitle" class="song">Late Signal One</div><div id="miniArtist" class="artist">SoundHelix / Neta Select</div></div></div>
+          <div class="progress-wrap"><input id="progress" class="progress" type="range" min="0" max="1000" value="0" aria-label="Playback progress" /><div class="progress-meta"><span id="currentTime">0:00</span><span id="duration">0:00</span></div></div>
+          <div class="buttons"><button id="prevBtn" class="btn">PREV</button><button id="playBtn" class="btn primary">PLAY</button><button id="nextBtn" class="btn">NEXT</button></div>
+        </section>
+        <section class="film-strip" aria-label="Next signals"><div class="film-head">NEXT SIGNALS</div><div id="filmList" class="film-list"></div></section>
+      </section>
+
+      <section id="queueView" class="view"><div class="expanded-layout"><section class="expanded-card expanded-now"><div><div class="card-head"><span>NOW PLAYING</span><span id="expandedStatus">READY</span></div><h2 id="expandedTitle" class="track-title">Late<br/>Signal</h2><p id="expandedSub" class="track-sub">Madza / pink-violet night opener</p></div><div class="visual-panel" style="min-height:280px"><div class="radar"></div></div></section><section class="expanded-card"><div class="card-head"><span>QUEUE / URLS</span><span id="expandedCount">0</span></div><div id="expandedQueue" class="expanded-queue"></div></section></div></section>
+      <section id="notesView" class="view"><section class="expanded-card"><div class="card-head"><span>DJ NOTES / PINK STATIC</span><span>RECENT</span></div><div id="notesListFull" class="notes" style="max-height:none"></div></section></section>
+      <section id="settingsView" class="view"><section class="settings-card expanded-card"><div class="card-head"><span>SETTINGS / CONTROL</span><span>LOCAL</span></div><div class="settings-grid"><div class="setting"><h3>Playback Mode</h3><div class="buttons"><button id="modeBtn" class="btn mode-btn">SEQ</button></div></div><div class="setting"><h3>Volume</h3><div class="volume-box"><input id="volume" class="volume" type="range" min="0" max="1" step="0.01" value="0.82" /><span id="volumeSettingLabel">82%</span></div></div><div class="setting"><h3>Auto Skip Failed Tracks</h3><div class="toggle">Default off: bad links should be visible.<button id="autoSkipBtn" class="switch" aria-label="Auto skip failed tracks"></button></div></div><div class="setting"><h3>DJ Notes</h3><div class="toggle">Show lightweight preset notes.<button id="notesToggleBtn" class="switch on" aria-label="Show DJ notes"></button></div></div></div></section></section>
+    </section>
+  </main>
+  <audio id="audio" preload="metadata"></audio>
+  <script>
+    const tracks = [
+      {
+            "id": "suno-01",
+            "title": "Violet Signal One",
+            "shortTitle": "Violet\\nSignal",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/e831b16e-adfe-4eb1-8c2a-1fcd398ddfd2.mp3",
+            "durationHint": "≥3:00",
+            "description": "opening transmission",
+            "messages": [
+                  "Signal 01 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-02",
+            "title": "Pink Static Bloom",
+            "shortTitle": "Pink\\nStatic",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/2b9d7842-e71f-4f7e-9ebb-56c959b8eb04.mp3",
+            "durationHint": "≥3:00",
+            "description": "soft neon bloom",
+            "messages": [
+                  "Signal 02 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-03",
+            "title": "Night Garden Pulse",
+            "shortTitle": "Night\\nGarden",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/b887e9f5-26d1-4ddd-ae09-2a45be73d827.mp3",
+            "durationHint": "≥3:00",
+            "description": "deep signal pulse",
+            "messages": [
+                  "Signal 03 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-04",
+            "title": "Chrome Petal Radio",
+            "shortTitle": "Chrome\\nPetal",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/1aeb713a-c9fc-47ed-8d68-842bd1166ee6.mp3",
+            "durationHint": "≥3:00",
+            "description": "bright petal radio",
+            "messages": [
+                  "Signal 04 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-05",
+            "title": "Afterimage Lane",
+            "shortTitle": "Afterimage\\nLane",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/eab0ce8b-c991-41f4-9da3-d6c68c73037a.mp3",
+            "durationHint": "≥3:00",
+            "description": "late browser lane",
+            "messages": [
+                  "Signal 05 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-06",
+            "title": "Soft Machine Dream",
+            "shortTitle": "Soft\\nMachine",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/76e8a143-76ce-44da-be24-66fa3dcabc31.mp3",
+            "durationHint": "≥3:00",
+            "description": "machine dream signal",
+            "messages": [
+                  "Signal 06 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-07",
+            "title": "Candy Noise Window",
+            "shortTitle": "Candy\\nNoise",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/b9fa8ccf-1eec-493d-a9eb-7df0a2e2fbb4.mp3",
+            "durationHint": "≥3:00",
+            "description": "sweet noise window",
+            "messages": [
+                  "Signal 07 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-08",
+            "title": "Midnight Receiver",
+            "shortTitle": "Midnight\\nReceiver",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/93218d59-6c27-477e-a4c9-9a7fabfc3ba7.mp3",
+            "durationHint": "≥3:00",
+            "description": "private receiver",
+            "messages": [
+                  "Signal 08 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-09",
+            "title": "Glass Frequency",
+            "shortTitle": "Glass\\nFrequency",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/3cab43be-b552-4a8d-abd1-a1af3d73297d.mp3",
+            "durationHint": "≥3:00",
+            "description": "clear frequency",
+            "messages": [
+                  "Signal 09 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-10",
+            "title": "Purple Weather",
+            "shortTitle": "Purple\\nWeather",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/26ffaf20-9a40-4ee2-aa86-5bdcf6a548f5.mp3",
+            "durationHint": "≥3:00",
+            "description": "weather over violet",
+            "messages": [
+                  "Signal 10 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-11",
+            "title": "Static Heart Loop",
+            "shortTitle": "Static\\nHeart",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/ffbade7c-87f8-4fcd-ae3f-096ca34438a2.mp3",
+            "durationHint": "≥3:00",
+            "description": "looping pink heart",
+            "messages": [
+                  "Signal 11 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-12",
+            "title": "Neon Small Room",
+            "shortTitle": "Neon\\nRoom",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/a76dfc91-88b2-4444-b7f4-8a8877b23d0a.mp3",
+            "durationHint": "≥3:00",
+            "description": "small neon room",
+            "messages": [
+                  "Signal 12 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-13",
+            "title": "Signal Under Stars",
+            "shortTitle": "Under\\nStars",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/d0539eb2-98b4-462f-a1ca-d6b68a10f329.mp3",
+            "durationHint": "≥3:00",
+            "description": "signal under stars",
+            "messages": [
+                  "Signal 13 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-14",
+            "title": "Bedroom Satellite",
+            "shortTitle": "Bedroom\\nSatellite",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/32558905-4973-4635-9f0f-7cac89aac617.mp3",
+            "durationHint": "≥3:00",
+            "description": "bedroom satellite",
+            "messages": [
+                  "Signal 14 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-15",
+            "title": "Warm Error Flower",
+            "shortTitle": "Error\\nFlower",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/d585c9ee-9b9f-4cdb-817b-ec361f52fcd3.mp3",
+            "durationHint": "≥3:00",
+            "description": "warm glitch flower",
+            "messages": [
+                  "Signal 15 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-16",
+            "title": "Dream Console Tape",
+            "shortTitle": "Console\\nTape",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/5f06e4ff-8655-49c8-adcd-9936c7130bae.mp3",
+            "durationHint": "≥3:00",
+            "description": "console tape memory",
+            "messages": [
+                  "Signal 16 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-17",
+            "title": "Late Browser Choir",
+            "shortTitle": "Browser\\nChoir",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/4440cab7-8e7c-40b5-85a9-fda770acfdaf.mp3",
+            "durationHint": "≥3:00",
+            "description": "browser choir",
+            "messages": [
+                  "Signal 17 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      },
+      {
+            "id": "suno-18",
+            "title": "Final Violet Route",
+            "shortTitle": "Violet\\nRoute",
+            "artist": "Suno History",
+            "url": "https://cdn1.suno.ai/1c6ecc27-86b1-45b3-bb98-7815c6d392fb.mp3",
+            "durationHint": "≥3:00",
+            "description": "closing violet route",
+            "messages": [
+                  "Signal 18 is locked. Keep it violet.",
+                  "Let this one run for a minute before judging it."
+            ]
+      }
+];
+    const presetMessages = ['Start bright, but keep it strange.','More violet, less ordinary.','A quiet signal is still a signal.','Let the queue breathe for a minute.'];
+    const wave = document.getElementById('wave');
+    [42,96,58,134,76,172,104,146,68,122,86,160,72,112,50,90,138,80,164,106,74,128].forEach((h,i)=>{ const s=document.createElement('span'); s.style.setProperty('--h', h+'px'); s.style.setProperty('--d', (i*.05)+'s'); s.style.setProperty('--c', i%3===0?'#ff48a4':i%3===1?'#ac46ff':'#e8d6ff'); wave.appendChild(s); });
+    const $ = id => document.getElementById(id);
+    const audio=$('audio'), hero=$('heroCard'), signalDot=$('signalDot'), signalText=$('signalText'), onAir=$('onAir'), volumeLabel=$('volumeLabel');
+    const trackTitle=$('trackTitle'), trackSub=$('trackSub'), kicker=$('kicker'), miniTitle=$('miniTitle'), miniArtist=$('miniArtist'), progress=$('progress'), currentTimeEl=$('currentTime'), durationEl=$('duration'), visualPanel=document.querySelector('.visual-panel'), disc=$('disc');
+    const queueList=$('queueList'), expandedQueue=$('expandedQueue'), filmList=$('filmList'), notesList=$('notesList'), notesListFull=$('notesListFull'), errorText=$('errorText');
+    const playBtn=$('playBtn'), prevBtn=$('prevBtn'), nextBtn=$('nextBtn'), skipBtn=$('skipBtn'), copyErrorBtn=$('copyErrorBtn'), modeBtn=$('modeBtn'), volume=$('volume');
+    const autoSkipBtn=$('autoSkipBtn'), notesToggleBtn=$('notesToggleBtn');
+    let currentIndex=0, isPlaying=false, isSeeking=false, mode='sequence', status='ready', autoSkip=false, showNotes=true, lastError=null, messageTimer=null, messageSeed=0; const erroredTracks = new Set();
+    function formatTime(s){ if(!Number.isFinite(s)||s<0) return '0:00'; return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'); }
+    function esc(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function track(){ return tracks[currentIndex]; }
+    function setStatus(next){ status=next; hero.className='hero-card '+next; signalDot.className='signal-dot '+(next==='playing'?'playing':next==='error'?'error':''); const labels={ready:['VIOLET SIGNAL READY','READY'],loading:['TUNING VIOLET SIGNAL','TUNING'],playing:['VIOLET SIGNAL LOCKED','ON AIR'],paused:['VIOLET SIGNAL PAUSED','PAUSED'],error:['SIGNAL LOST','ERROR'],ended:['NEXT SIGNAL','NEXT']}; signalText.textContent=labels[next][0]; onAir.textContent=labels[next][1]; $('expandedStatus').textContent=labels[next][1]; playBtn.textContent=next==='playing'?'PAUSE':'PLAY'; playBtn.classList.toggle('is-playing', next==='playing'); }
+    function renderTrack(){ const t=track(); const parts=(t.shortTitle||t.title).split('\\n'); trackTitle.innerHTML=parts.map(esc).join('<br/>'); trackSub.textContent=(t.artist||'Neta FM')+' / '+(t.description||'direct audio URL'); kicker.textContent='SIGNAL GARDEN // '+String(currentIndex+1).padStart(3,'0'); miniTitle.textContent=t.title; miniArtist.textContent=(t.artist||'Neta FM')+' / Neta Select'; $('expandedTitle').innerHTML=parts.map(esc).join('<br/>'); $('expandedSub').textContent=(t.artist||'Neta FM')+' / '+(t.description||'direct audio URL'); durationEl.textContent=t.durationHint||'0:00'; currentTimeEl.textContent='0:00'; progress.value=0; progress.style.setProperty('--progress','0%'); renderQueues(); updateMediaSession(t); }
+    function renderQueues(){ $('queueCount').textContent=tracks.length+' URLS'; $('expandedCount').textContent=tracks.length+' URLS'; const html=tracks.map((t,i)=>queueItemHtml(t,i)).join(''); queueList.innerHTML=html; expandedQueue.innerHTML=html; filmList.innerHTML=renderFilmItems(); }
+    function queueItemHtml(t,i){ const active=i===currentIndex, err=erroredTracks.has(t.id); return `<button class="queue-item ${active?'active':''} ${err?'error-track':''}" data-index="${i}"><span class="num">${active&&isPlaying?'♪':String(i+1).padStart(2,'0')}</span><span><span class="qt">${esc(t.title)}</span><span class="qa">${esc(t.artist||'Neta FM')}</span></span><span class="time">${esc(t.durationHint||'--:--')}</span></button>`; }
+    function renderFilmItems(){ const items=[]; for(let step=1; step<=6; step++){ const i=(currentIndex+step)%tracks.length; const t=tracks[i]; items.push(`<button class="film-item ${step===1?'active':''}" data-index="${i}"><span class="film-no">${String(i+1).padStart(2,'0')}</span><span class="film-name">${esc(t.title)}</span></button>`); } return items.join(''); }
+    function loadTrack(index, shouldPlay=isPlaying){ currentIndex=(index+tracks.length)%tracks.length; clearTimeout(messageTimer); lastError=null; audio.src=track().url; audio.load(); renderTrack(); if(shouldPlay) play(); else setStatus('ready'); }
+    async function play(){ try{ setStatus('loading'); await audio.play(); }catch(e){ isPlaying=false; showError(e&&e.name==='NotAllowedError'?'Browser blocked autoplay. Click PLAY to start.':(e&&e.message)||'Unable to play audio.'); } }
+    function pause(){ audio.pause(); }
+    function previousTrack(){ if(audio.currentTime>3){ audio.currentTime=0; return; } loadTrack(currentIndex-1,isPlaying); }
+    function nextIndex(){ if(mode==='loop') return currentIndex; if(mode==='shuffle'&&tracks.length>1){ let n=currentIndex; while(n===currentIndex) n=Math.floor(Math.random()*tracks.length); return n; } return (currentIndex+1)%tracks.length; }
+    function animateDisc(direction){ if(!visualPanel) return; const cls=direction==='prev'?'swap-prev':'swap-next'; visualPanel.classList.remove('swap-prev','swap-next'); void visualPanel.offsetWidth; visualPanel.classList.add(cls); window.setTimeout(()=>visualPanel.classList.remove(cls),520); }
+    function nextTrack(){ animateDisc('next'); window.setTimeout(()=>loadTrack(nextIndex(),isPlaying),170); }
+    function previousDiscTrack(){ animateDisc('prev'); window.setTimeout(()=>previousTrack(),170); }
+    function skipTrack(){ animateDisc('next'); window.setTimeout(()=>loadTrack(currentIndex+1,true),170); }
+    function showError(msg){ isPlaying=false; const t=track(); erroredTracks.add(t.id); lastError={trackId:t.id,title:t.title,url:t.url,code:audio.error?audio.error.code:null,message:msg,occurredAt:Date.now()}; errorText.textContent=msg+' Track: '+t.title; switchView('player'); setStatus('error'); renderQueues(); addNote('SYSTEM / ERROR','No fake playback: '+t.title+' failed.'); if(autoSkip){ setTimeout(skipTrack,1200); } }
+    function scheduleNote(){ if(!showNotes) return; clearTimeout(messageTimer); messageTimer=setTimeout(()=>{ const t=track(); const pool=t.messages&&t.messages.length?t.messages:presetMessages; addNote('NETA DJ / NOW', pool[messageSeed++%pool.length]); },1200+Math.random()*600); }
+    function addNote(stamp,text){ if(!showNotes) return; const html=`<article class="note"><small>${esc(stamp)}</small><p>${esc(text)}</p></article>`; notesList.insertAdjacentHTML('afterbegin',html); notesListFull.insertAdjacentHTML('afterbegin',html); while(notesList.children.length>4) notesList.lastElementChild.remove(); while(notesListFull.children.length>12) notesListFull.lastElementChild.remove(); }
+    function updateProgress(){ const d=audio.duration,c=audio.currentTime; currentTimeEl.textContent=formatTime(c); if(Number.isFinite(d)) durationEl.textContent=formatTime(d); if(!isSeeking&&Number.isFinite(d)&&d>0){ const v=Math.round(c/d*1000); progress.value=v; progress.style.setProperty('--progress',(v/10)+'%'); } }
+    function cycleMode(){ mode=mode==='sequence'?'shuffle':mode==='shuffle'?'loop':'sequence'; modeBtn.textContent=mode==='sequence'?'SEQ':mode==='shuffle'?'SHUFFLE':'LOOP'; modeBtn.classList.toggle('active',mode!=='sequence'); }
+    function updateMediaSession(t){ if(!('mediaSession' in navigator)) return; navigator.mediaSession.metadata=new MediaMetadata({title:t.title,artist:t.artist||'Neta FM',album:'Neta FM'}); navigator.mediaSession.setActionHandler('play',play); navigator.mediaSession.setActionHandler('pause',pause); navigator.mediaSession.setActionHandler('previoustrack',previousTrack); navigator.mediaSession.setActionHandler('nexttrack',nextTrack); }
+    function switchView(view){ document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.view===view)); document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); $(view+'View').classList.add('active'); window.scrollTo({top:0, behavior:'smooth'}); }
+    document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>switchView(btn.dataset.view)));
+    function queueClick(e){ const b=e.target.closest('.queue-item, .film-item'); if(!b) return; loadTrack(Number(b.dataset.index),isPlaying); }
+    queueList.addEventListener('click',queueClick); expandedQueue.addEventListener('click',queueClick); filmList.addEventListener('click',queueClick); playBtn.addEventListener('click',()=>audio.paused?play():pause()); prevBtn.addEventListener('click',previousDiscTrack); nextBtn.addEventListener('click',nextTrack); skipBtn.addEventListener('click',skipTrack); modeBtn.addEventListener('click',cycleMode);
+    let discStartX=0, discStartY=0, discMoved=false;
+    if(disc){
+      disc.addEventListener('pointerdown', e=>{ discStartX=e.clientX; discStartY=e.clientY; discMoved=false; disc.setPointerCapture?.(e.pointerId); });
+      disc.addEventListener('pointermove', e=>{ if(Math.abs(e.clientX-discStartX)>12 || Math.abs(e.clientY-discStartY)>12) discMoved=true; });
+      disc.addEventListener('pointerup', e=>{ const dx=e.clientX-discStartX, dy=e.clientY-discStartY; if(Math.abs(dx)>54 && Math.abs(dx)>Math.abs(dy)){ dx>0 ? nextTrack() : previousDiscTrack(); } else if(!discMoved){ nextTrack(); } });
+      disc.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); nextTrack(); } if(e.key==='ArrowLeft') previousDiscTrack(); if(e.key==='ArrowRight') nextTrack(); });
+    }
+    copyErrorBtn.addEventListener('click',async()=>{ if(!lastError) return; const txt=JSON.stringify(lastError,null,2); try{ await navigator.clipboard.writeText(txt); addNote('SYSTEM / COPIED','Error details copied.'); }catch{ addNote('SYSTEM / COPY FAILED',txt); } });
+    volume.addEventListener('input',()=>{ audio.volume=Number(volume.value); const pct=Math.round(audio.volume*100)+'%'; volumeLabel.textContent=pct; $('volumeSettingLabel').textContent=pct; });
+    autoSkipBtn.addEventListener('click',()=>{ autoSkip=!autoSkip; autoSkipBtn.classList.toggle('on',autoSkip); }); notesToggleBtn.addEventListener('click',()=>{ showNotes=!showNotes; notesToggleBtn.classList.toggle('on',showNotes); });
+    progress.addEventListener('input',()=>{ isSeeking=true; const pct=Number(progress.value)/1000; progress.style.setProperty('--progress',(pct*100)+'%'); if(Number.isFinite(audio.duration)) currentTimeEl.textContent=formatTime(audio.duration*pct); });
+    progress.addEventListener('change',()=>{ if(Number.isFinite(audio.duration)) audio.currentTime=audio.duration*(Number(progress.value)/1000); isSeeking=false; updateProgress(); });
+    audio.addEventListener('play',()=>{ isPlaying=true; setStatus('playing'); renderQueues(); scheduleNote(); }); audio.addEventListener('pause',()=>{ if(!audio.ended&&status!=='error'){ isPlaying=false; setStatus('paused'); renderQueues(); } }); audio.addEventListener('waiting',()=>setStatus('loading')); audio.addEventListener('canplay',()=>{ if(isPlaying) setStatus('playing'); }); audio.addEventListener('loadedmetadata',updateProgress); audio.addEventListener('timeupdate',updateProgress); audio.addEventListener('ended',()=>{ isPlaying=true; setStatus('ended'); nextTrack(); }); audio.addEventListener('error',()=>showError('Media source not supported or unreachable. Browser error code '+(audio.error?audio.error.code:'unknown')+'.'));
+    audio.volume=Number(volume.value); volumeLabel.textContent='82%'; audio.src=track().url; audio.load(); renderTrack(); setStatus('ready'); addNote('NETA DJ / READY','Welcome to Neta FM. Click PLAY to tune the violet signal.');
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Browser app UI concept mockup for Neta Companion, version B: one integrated companion cockpit, not a tabbed app. Left side is the 360 CuiMao gaze world as a living room window, with a big circular character viewer and cursor trail map. Right one third is a tall slim FM deck, like a vertical pocket radio, showing current song, queue strip, volume, play pause next, and tiny DJ note stream. The companion sprite from pet-foundry is much larger and draggable anywhere on the full page, currently being dragged across the center with a translucent drag halo and drop shadow. Show three visible state chips connected to sprite: playing, paused, switching track, with small motion trails. Designed as polished interactive web UI, specific Neta identity, peach paper desk texture mixed with violet radio hardware, readable but compact labels, no tab navigation, no generic dashboard.",
+    "size": "2048x1152",
+    "image": [
+      "https://neta.atou.cc/public/cuimao/bg.png",
+      "https://neta.atou.cc/public/foundry/companion-spritesheet.webp"
+    ]
+  },
+  "response": {
+    "created": 1778427310,
+    "data": [
+      {
+        "url": "https://oss.filenest.top/uploads/60ed790a-7a1d-4796-ae84-641eb73c2fcc.png"
+      }
+    ],
+    "usage": {
+      "total_tokens": 8526,
+      "input_tokens": 2876,
+      "output_tokens": 5650,
+      "input_tokens_details": {
+        "text_tokens": 1756,
+        "image_tokens": 1120
+      }
+    }
+  },
+  "files": [
+    "output/image2/layout-b/talesofai_20260510_233509_001.png"
+  ]
+}

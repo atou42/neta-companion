@@ -1,0 +1,33 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Browser app UI concept mockup for Neta Companion, version C: one-page ambient companion room. The entire screen is one room composition. Left side contains the 360 gaze character portal embedded into the illustrated desk background, not in a card. Right one third is a vertical FM console attached to the room edge, with stacked playlist, transport controls, mini spectrum, and ON AIR state. Pet-foundry chibi sprite is a draggable desktop mascot layer on top of everything, with a grab handle, position shadow, and reactive state ring. Show pause state specifically: FM console says PAUSED, sprite sits calmly, waveform dimmed, cursor orbit still active on the left. High-end product design mockup, mature playful, warm cream and black with magenta and violet accents, clear hierarchy, no separate tabs, no split landing page, no giant explanation text.",
+    "size": "2048x1152",
+    "image": [
+      "https://neta.atou.cc/public/cuimao/bg.png",
+      "https://neta.atou.cc/public/cuimao/frame_front.webp",
+      "https://neta.atou.cc/public/foundry/companion-spritesheet.webp"
+    ]
+  },
+  "response": {
+    "created": 1778427310,
+    "data": [
+      {
+        "url": "https://oss.filenest.top/uploads/4167c6f8-2f0b-45d3-b94f-91085051f6b8.png"
+      }
+    ],
+    "usage": {
+      "total_tokens": 4801,
+      "input_tokens": 3388,
+      "output_tokens": 1413,
+      "input_tokens_details": {
+        "text_tokens": 1708,
+        "image_tokens": 1680
+      }
+    }
+  },
+  "files": [
+    "output/image2/layout-c/talesofai_20260510_233509_001.png"
+  ]
+}

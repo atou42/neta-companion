@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "pet-foundry.companion.manifest.v0",
+  "assetKind": "companion",
+  "assetId": "fm-silver-elf-mage",
+  "displayName": "FM Silver Elf Mage",
+  "status": "loadable-candidate",
+  "sourceProfile": "codex-pet",
+  "manifestHash": "sha256:683b1b1794981e37354b90c2c94576ed404fd8568bda2f8c66e149f7bbc42c31",
+  "contractPath": "contract.json",
+  "contractHash": "sha256:041171807d2edef494e1c086995598e89cda8bde37566dc4119d20955c9cf89b",
+  "generation": {
+    "strategy": "hatch-pet-base-first-grounded-row-strips",
+    "sourceProfile": "codex-pet",
+    "sourceRunDir": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage",
+    "canonicalBase": "sources/hatch-pet/canonical-base.png",
+    "jobManifest": "sources/hatch-pet/imagegen-jobs.json"
+  },
+  "sources": [
+    {
+      "id": "hatch-pet-request",
+      "path": "sources/hatch-pet/pet_request.json",
+      "sha256": "sha256:fc1523667e89526cea141c557aff39d4fcf039e80f642c57e5a6c98c361b9dc2"
+    },
+    {
+      "id": "hatch-pet-jobs",
+      "path": "sources/hatch-pet/imagegen-jobs.json",
+      "sha256": "sha256:e14401cb8f6e5a1b0b7cf3baa7c4c2a13157c8303f987316b5f98f139d376ff2"
+    }
+  ],
+  "normalizedImages": [
+    {
+      "id": "spritesheet",
+      "path": "neutral/images/spritesheet.webp",
+      "sha256": "sha256:d85f47c7987133e11164b8c83ed84c8e6c6c66f1d7349b6a0089d18352fde5a8",
+      "width": 1536,
+      "height": 1872,
+      "mode": "RGBA"
+    }
+  ],
+  "data": [
+    {
+      "id": "atlas",
+      "path": "neutral/data/atlas.json",
+      "sha256": "sha256:1114c63c4433bc6ee861d7349ca905df86565e3b9835f95ae014d171eb2b493a"
+    },
+    {
+      "id": "animations",
+      "path": "neutral/data/animations.json",
+      "sha256": "sha256:df26a6468d3aa69ca16d4c2523234c684703f7c02b908d3068f724058cf7a308"
+    },
+    {
+      "id": "import-hints",
+      "path": "neutral/data/import-hints.json",
+      "sha256": "sha256:6bc27e2b22acd5a0178ac36095eac6b2891a797700951331a0b4ce1f227309d4"
+    }
+  ],
+  "previews": [
+    {
+      "id": "contact-sheet",
+      "path": "previews/contact-sheet.png",
+      "sha256": "sha256:44f1fd54f96e2a9202a42138f187d50fe20460e77957c07d5197f178ef5c4deb"
+    }
+  ],
+  "validation": {
+    "profile": "companion.v0",
+    "validationPath": "qa/validation.json",
+    "validationHash": "sha256:2b7c741d36d437d8e89e374a082eb9ace7191d35073b515d05e3a8506213d0c1",
+    "hatchPetReviewPath": "qa/hatch-pet-review.json",
+    "hatchPetReviewHash": "sha256:dc418cd191162cdbcc9031712940ead07f96560e1d8bdc1b57a2a8d94022bdc8",
+    "hatchPetValidationPath": "qa/hatch-pet-validation.json",
+    "hatchPetValidationHash": "sha256:f67e952a113c9c6bd68d7fe9048b05750b7b3e6ae22b724d4deb05676b01c23b",
+    "exportEligibilityPath": "qa/export-eligibility.json",
+    "exportEligibilityHash": "sha256:89cb27aa97925938ed0b1b5b2902504d3f37d69396c9f59db58c020da244871f"
+  },
+  "exports": [
+    {
+      "target": "companion",
+      "path": "exports/companion/",
+      "files": [
+        "companion.json",
+        "spritesheet.webp"
+      ]
+    },
+    {
+      "target": "codex-pet",
+      "path": "exports/codex-pet/",
+      "files": [
+        "pet.json",
+        "spritesheet.webp"
+      ]
+    }
+  ],
+  "packageHash": "sha256:55afb9ca379b059de3e92cff7c8a63e9c4bef62e9a327253a82dddbee0a9580c"
+}

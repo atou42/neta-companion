@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-05-11T17:50:45.066Z",
+  "queueItems": 96,
+  "usableTracks": 96,
+  "completeCandidates": 192,
+  "rejectedCandidates": 1,
+  "byMood": {
+    "focus": 16,
+    "flow": 16,
+    "cozy": 8,
+    "motion": 8,
+    "night": 8,
+    "reset": 4,
+    "vocal": 24,
+    "spark": 12
+  },
+  "byVocalType": {
+    "instrumental": 72,
+    "vocal": 24
+  }
+}

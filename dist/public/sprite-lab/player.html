@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>伙伴运行预览</title>
+    <link rel="stylesheet" href="./player.css" />
+  </head>
+  <body>
+    <main class="player-shell">
+      <header class="player-header">
+        <div>
+          <h1>伙伴运行预览</h1>
+          <p id="sheetLabel">等待加载 spritesheet</p>
+        </div>
+        <div class="player-actions">
+          <input id="sheetInput" type="file" accept="image/png,image/webp,image/jpeg" hidden />
+          <button id="openSheetBtn" type="button">打开 Sheet</button>
+          <a id="backToLabLink" href="./index.html">回到调试器</a>
+        </div>
+      </header>
+
+      <section class="stage-card">
+        <canvas id="petCanvas" width="768" height="832" aria-label="pet runtime canvas"></canvas>
+      </section>
+
+      <section class="controls-card">
+        <div class="state-buttons" id="stateButtons"></div>
+        <div class="runtime-options">
+          <label>
+            缩放
+            <input id="scaleInput" type="range" min="1" max="5" step="0.25" value="3" />
+          </label>
+          <label>
+            背景
+            <select id="backgroundInput">
+              <option value="transparent">透明棋盘</option>
+              <option value="light">浅色</option>
+              <option value="dark">深色</option>
+            </select>
+          </label>
+          <label>
+            自然轮播
+            <input id="autoToggle" type="checkbox" />
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./player.js"></script>
+  </body>
+</html>

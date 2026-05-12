@@ -1,0 +1,13 @@
+{
+  "references/canonical-base.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/canonical-base.png",
+  "decoded/base.png": "https://neta.atou.cc/public/generated/fm-elf-mage/decoded/base.png",
+  "references/layout-guides/idle.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/idle.png",
+  "references/layout-guides/running-right.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/running-right.png",
+  "references/layout-guides/running-left.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/running-left.png",
+  "references/layout-guides/waving.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/waving.png",
+  "references/layout-guides/jumping.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/jumping.png",
+  "references/layout-guides/failed.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/failed.png",
+  "references/layout-guides/waiting.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/waiting.png",
+  "references/layout-guides/running.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/running.png",
+  "references/layout-guides/review.png": "https://neta.atou.cc/public/generated/fm-elf-mage/references/layout-guides/review.png"
+}

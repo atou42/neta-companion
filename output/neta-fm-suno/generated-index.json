@@ -1,0 +1,3965 @@
+{
+  "summary": {
+    "generatedAt": "2026-05-11T17:50:45.066Z",
+    "queueItems": 96,
+    "usableTracks": 96,
+    "completeCandidates": 192,
+    "rejectedCandidates": 1,
+    "byMood": {
+      "focus": 16,
+      "flow": 16,
+      "cozy": 8,
+      "motion": 8,
+      "night": 8,
+      "reset": 4,
+      "vocal": 24,
+      "spark": 12
+    },
+    "byVocalType": {
+      "instrumental": 72,
+      "vocal": 24
+    }
+  },
+  "tracks": [
+    {
+      "id": "focus_lofi_001_paper_lamp",
+      "title": "Paper Lamp",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Paper Lamp. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "29239b3f-880d-4b3b-8348-fbdda72ba70b",
+          "title": "Paper Lamp",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/29239b3f-880d-4b3b-8348-fbdda72ba70b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "b54397f2-1586-44e5-b3a9-0c44c499611e",
+          "title": "Paper Lamp",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b54397f2-1586-44e5-b3a9-0c44c499611e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_lofi_002_margin_notes",
+      "title": "Margin Notes",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Margin Notes. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "34e89095-bf2c-4d2b-91eb-884223d25d43",
+          "title": "Margin Notes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/34e89095-bf2c-4d2b-91eb-884223d25d43.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "84975ff3-b291-48d8-8f9f-36ec12ffa769",
+          "title": "Margin Notes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/84975ff3-b291-48d8-8f9f-36ec12ffa769.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_lofi_003_quiet_compile",
+      "title": "Quiet Compile",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Quiet Compile. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "eb137de3-eb6e-4e19-9af5-84e9a5443c52",
+          "title": "Quiet Compile",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/eb137de3-eb6e-4e19-9af5-84e9a5443c52.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "b40cc6d4-c837-4e9f-b803-1ee00c5d01d3",
+          "title": "Quiet Compile",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b40cc6d4-c837-4e9f-b803-1ee00c5d01d3.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_lofi_004_library_window",
+      "title": "Library Window",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Library Window. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "93f92149-fd67-466a-9c06-ebdf29c32677",
+          "title": "Library Window",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/93f92149-fd67-466a-9c06-ebdf29c32677.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "f3956806-e036-498e-b466-1fd34453f605",
+          "title": "Library Window",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f3956806-e036-498e-b466-1fd34453f605.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_lofi_005_soft_cursor",
+      "title": "Soft Cursor",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Soft Cursor. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "f2a84644-3df7-4207-bf91-bb4d63f331c4",
+          "title": "Soft Cursor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f2a84644-3df7-4207-bf91-bb4d63f331c4.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "7c920049-cff5-49d5-83b2-15f099f2854f",
+          "title": "Soft Cursor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/7c920049-cff5-49d5-83b2-15f099f2854f.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_lofi_006_ink_break",
+      "title": "Ink Break",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Ink Break. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "3f5807b2-3ad3-4e07-be50-bf0e94585fca",
+          "title": "Ink Break Repair",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/3f5807b2-3ad3-4e07-be50-bf0e94585fca.mp3",
+          "video_url": "",
+          "repairId": "focus_lofi_006_ink_break_repair_001",
+          "repairReason": "Original Ink Break returned one clip and remained submitted without an audio_url during status verification."
+        },
+        {
+          "id": "b3b95e92-939d-4c21-86f0-76e7058be0d2",
+          "title": "Ink Break Repair",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b3b95e92-939d-4c21-86f0-76e7058be0d2.mp3",
+          "video_url": "",
+          "repairId": "focus_lofi_006_ink_break_repair_001",
+          "repairReason": "Original Ink Break returned one clip and remained submitted without an audio_url during status verification."
+        }
+      ],
+      "rejected": [
+        {
+          "id": "95ef6a89-fa2a-4961-8234-831ff9be2936",
+          "title": "Ink Break",
+          "status": "submitted",
+          "audio_url": "",
+          "video_url": ""
+        }
+      ]
+    },
+    {
+      "id": "focus_lofi_007_desk_orbit",
+      "title": "Desk Orbit",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Desk Orbit. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "8821f6cb-a824-418f-ab6d-78bf52ad1326",
+          "title": "Desk Orbit",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8821f6cb-a824-418f-ab6d-78bf52ad1326.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "95bee7bb-14e1-4165-9e2c-bd3e5450ee96",
+          "title": "Desk Orbit",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/95bee7bb-14e1-4165-9e2c-bd3e5450ee96.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_lofi_008_warm_refactor",
+      "title": "Warm Refactor",
+      "lane": "focus_lofi",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dusty",
+      "style": [
+        "lofi",
+        "jazzhop",
+        "soft keys"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "code"
+      ],
+      "tags": "instrumental, lofi, jazzhop, study, soft keys, warm, no vocals",
+      "prompt": "instrumental study companion, warm lofi jazzhop, soft electric piano, brushed drums, gentle bass, paper-room ambience, loopable, no vocals, no sudden drop, low attention\n\nVariant cue: Warm Refactor. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "30012e0a-3110-48d3-b438-8e3305d14796",
+          "title": "Warm Refactor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/30012e0a-3110-48d3-b438-8e3305d14796.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "d1557732-f65e-4830-ba36-320b2c8bac65",
+          "title": "Warm Refactor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d1557732-f65e-4830-ba36-320b2c8bac65.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_001_felt_page",
+      "title": "Felt Page",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Felt Page. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "fa7ad117-95c8-41fd-a006-d4f06be1856b",
+          "title": "Felt Page",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fa7ad117-95c8-41fd-a006-d4f06be1856b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "6a320e2b-a4f0-484c-9814-b22334f3cffc",
+          "title": "Felt Page",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/6a320e2b-a4f0-484c-9814-b22334f3cffc.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_002_pencil_snow",
+      "title": "Pencil Snow",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Pencil Snow. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "967aa302-de03-4755-9f64-595351e2f402",
+          "title": "Pencil Snow",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/967aa302-de03-4755-9f64-595351e2f402.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "848c952a-edb6-4015-9d86-418149928348",
+          "title": "Pencil Snow",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/848c952a-edb6-4015-9d86-418149928348.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_003_small_silence",
+      "title": "Small Silence",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Small Silence. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "569bd488-092f-4c8b-9ce7-a73a3eb95bb4",
+          "title": "Small Silence",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/569bd488-092f-4c8b-9ce7-a73a3eb95bb4.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "363be988-a8c6-46e7-9d8e-e35404bbb319",
+          "title": "Small Silence",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/363be988-a8c6-46e7-9d8e-e35404bbb319.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_004_slow_bookmark",
+      "title": "Slow Bookmark",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Slow Bookmark. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "adbd2847-8c34-4fb5-b2f2-0440f9cee884",
+          "title": "Slow Bookmark",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/adbd2847-8c34-4fb5-b2f2-0440f9cee884.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "2b25e1f7-9679-4090-b190-d32020971980",
+          "title": "Slow Bookmark",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/2b25e1f7-9679-4090-b190-d32020971980.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_005_window_grammar",
+      "title": "Window Grammar",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Window Grammar. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "4ee02ab1-0be0-427e-8ecc-2286a7aa3b01",
+          "title": "Window Grammar",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4ee02ab1-0be0-427e-8ecc-2286a7aa3b01.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "48fab0db-3c07-4c09-b50d-c49df8a430e1",
+          "title": "Window Grammar",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/48fab0db-3c07-4c09-b50d-c49df8a430e1.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_006_plain_tea",
+      "title": "Plain Tea",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Plain Tea. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "0da261c2-22b6-4078-b6b7-3fda1002794a",
+          "title": "Plain Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/0da261c2-22b6-4078-b6b7-3fda1002794a.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "fcf24748-5d4c-41be-abac-0eaae50dd0dd",
+          "title": "Plain Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fcf24748-5d4c-41be-abac-0eaae50dd0dd.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_007_moonlit_index",
+      "title": "Moonlit Index",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Moonlit Index. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "8f3dd811-d4c7-47f2-af75-696d4b1b6957",
+          "title": "Moonlit Index",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8f3dd811-d4c7-47f2-af75-696d4b1b6957.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "9901f14d-fbb9-4493-9819-31ccc05012f5",
+          "title": "Moonlit Index",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9901f14d-fbb9-4493-9819-31ccc05012f5.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "focus_piano_008_quiet_proof",
+      "title": "Quiet Proof",
+      "lane": "focus_piano",
+      "mode": "Study",
+      "mood": "focus",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "clean",
+      "style": [
+        "felt piano",
+        "ambient",
+        "minimal"
+      ],
+      "useCase": [
+        "study",
+        "write",
+        "lateNight"
+      ],
+      "tags": "instrumental, felt piano, ambient, study, minimal, no vocals",
+      "prompt": "instrumental focus music, felt piano, soft pad, minimal melody, gentle room tone, slow steady pulse, loopable, no vocals, no dramatic chorus, low attention\n\nVariant cue: Quiet Proof. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "f8418f2b-c2d0-4bc6-b1c0-f1ae341a8be1",
+          "title": "Quiet Proof",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f8418f2b-c2d0-4bc6-b1c0-f1ae341a8be1.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "a7f4f127-04b7-4afb-9ccc-a627477a374f",
+          "title": "Quiet Proof",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a7f4f127-04b7-4afb-9ccc-a627477a374f.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_001_soft_compile",
+      "title": "Soft Compile",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Soft Compile. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "a8c0fcfc-664a-4d3b-ad85-28ce99053d7c",
+          "title": "Soft Compile",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a8c0fcfc-664a-4d3b-ad85-28ce99053d7c.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "7c0de685-f496-4887-b198-972a09775c2c",
+          "title": "Soft Compile",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/7c0de685-f496-4887-b198-972a09775c2c.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_002_velvet_keyboard",
+      "title": "Velvet Keyboard",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Velvet Keyboard. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "85033a08-d4ad-4a3d-883b-20ba90e7da8f",
+          "title": "Velvet Keyboard",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/85033a08-d4ad-4a3d-883b-20ba90e7da8f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "2f59915d-9435-4009-84a1-1483eb60e2d1",
+          "title": "Velvet Keyboard",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/2f59915d-9435-4009-84a1-1483eb60e2d1.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_003_coffee_loop",
+      "title": "Coffee Loop",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Coffee Loop. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "b589bb62-7663-49e7-80d1-fb5b5ac1fdd7",
+          "title": "Coffee Loop",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b589bb62-7663-49e7-80d1-fb5b5ac1fdd7.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "c5a088fa-e377-4cc0-a083-c1e55a7da6c0",
+          "title": "Coffee Loop",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c5a088fa-e377-4cc0-a083-c1e55a7da6c0.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_004_neon_notebook",
+      "title": "Neon Notebook",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Neon Notebook. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "06d5efdb-f233-4f86-af1c-66381a923741",
+          "title": "Neon Notebook",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/06d5efdb-f233-4f86-af1c-66381a923741.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "8fcc0edc-45a4-46d2-abb3-641e87a12bbb",
+          "title": "Neon Notebook",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8fcc0edc-45a4-46d2-abb3-641e87a12bbb.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_005_warm_tab",
+      "title": "Warm Tab",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Warm Tab. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "2b241ce9-be8e-4819-8c21-77ae77f71aa4",
+          "title": "Warm Tab",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/2b241ce9-be8e-4819-8c21-77ae77f71aa4.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "159dcfce-ea3f-4e0c-a67a-24781f7701b3",
+          "title": "Warm Tab",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/159dcfce-ea3f-4e0c-a67a-24781f7701b3.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_006_browser_soul",
+      "title": "Browser Soul",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Browser Soul. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "721770e5-aea0-4d51-a507-19dbe438a448",
+          "title": "Browser Soul",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/721770e5-aea0-4d51-a507-19dbe438a448.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "932e72a8-4c1c-40d9-88ee-6edd42a4c451",
+          "title": "Browser Soul",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/932e72a8-4c1c-40d9-88ee-6edd42a4c451.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_007_gentle_merge",
+      "title": "Gentle Merge",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Gentle Merge. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "74fd5247-cb1f-472f-8518-9ed576d63b66",
+          "title": "Gentle Merge",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/74fd5247-cb1f-472f-8518-9ed576d63b66.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "4daf407c-2d5a-437d-bf69-acc64d6d6520",
+          "title": "Gentle Merge",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4daf407c-2d5a-437d-bf69-acc64d6d6520.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_rnb_008_low_battery_glow",
+      "title": "Low Battery Glow",
+      "lane": "flow_rnb",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "light r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "design",
+        "code"
+      ],
+      "tags": "instrumental, r&b, neo soul, chillhop, work, warm, no vocals",
+      "prompt": "instrumental work companion, light r&b groove, neo soul chords, soft bass, relaxed pocket drums, warm room radio, loopable, no vocals, smooth and low attention\n\nVariant cue: Low Battery Glow. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "b9b556a1-a574-48d3-9a45-03b0f80cd0f7",
+          "title": "Low Battery Glow",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b9b556a1-a574-48d3-9a45-03b0f80cd0f7.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "a7fcd591-f189-4ab7-9249-9214d31dde81",
+          "title": "Low Battery Glow",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a7fcd591-f189-4ab7-9249-9214d31dde81.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_001_chrome_mug",
+      "title": "Chrome Mug",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Chrome Mug. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "ccf229bb-91ee-4292-9526-9f583b09958e",
+          "title": "Chrome Mug",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ccf229bb-91ee-4292-9526-9f583b09958e.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "6d532860-f1d6-447c-8d38-27824078e7bc",
+          "title": "Chrome Mug",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/6d532860-f1d6-447c-8d38-27824078e7bc.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_002_afternoon_terminal",
+      "title": "Afternoon Terminal",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Afternoon Terminal. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "94d07303-33d0-4903-8875-9ff8d727fe48",
+          "title": "Afternoon Terminal",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/94d07303-33d0-4903-8875-9ff8d727fe48.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "f2e70fe6-d8bd-4f83-a3d5-0c4df5cb8bf1",
+          "title": "Afternoon Terminal",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f2e70fe6-d8bd-4f83-a3d5-0c4df5cb8bf1.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_003_metro_tabs",
+      "title": "Metro Tabs",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Metro Tabs. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "b88aaea0-67b0-419e-adea-e1068cea6862",
+          "title": "Metro Tabs",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b88aaea0-67b0-419e-adea-e1068cea6862.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "398654a6-21f0-434a-b520-2ee80b1ca654",
+          "title": "Metro Tabs",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/398654a6-21f0-434a-b520-2ee80b1ca654.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_004_pastel_errand",
+      "title": "Pastel Errand",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Pastel Errand. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "dc866f53-217c-4c19-a7ae-d54b740c65a2",
+          "title": "Pastel Errand",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/dc866f53-217c-4c19-a7ae-d54b740c65a2.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "ec791637-ac0a-462c-b219-47946cef6b3e",
+          "title": "Pastel Errand",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ec791637-ac0a-462c-b219-47946cef6b3e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_005_signal_elevator",
+      "title": "Signal Elevator",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Signal Elevator. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "43c2acc2-6204-471f-9f7a-3ca473783a2b",
+          "title": "Signal Elevator",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/43c2acc2-6204-471f-9f7a-3ca473783a2b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "7fa8a6f5-d189-4de7-9778-2162d5fcd657",
+          "title": "Signal Elevator",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/7fa8a6f5-d189-4de7-9778-2162d5fcd657.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_006_clean_desk_disco",
+      "title": "Clean Desk Disco",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Clean Desk Disco. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "54381f7c-f01e-4f4a-94bf-62bf184db3ec",
+          "title": "Clean Desk Disco",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/54381f7c-f01e-4f4a-94bf-62bf184db3ec.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "fe4d3680-c15f-41de-b677-cae044451a2e",
+          "title": "Clean Desk Disco",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fe4d3680-c15f-41de-b677-cae044451a2e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_007_soft_neon_lane",
+      "title": "Soft Neon Lane",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Soft Neon Lane. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "260b012a-a489-4d1a-89d1-a2aa3db46bc8",
+          "title": "Soft Neon Lane",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/260b012a-a489-4d1a-89d1-a2aa3db46bc8.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "c53f8728-b2da-4718-9bf9-9f7944b127d4",
+          "title": "Soft Neon Lane",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c53f8728-b2da-4718-9bf9-9f7944b127d4.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "flow_citypop_008_calendar_breeze",
+      "title": "Calendar Breeze",
+      "lane": "flow_citypop",
+      "mode": "Work",
+      "mood": "flow",
+      "vocalType": "instrumental",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "city pop lite",
+        "soft funk",
+        "chill disco"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "instrumental, city pop, soft funk, work, upbeat, no vocals",
+      "prompt": "instrumental city pop lite for work, soft funk guitar, rounded bass, clean drums, pastel synths, cheerful but not distracting, loopable, no vocals, no big drop\n\nVariant cue: Calendar Breeze. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "d2627def-803c-41c2-bdcf-d41817edf3dd",
+          "title": "Calendar Breeze",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d2627def-803c-41c2-bdcf-d41817edf3dd.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "1ae5fc56-9d64-44ce-a5da-cda9bc3e1c49",
+          "title": "Calendar Breeze",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/1ae5fc56-9d64-44ce-a5da-cda9bc3e1c49.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_001_mug_on_desk",
+      "title": "Mug on Desk",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Mug on Desk. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "a5937990-ddf8-4f1d-ab54-3f4eab7b0844",
+          "title": "Mug on Desk",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a5937990-ddf8-4f1d-ab54-3f4eab7b0844.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "bcc77bb5-219e-4b69-b9dd-2d50258d6f89",
+          "title": "Mug on Desk",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/bcc77bb5-219e-4b69-b9dd-2d50258d6f89.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_002_bookmark_swing",
+      "title": "Bookmark Swing",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Bookmark Swing. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "be36c5f9-ebe3-49bc-bf1c-18690993eb77",
+          "title": "Bookmark Swing",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/be36c5f9-ebe3-49bc-bf1c-18690993eb77.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "48bc4327-d445-4249-80a6-79a758cbee2a",
+          "title": "Bookmark Swing",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/48bc4327-d445-4249-80a6-79a758cbee2a.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_003_tiny_brass_lamp",
+      "title": "Tiny Brass Lamp",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Tiny Brass Lamp. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "7bf1f08a-b98f-4e60-99b3-daac7f25bca2",
+          "title": "Tiny Brass Lamp",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/7bf1f08a-b98f-4e60-99b3-daac7f25bca2.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "e3b6e690-49aa-42fc-a72d-e9343fa43c6e",
+          "title": "Tiny Brass Lamp",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/e3b6e690-49aa-42fc-a72d-e9343fa43c6e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_004_cookie_static",
+      "title": "Cookie Static",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Cookie Static. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "c1d810f0-09eb-45c5-9602-006345827574",
+          "title": "Cookie Static",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c1d810f0-09eb-45c5-9602-006345827574.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "982ea875-7d96-43d2-9fb8-86b583c9eaae",
+          "title": "Cookie Static",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/982ea875-7d96-43d2-9fb8-86b583c9eaae.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_005_desk_pet_waltz",
+      "title": "Desk Pet Waltz",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Desk Pet Waltz. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "c73094b7-db28-4808-ae36-5f83c8a5690e",
+          "title": "Desk Pet Waltz",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c73094b7-db28-4808-ae36-5f83c8a5690e.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "b3a4ada4-70fa-455d-a77c-6e88b06b0e10",
+          "title": "Desk Pet Waltz",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b3a4ada4-70fa-455d-a77c-6e88b06b0e10.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_006_paper_moon_radio",
+      "title": "Paper Moon Radio",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Paper Moon Radio. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "8550409c-18f2-46c1-bbdc-2a57985ca7b0",
+          "title": "Paper Moon Radio",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8550409c-18f2-46c1-bbdc-2a57985ca7b0.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "4987a0af-fc7f-4d73-95f5-1015c291a668",
+          "title": "Paper Moon Radio",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4987a0af-fc7f-4d73-95f5-1015c291a668.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_007_soft_shoe_notes",
+      "title": "Soft Shoe Notes",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Soft Shoe Notes. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "966ef65b-526e-4e9d-82d9-99f6b5ff4a53",
+          "title": "Soft Shoe Notes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/966ef65b-526e-4e9d-82d9-99f6b5ff4a53.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "b7ca9f1f-304f-49c9-aecf-6478f1df18c5",
+          "title": "Soft Shoe Notes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b7ca9f1f-304f-49c9-aecf-6478f1df18c5.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "cozy_swing_008_warm_shelf",
+      "title": "Warm Shelf",
+      "lane": "cozy_swing",
+      "mode": "Room",
+      "mood": "cozy",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "swing",
+        "jazzhop",
+        "room radio"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "instrumental, swinghop, jazzhop, cozy, room radio, no vocals",
+      "prompt": "instrumental cozy swinghop, gentle swing drums, small brass stabs, upright bass, warm tape radio, cute room feeling, loopable, no vocals, light and low attention\n\nVariant cue: Warm Shelf. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "ec67a648-2f05-4be6-82b6-8c94a1ed302f",
+          "title": "Warm Shelf",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ec67a648-2f05-4be6-82b6-8c94a1ed302f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "00ab8d4e-309f-4e34-be10-da147baa2169",
+          "title": "Warm Shelf",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/00ab8d4e-309f-4e34-be10-da147baa2169.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_001_click_sprint",
+      "title": "Click Sprint",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Click Sprint. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "21501df4-6c50-4345-81a4-13ced9d2fc8a",
+          "title": "Click Sprint",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/21501df4-6c50-4345-81a4-13ced9d2fc8a.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "fca35557-66c8-4738-a174-6fb2240f422a",
+          "title": "Click Sprint",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fca35557-66c8-4738-a174-6fb2240f422a.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_002_clean_break",
+      "title": "Clean Break",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Clean Break. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "62c3cfff-b19e-41ac-af1d-3f8fb5d213cd",
+          "title": "Clean Break",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/62c3cfff-b19e-41ac-af1d-3f8fb5d213cd.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "ce6c367b-0bd9-48d1-81af-801f4f0963d2",
+          "title": "Clean Break",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ce6c367b-0bd9-48d1-81af-801f4f0963d2.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_003_inbox_skater",
+      "title": "Inbox Skater",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Inbox Skater. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "f0794bd3-42ee-41cf-af7a-c631b10be729",
+          "title": "Inbox Skater",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f0794bd3-42ee-41cf-af7a-c631b10be729.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "4f9478a5-38e1-453a-bcc0-1db412be6080",
+          "title": "Inbox Skater",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4f9478a5-38e1-453a-bcc0-1db412be6080.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_004_fast_tea",
+      "title": "Fast Tea",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Fast Tea. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "71ea42f4-e563-4736-a750-342ac4d29500",
+          "title": "Fast Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/71ea42f4-e563-4736-a750-342ac4d29500.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "a8d9d627-d66b-45bb-a242-b923432e2f32",
+          "title": "Fast Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a8d9d627-d66b-45bb-a242-b923432e2f32.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_005_task_runner",
+      "title": "Task Runner",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Task Runner. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "f86ab34f-050c-45a7-918f-4d8127eabf08",
+          "title": "Task Runner",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f86ab34f-050c-45a7-918f-4d8127eabf08.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "451d24dd-1bc5-4fe3-8c43-12e6e0048f8e",
+          "title": "Task Runner",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/451d24dd-1bc5-4fe3-8c43-12e6e0048f8e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_006_window_dash",
+      "title": "Window Dash",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Window Dash. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "9db5190a-b8f8-4134-aed1-1880e745a84b",
+          "title": "Window Dash",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9db5190a-b8f8-4134-aed1-1880e745a84b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "e951c543-2f72-4ee9-a03c-6aaed3486bb0",
+          "title": "Window Dash",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/e951c543-2f72-4ee9-a03c-6aaed3486bb0.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_007_lightweight_rush",
+      "title": "Lightweight Rush",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Lightweight Rush. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "0553c4b5-1c54-4475-95cd-cf3935052924",
+          "title": "Lightweight Rush",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/0553c4b5-1c54-4475-95cd-cf3935052924.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "fd11d2bd-d5c8-4e92-94d4-278d133ce324",
+          "title": "Lightweight Rush",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fd11d2bd-d5c8-4e92-94d4-278d133ce324.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "motion_breakbeat_008_pocket_momentum",
+      "title": "Pocket Momentum",
+      "lane": "motion_breakbeat",
+      "mode": "Motion",
+      "mood": "motion",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 2,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "soft breakbeat",
+        "uk garage lite",
+        "chill electronic"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "boost"
+      ],
+      "tags": "instrumental, breakbeat, garage lite, motion, work, no vocals",
+      "prompt": "instrumental light motion track, soft breakbeat, gentle uk garage rhythm, clean bass, bright keys, productive energy, no harsh drops, loopable, no vocals\n\nVariant cue: Pocket Momentum. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "d4b9d3a7-ec14-4628-90dd-ab12bceea66b",
+          "title": "Pocket Momentum",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d4b9d3a7-ec14-4628-90dd-ab12bceea66b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "d9a821d3-bb5c-4c75-93cf-b9344b620895",
+          "title": "Pocket Momentum",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d9a821d3-bb5c-4c75-93cf-b9344b620895.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_001_midnight_build",
+      "title": "Midnight Build",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Midnight Build. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "5c717d9a-3d07-467a-97b8-6eee9fcaac29",
+          "title": "Midnight Build",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/5c717d9a-3d07-467a-97b8-6eee9fcaac29.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "ae80044f-4634-401c-bf63-99932bad704b",
+          "title": "Midnight Build",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ae80044f-4634-401c-bf63-99932bad704b.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_002_glass_cursor",
+      "title": "Glass Cursor",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Glass Cursor. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "b3e5b618-f36e-4893-9722-50c02e9f9f6f",
+          "title": "Glass Cursor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b3e5b618-f36e-4893-9722-50c02e9f9f6f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "e3dad23b-f469-4c48-b3bd-1344ef2c8024",
+          "title": "Glass Cursor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/e3dad23b-f469-4c48-b3bd-1344ef2c8024.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_003_dark_mode_tea",
+      "title": "Dark Mode Tea",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Dark Mode Tea. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "16cceaa3-59eb-4ff2-b1c4-75b6d570705f",
+          "title": "Dark Mode Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/16cceaa3-59eb-4ff2-b1c4-75b6d570705f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "c736a716-f4f5-47dd-ba2c-085426e579d5",
+          "title": "Dark Mode Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c736a716-f4f5-47dd-ba2c-085426e579d5.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_004_satellite_notes",
+      "title": "Satellite Notes",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Satellite Notes. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "69e9710d-37d4-4339-a64c-d5af0210c651",
+          "title": "Satellite Notes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/69e9710d-37d4-4339-a64c-d5af0210c651.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "1be4d977-4a4b-4415-81e6-f0df813b7318",
+          "title": "Satellite Notes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/1be4d977-4a4b-4415-81e6-f0df813b7318.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_005_blue_hour_merge",
+      "title": "Blue Hour Merge",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Blue Hour Merge. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "ff44b796-d55c-4eb9-b223-74c125e0171c",
+          "title": "Blue Hour Merge",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ff44b796-d55c-4eb9-b223-74c125e0171c.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "62192400-94f9-4bbb-8783-a28febfff78f",
+          "title": "Blue Hour Merge",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/62192400-94f9-4bbb-8783-a28febfff78f.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_006_quiet_server",
+      "title": "Quiet Server",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Quiet Server. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "eacca40b-fdbf-4b73-aa26-6c302f0d7c4d",
+          "title": "Quiet Server",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/eacca40b-fdbf-4b73-aa26-6c302f0d7c4d.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "901f0563-597b-4a4f-a230-1beedfea6782",
+          "title": "Quiet Server",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/901f0563-597b-4a4f-a230-1beedfea6782.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_007_late_window",
+      "title": "Late Window",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Late Window. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "374bbdfe-1964-43ba-8370-b1499fda689f",
+          "title": "Late Window",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/374bbdfe-1964-43ba-8370-b1499fda689f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "836888a4-383c-4745-bd8d-f83160c51ddb",
+          "title": "Late Window",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/836888a4-383c-4745-bd8d-f83160c51ddb.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "night_synth_008_noir_debug",
+      "title": "Noir Debug",
+      "lane": "night_synth",
+      "mode": "Night",
+      "mood": "night",
+      "vocalType": "instrumental",
+      "energy": 2,
+      "attention": 1,
+      "tempo": "mid",
+      "texture": "dark",
+      "style": [
+        "ambient synth",
+        "downtempo",
+        "minimal electronic"
+      ],
+      "useCase": [
+        "code",
+        "lateNight",
+        "study"
+      ],
+      "tags": "instrumental, ambient synth, downtempo, night, coding, no vocals",
+      "prompt": "instrumental night coding companion, ambient synth pads, downtempo pulse, glassy arps, deep soft bass, minimal melody, no vocals, no sudden drop, focused and calm\n\nVariant cue: Noir Debug. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "10090151-83ef-480c-b719-ebc30ab752fd",
+          "title": "Noir Debug",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/10090151-83ef-480c-b719-ebc30ab752fd.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "271574ed-2797-41f4-a5dc-a382dc30bc6a",
+          "title": "Noir Debug",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/271574ed-2797-41f4-a5dc-a382dc30bc6a.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "reset_acoustic_001_teacup_pause",
+      "title": "Teacup Pause",
+      "lane": "reset_acoustic",
+      "mode": "Reset",
+      "mood": "reset",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "warm",
+      "style": [
+        "soft guitar",
+        "felt piano",
+        "ambient"
+      ],
+      "useCase": [
+        "break",
+        "study",
+        "write"
+      ],
+      "tags": "instrumental, acoustic, reset, soft guitar, calm, no vocals",
+      "prompt": "instrumental reset music, soft nylon guitar, felt piano, tiny tape hiss, slow breathing rhythm, calm room ambience, loopable, no vocals, no dramatic movement\n\nVariant cue: Teacup Pause. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "b941cdad-3f80-480c-a4a7-d107368ceafc",
+          "title": "Teacup Pause",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/b941cdad-3f80-480c-a4a7-d107368ceafc.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "f3c1a316-5618-402e-b60b-fcf1a15bb3ac",
+          "title": "Teacup Pause",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f3c1a316-5618-402e-b60b-fcf1a15bb3ac.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "reset_acoustic_002_blank_page_rest",
+      "title": "Blank Page Rest",
+      "lane": "reset_acoustic",
+      "mode": "Reset",
+      "mood": "reset",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "warm",
+      "style": [
+        "soft guitar",
+        "felt piano",
+        "ambient"
+      ],
+      "useCase": [
+        "break",
+        "study",
+        "write"
+      ],
+      "tags": "instrumental, acoustic, reset, soft guitar, calm, no vocals",
+      "prompt": "instrumental reset music, soft nylon guitar, felt piano, tiny tape hiss, slow breathing rhythm, calm room ambience, loopable, no vocals, no dramatic movement\n\nVariant cue: Blank Page Rest. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "1f5f6541-1575-4bff-adce-f26bb42de52c",
+          "title": "Blank Page Rest",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/1f5f6541-1575-4bff-adce-f26bb42de52c.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "d7f00db7-254f-4b0f-8b3f-3d8b99f2a8d6",
+          "title": "Blank Page Rest",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d7f00db7-254f-4b0f-8b3f-3d8b99f2a8d6.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "reset_acoustic_003_window_breath",
+      "title": "Window Breath",
+      "lane": "reset_acoustic",
+      "mode": "Reset",
+      "mood": "reset",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "warm",
+      "style": [
+        "soft guitar",
+        "felt piano",
+        "ambient"
+      ],
+      "useCase": [
+        "break",
+        "study",
+        "write"
+      ],
+      "tags": "instrumental, acoustic, reset, soft guitar, calm, no vocals",
+      "prompt": "instrumental reset music, soft nylon guitar, felt piano, tiny tape hiss, slow breathing rhythm, calm room ambience, loopable, no vocals, no dramatic movement\n\nVariant cue: Window Breath. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "6f29796a-67a4-417c-a618-6c9930bc8c72",
+          "title": "Window Breath",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/6f29796a-67a4-417c-a618-6c9930bc8c72.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "8c32ab68-5f2d-447e-bb5c-417d06c7f18e",
+          "title": "Window Breath",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8c32ab68-5f2d-447e-bb5c-417d06c7f18e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "reset_acoustic_004_slow_blanket",
+      "title": "Slow Blanket",
+      "lane": "reset_acoustic",
+      "mode": "Reset",
+      "mood": "reset",
+      "vocalType": "instrumental",
+      "energy": 1,
+      "attention": 1,
+      "tempo": "slow",
+      "texture": "warm",
+      "style": [
+        "soft guitar",
+        "felt piano",
+        "ambient"
+      ],
+      "useCase": [
+        "break",
+        "study",
+        "write"
+      ],
+      "tags": "instrumental, acoustic, reset, soft guitar, calm, no vocals",
+      "prompt": "instrumental reset music, soft nylon guitar, felt piano, tiny tape hiss, slow breathing rhythm, calm room ambience, loopable, no vocals, no dramatic movement\n\nVariant cue: Slow Blanket. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "dedccabe-7d5f-41af-9b28-e6719af8b32b",
+          "title": "Slow Blanket",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/dedccabe-7d5f-41af-9b28-e6719af8b32b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "335cbbe5-6f39-469d-b057-ebcb863c3bc0",
+          "title": "Slow Blanket",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/335cbbe5-6f39-469d-b057-ebcb863c3bc0.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_001_stay_a_little",
+      "title": "Stay a Little",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Stay a Little. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "86aa9d19-574d-4f4e-a521-11d9de0ce4f6",
+          "title": "Stay a Little",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/86aa9d19-574d-4f4e-a521-11d9de0ce4f6.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "3e827794-60d7-4ddb-a845-9ae8b2362533",
+          "title": "Stay a Little",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/3e827794-60d7-4ddb-a845-9ae8b2362533.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_002_still_here",
+      "title": "Still Here",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Still Here. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "fbf944d6-b78d-46e8-9982-7a829957efa7",
+          "title": "Still Here",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fbf944d6-b78d-46e8-9982-7a829957efa7.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "c4cd9ba1-acae-45ad-b0b8-1f4e3744c607",
+          "title": "Still Here",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c4cd9ba1-acae-45ad-b0b8-1f4e3744c607.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_003_tiny_signal",
+      "title": "Tiny Signal",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Tiny Signal. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "9bc453d6-43ae-4afb-87ea-d785a79a81f0",
+          "title": "Tiny Signal",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9bc453d6-43ae-4afb-87ea-d785a79a81f0.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "0dd293ff-aa2d-4ccb-9fd4-b3a34d6e17b4",
+          "title": "Tiny Signal",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/0dd293ff-aa2d-4ccb-9fd4-b3a34d6e17b4.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_004_room_light",
+      "title": "Room Light",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Room Light. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "a1714208-9d6d-4690-8623-10ac8f87ee92",
+          "title": "Room Light",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a1714208-9d6d-4690-8623-10ac8f87ee92.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "3a61ae18-0af4-4dff-903a-ac9fc970c520",
+          "title": "Room Light",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/3a61ae18-0af4-4dff-903a-ac9fc970c520.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_005_next_page",
+      "title": "Next Page",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Next Page. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "0d1c4927-50ab-494c-97fb-25d403364e5f",
+          "title": "Next Page",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/0d1c4927-50ab-494c-97fb-25d403364e5f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "a3511ac8-c897-455b-b132-1c9ed092d347",
+          "title": "Next Page",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a3511ac8-c897-455b-b132-1c9ed092d347.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_006_softly_on",
+      "title": "Softly On",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Softly On. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "687f9d15-bdec-4dad-b00c-736485d43cf0",
+          "title": "Softly On",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/687f9d15-bdec-4dad-b00c-736485d43cf0.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "700bf373-52ef-4eb9-8e45-ef9791d11449",
+          "title": "Softly On",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/700bf373-52ef-4eb9-8e45-ef9791d11449.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_007_low_voice_radio",
+      "title": "Low Voice Radio",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: Low Voice Radio. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "48508295-6936-41db-8b8e-444b0af88379",
+          "title": "Low Voice Radio",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/48508295-6936-41db-8b8e-444b0af88379.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "6cbdd633-d0f2-41c5-99ad-67d7035a418b",
+          "title": "Low Voice Radio",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/6cbdd633-d0f2-41c5-99ad-67d7035a418b.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_whisper_008_with_you",
+      "title": "With You",
+      "lane": "vocal_whisper",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "whisper pop",
+        "lofi",
+        "soft r&b"
+      ],
+      "useCase": [
+        "work",
+        "study",
+        "break"
+      ],
+      "tags": "soft vocal, whisper pop, lofi r&b, room radio, gentle",
+      "prompt": "[Verse]\nstay a little, turn the page\nsoft light on the desk\nwe can move at the same pace\nnothing heavy, just the next\n\n[Hook]\ni am here, keep going\nsoft and slow, keep going\n\nSparse soft vocal, intimate room radio, low attention lyrics, gentle lofi r&b, no dramatic chorus.\n\nVariant cue: With You. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "4dd8c1c3-e503-4074-9b32-32f96cc4246e",
+          "title": "With You",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4dd8c1c3-e503-4074-9b32-32f96cc4246e.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "404bb070-ec0e-4acf-99e2-81f31ed7fe21",
+          "title": "With You",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/404bb070-ec0e-4acf-99e2-81f31ed7fe21.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_001_little_win",
+      "title": "Little Win",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Little Win. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "9e379140-3b8d-4a1d-9b25-f096df4e7c48",
+          "title": "Little Win",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9e379140-3b8d-4a1d-9b25-f096df4e7c48.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "9e61e9bb-fa6c-40b5-8543-4e07a1618f11",
+          "title": "Little Win",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9e61e9bb-fa6c-40b5-8543-4e07a1618f11.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_002_one_more_tab",
+      "title": "One More Tab",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: One More Tab. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "cc021d97-9741-4609-a71d-75a784955e3c",
+          "title": "One More Tab",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/cc021d97-9741-4609-a71d-75a784955e3c.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "92d2398f-7953-4293-9d7a-7a510ee794c7",
+          "title": "One More Tab",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/92d2398f-7953-4293-9d7a-7a510ee794c7.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_003_good_enough_glow",
+      "title": "Good Enough Glow",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Good Enough Glow. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "9a79ff6f-46e1-4fd1-9cc2-e1843940aac3",
+          "title": "Good Enough Glow",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9a79ff6f-46e1-4fd1-9cc2-e1843940aac3.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "48b70843-ffa9-465a-94e9-5f1fa1aaca25",
+          "title": "Good Enough Glow",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/48b70843-ffa9-465a-94e9-5f1fa1aaca25.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_004_almost_done",
+      "title": "Almost Done",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Almost Done. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "41a2d1db-a6f3-4558-bbbd-6b17ef363221",
+          "title": "Almost Done",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/41a2d1db-a6f3-4558-bbbd-6b17ef363221.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "f73b0b96-f114-447a-9adc-c3fb5e88b6ba",
+          "title": "Almost Done",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f73b0b96-f114-447a-9adc-c3fb5e88b6ba.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_005_bright_minute",
+      "title": "Bright Minute",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Bright Minute. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "55dd61fe-c0ea-48ce-adb9-93cbe2d5f04f",
+          "title": "Bright Minute",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/55dd61fe-c0ea-48ce-adb9-93cbe2d5f04f.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "1dd142fb-ffb3-4488-97cd-80042f60698d",
+          "title": "Bright Minute",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/1dd142fb-ffb3-4488-97cd-80042f60698d.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_006_save_point",
+      "title": "Save Point",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Save Point. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "5ab62bc2-fcc1-4a27-8c0e-f26de3534695",
+          "title": "Save Point",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/5ab62bc2-fcc1-4a27-8c0e-f26de3534695.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "d8ef854b-145c-4087-a8bc-cfec0af9b4e4",
+          "title": "Save Point",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d8ef854b-145c-4087-a8bc-cfec0af9b4e4.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_007_tiny_yes",
+      "title": "Tiny Yes",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Tiny Yes. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "60149251-a4bd-4da5-a32c-4d9befc55785",
+          "title": "Tiny Yes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/60149251-a4bd-4da5-a32c-4d9befc55785.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "3f94d659-8c82-43dc-82d2-3be62ecf0fa8",
+          "title": "Tiny Yes",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/3f94d659-8c82-43dc-82d2-3be62ecf0fa8.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_tiny_hook_008_paper_star",
+      "title": "Paper Star",
+      "lane": "vocal_tiny_hook",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 3,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "glossy",
+      "style": [
+        "soft pop",
+        "city pop lite",
+        "tiny hook"
+      ],
+      "useCase": [
+        "work",
+        "chores",
+        "design"
+      ],
+      "tags": "soft vocal, tiny hook, city pop lite, work, light pop",
+      "prompt": "[Verse]\none more tab, one more line\nlittle win in borrowed time\nkeep it light, keep it kind\nleave the heavy noise behind\n\n[Hook]\nwe got this, tiny yes\none small step, tiny yes\n\nShort catchy hook, soft pop, light city pop groove, low attention lyrics, not dramatic.\n\nVariant cue: Paper Star. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "4d5a5cd7-074a-4feb-a02c-51f6cd27d7bf",
+          "title": "Paper Star",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4d5a5cd7-074a-4feb-a02c-51f6cd27d7bf.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "a0d9c6b2-c638-445f-a09a-58f97440242f",
+          "title": "Paper Star",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a0d9c6b2-c638-445f-a09a-58f97440242f.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_001_desk_side",
+      "title": "Desk Side",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Desk Side. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "5a4e073a-267c-4216-8260-251e020628f8",
+          "title": "Desk Side",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/5a4e073a-267c-4216-8260-251e020628f8.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "9e5992f1-2f8e-4a91-93fa-1ca41c19a970",
+          "title": "Desk Side",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/9e5992f1-2f8e-4a91-93fa-1ca41c19a970.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_002_warm_enough",
+      "title": "Warm Enough",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Warm Enough. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "1ee88946-4d7a-42b1-bf1a-647cb9fee170",
+          "title": "Warm Enough",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/1ee88946-4d7a-42b1-bf1a-647cb9fee170.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "c1dbdccc-09e4-4b07-b949-070c7c3e4e68",
+          "title": "Warm Enough",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/c1dbdccc-09e4-4b07-b949-070c7c3e4e68.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_003_slow_reply",
+      "title": "Slow Reply",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Slow Reply. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "1fd0b86d-4a7c-4d7b-9138-16fcdac28acc",
+          "title": "Slow Reply",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/1fd0b86d-4a7c-4d7b-9138-16fcdac28acc.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "34023760-dd31-47c5-b74b-28785b581e1e",
+          "title": "Slow Reply",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/34023760-dd31-47c5-b74b-28785b581e1e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_004_half_past_cozy",
+      "title": "Half Past Cozy",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Half Past Cozy. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "addd03ca-31f1-4ce4-84f8-c83faa5fe095",
+          "title": "Half Past Cozy",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/addd03ca-31f1-4ce4-84f8-c83faa5fe095.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "83600cb5-8b22-4692-b9f6-7eeab606645f",
+          "title": "Half Past Cozy",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/83600cb5-8b22-4692-b9f6-7eeab606645f.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_005_no_rush",
+      "title": "No Rush",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: No Rush. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "5a1ec566-369b-4566-80df-067f0782224b",
+          "title": "No Rush",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/5a1ec566-369b-4566-80df-067f0782224b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "95720b91-7f8a-4b22-905e-02c1b610d7c2",
+          "title": "No Rush",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/95720b91-7f8a-4b22-905e-02c1b610d7c2.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_006_same_room",
+      "title": "Same Room",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Same Room. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "62e5e6c5-cd7d-42c6-89c6-d6942343c088",
+          "title": "Same Room",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/62e5e6c5-cd7d-42c6-89c6-d6942343c088.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "4c33c735-66a5-4f07-9ec1-3f54f0d60226",
+          "title": "Same Room",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/4c33c735-66a5-4f07-9ec1-3f54f0d60226.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_007_small_promise",
+      "title": "Small Promise",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Small Promise. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "a115405e-fdcb-4c4f-b7a6-c3b54fb02249",
+          "title": "Small Promise",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a115405e-fdcb-4c4f-b7a6-c3b54fb02249.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "8427fd7b-b42d-438c-877a-3ca4751b2d95",
+          "title": "Small Promise",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8427fd7b-b42d-438c-877a-3ca4751b2d95.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "vocal_roommate_rnb_008_coffee_steam",
+      "title": "Coffee Steam",
+      "lane": "vocal_roommate_rnb",
+      "mode": "Vocal",
+      "mood": "vocal",
+      "vocalType": "vocal",
+      "energy": 2,
+      "attention": 2,
+      "tempo": "mid",
+      "texture": "warm",
+      "style": [
+        "roommate r&b",
+        "neo soul",
+        "chillhop"
+      ],
+      "useCase": [
+        "work",
+        "write",
+        "break"
+      ],
+      "tags": "soft vocal, r&b, neo soul, roommate radio, gentle",
+      "prompt": "[Verse]\nno rush, we can take it slow\nsame room, quiet radio\ncoffee steam and a steady glow\none more line and then we know\n\n[Hook]\nno rush tonight\nwe keep the little light\n\nGentle roommate r&b vocal, sparse words, soft neo soul chords, relaxed groove, low attention.\n\nVariant cue: Coffee Steam. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "7f945164-fb1a-45c4-86c0-671030cbba94",
+          "title": "Coffee Steam",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/7f945164-fb1a-45c4-86c0-671030cbba94.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "3c8bf805-7e04-4159-a36e-4b76c72ccba3",
+          "title": "Coffee Steam",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/3c8bf805-7e04-4159-a36e-4b76c72ccba3.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_metal_lite_001_deadline_star",
+      "title": "Deadline Star",
+      "lane": "spark_metal_lite",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "clean",
+      "style": [
+        "metal-lite",
+        "clean riff",
+        "cute heavy"
+      ],
+      "useCase": [
+        "boost",
+        "chores"
+      ],
+      "tags": "instrumental, metal-lite, boost, clean guitar, no vocals",
+      "prompt": "instrumental work sprint boost, metal-lite clean guitar riffs, tight drums, cute heavy energy, melodic and controlled, not harsh, no screaming, no vocals, short focused intensity\n\nVariant cue: Deadline Star. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "301f9ec1-f9d0-4420-90f1-87b3036df1c3",
+          "title": "Deadline Star",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/301f9ec1-f9d0-4420-90f1-87b3036df1c3.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "43d50912-e8ec-41f4-93d9-bad97cfa031a",
+          "title": "Deadline Star",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/43d50912-e8ec-41f4-93d9-bad97cfa031a.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_metal_lite_002_tiny_blade_runner",
+      "title": "Tiny Blade Runner",
+      "lane": "spark_metal_lite",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "clean",
+      "style": [
+        "metal-lite",
+        "clean riff",
+        "cute heavy"
+      ],
+      "useCase": [
+        "boost",
+        "chores"
+      ],
+      "tags": "instrumental, metal-lite, boost, clean guitar, no vocals",
+      "prompt": "instrumental work sprint boost, metal-lite clean guitar riffs, tight drums, cute heavy energy, melodic and controlled, not harsh, no screaming, no vocals, short focused intensity\n\nVariant cue: Tiny Blade Runner. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "bb7e9647-00a3-4e8a-9007-19b1c713d64b",
+          "title": "Tiny Blade Runner",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/bb7e9647-00a3-4e8a-9007-19b1c713d64b.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "0d6e1941-7801-4c39-9096-39f43e1106cc",
+          "title": "Tiny Blade Runner",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/0d6e1941-7801-4c39-9096-39f43e1106cc.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_metal_lite_003_pink_armor",
+      "title": "Pink Armor",
+      "lane": "spark_metal_lite",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "clean",
+      "style": [
+        "metal-lite",
+        "clean riff",
+        "cute heavy"
+      ],
+      "useCase": [
+        "boost",
+        "chores"
+      ],
+      "tags": "instrumental, metal-lite, boost, clean guitar, no vocals",
+      "prompt": "instrumental work sprint boost, metal-lite clean guitar riffs, tight drums, cute heavy energy, melodic and controlled, not harsh, no screaming, no vocals, short focused intensity\n\nVariant cue: Pink Armor. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "81a6ac88-655c-4517-b759-651a13013a1c",
+          "title": "Pink Armor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/81a6ac88-655c-4517-b759-651a13013a1c.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "d41a6310-dc6e-4f95-a6c2-dfe9201a8a32",
+          "title": "Pink Armor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/d41a6310-dc6e-4f95-a6c2-dfe9201a8a32.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_metal_lite_004_clean_riff_sprint",
+      "title": "Clean Riff Sprint",
+      "lane": "spark_metal_lite",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "clean",
+      "style": [
+        "metal-lite",
+        "clean riff",
+        "cute heavy"
+      ],
+      "useCase": [
+        "boost",
+        "chores"
+      ],
+      "tags": "instrumental, metal-lite, boost, clean guitar, no vocals",
+      "prompt": "instrumental work sprint boost, metal-lite clean guitar riffs, tight drums, cute heavy energy, melodic and controlled, not harsh, no screaming, no vocals, short focused intensity\n\nVariant cue: Clean Riff Sprint. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "a4d9524a-8aed-4f84-8480-d4258467af7a",
+          "title": "Clean Riff Sprint",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a4d9524a-8aed-4f84-8480-d4258467af7a.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "ed2975df-7e2f-431e-b4ca-aae5735fb638",
+          "title": "Clean Riff Sprint",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/ed2975df-7e2f-431e-b4ca-aae5735fb638.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_dnb_soft_001_fast_compile",
+      "title": "Fast Compile",
+      "lane": "spark_dnb_soft",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "glossy",
+      "style": [
+        "dnb lite",
+        "glitch",
+        "bright electronic"
+      ],
+      "useCase": [
+        "boost",
+        "work"
+      ],
+      "tags": "instrumental, dnb lite, electronic, boost, no vocals",
+      "prompt": "instrumental boost track, drum and bass lite, bright synth stabs, clean sub bass, fast but not abrasive, work sprint energy, no vocals, controlled mix\n\nVariant cue: Fast Compile. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "f51aadee-804a-4796-bec4-e6bd99cee48e",
+          "title": "Fast Compile",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f51aadee-804a-4796-bec4-e6bd99cee48e.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "fcdfa72e-7162-49ac-8393-e203bad8660e",
+          "title": "Fast Compile",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/fcdfa72e-7162-49ac-8393-e203bad8660e.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_dnb_soft_002_signal_dash",
+      "title": "Signal Dash",
+      "lane": "spark_dnb_soft",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "glossy",
+      "style": [
+        "dnb lite",
+        "glitch",
+        "bright electronic"
+      ],
+      "useCase": [
+        "boost",
+        "work"
+      ],
+      "tags": "instrumental, dnb lite, electronic, boost, no vocals",
+      "prompt": "instrumental boost track, drum and bass lite, bright synth stabs, clean sub bass, fast but not abrasive, work sprint energy, no vocals, controlled mix\n\nVariant cue: Signal Dash. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "e8d352f6-5416-45ed-92a5-c44006acec5d",
+          "title": "Signal Dash",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/e8d352f6-5416-45ed-92a5-c44006acec5d.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "a7277e70-3542-455b-ad87-5bdba596af32",
+          "title": "Signal Dash",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a7277e70-3542-455b-ad87-5bdba596af32.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_dnb_soft_003_glitter_break",
+      "title": "Glitter Break",
+      "lane": "spark_dnb_soft",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "glossy",
+      "style": [
+        "dnb lite",
+        "glitch",
+        "bright electronic"
+      ],
+      "useCase": [
+        "boost",
+        "work"
+      ],
+      "tags": "instrumental, dnb lite, electronic, boost, no vocals",
+      "prompt": "instrumental boost track, drum and bass lite, bright synth stabs, clean sub bass, fast but not abrasive, work sprint energy, no vocals, controlled mix\n\nVariant cue: Glitter Break. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "f015e558-f203-44ce-b71a-1aeb94b36054",
+          "title": "Glitter Break",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f015e558-f203-44ce-b71a-1aeb94b36054.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "cc5d6205-3e24-44fe-90d8-e20b79fbe1a6",
+          "title": "Glitter Break",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/cc5d6205-3e24-44fe-90d8-e20b79fbe1a6.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_dnb_soft_004_no_sleep_tab",
+      "title": "No Sleep Tab",
+      "lane": "spark_dnb_soft",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 5,
+      "attention": 3,
+      "tempo": "rush",
+      "texture": "glossy",
+      "style": [
+        "dnb lite",
+        "glitch",
+        "bright electronic"
+      ],
+      "useCase": [
+        "boost",
+        "work"
+      ],
+      "tags": "instrumental, dnb lite, electronic, boost, no vocals",
+      "prompt": "instrumental boost track, drum and bass lite, bright synth stabs, clean sub bass, fast but not abrasive, work sprint energy, no vocals, controlled mix\n\nVariant cue: No Sleep Tab. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "e1f1b1ba-d18b-41e9-95b2-8bdea8c486a6",
+          "title": "No Sleep Tab",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/e1f1b1ba-d18b-41e9-95b2-8bdea8c486a6.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "46501df4-a3b9-4d24-b85c-f33f78165e59",
+          "title": "No Sleep Tab",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/46501df4-a3b9-4d24-b85c-f33f78165e59.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_math_rock_001_angle_bracket",
+      "title": "Angle Bracket",
+      "lane": "spark_math_rock",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 3,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "math rock",
+        "clean guitar",
+        "post rock lite"
+      ],
+      "useCase": [
+        "boost",
+        "code",
+        "design"
+      ],
+      "tags": "instrumental, math rock, clean guitar, boost, no vocals",
+      "prompt": "instrumental clean math rock for work sprint, bright interlocking guitar, tight drums, melodic bass, energetic but not chaotic, no vocals, crisp and controlled\n\nVariant cue: Angle Bracket. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "42b7923b-9e3a-42c8-9bda-b4cd99c81581",
+          "title": "Angle Bracket",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/42b7923b-9e3a-42c8-9bda-b4cd99c81581.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "98d922a7-25ef-4233-ab36-ea373cf694c8",
+          "title": "Angle Bracket",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/98d922a7-25ef-4233-ab36-ea373cf694c8.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_math_rock_002_odd_meter_tea",
+      "title": "Odd Meter Tea",
+      "lane": "spark_math_rock",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 3,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "math rock",
+        "clean guitar",
+        "post rock lite"
+      ],
+      "useCase": [
+        "boost",
+        "code",
+        "design"
+      ],
+      "tags": "instrumental, math rock, clean guitar, boost, no vocals",
+      "prompt": "instrumental clean math rock for work sprint, bright interlocking guitar, tight drums, melodic bass, energetic but not chaotic, no vocals, crisp and controlled\n\nVariant cue: Odd Meter Tea. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "a45305b4-9786-4dc0-a133-8d59cebfb2a5",
+          "title": "Odd Meter Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/a45305b4-9786-4dc0-a133-8d59cebfb2a5.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "f82bcda6-2b63-44c8-8bbb-0c2dff5cb02d",
+          "title": "Odd Meter Tea",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/f82bcda6-2b63-44c8-8bbb-0c2dff5cb02d.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_math_rock_003_clean_little_chaos",
+      "title": "Clean Little Chaos",
+      "lane": "spark_math_rock",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 3,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "math rock",
+        "clean guitar",
+        "post rock lite"
+      ],
+      "useCase": [
+        "boost",
+        "code",
+        "design"
+      ],
+      "tags": "instrumental, math rock, clean guitar, boost, no vocals",
+      "prompt": "instrumental clean math rock for work sprint, bright interlocking guitar, tight drums, melodic bass, energetic but not chaotic, no vocals, crisp and controlled\n\nVariant cue: Clean Little Chaos. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "cb4f9877-e1b6-4b75-b347-5930c94dab89",
+          "title": "Clean Little Chaos",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/cb4f9877-e1b6-4b75-b347-5930c94dab89.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "eaff929b-4d92-453f-a9b4-5ace3d163f37",
+          "title": "Clean Little Chaos",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/eaff929b-4d92-453f-a9b4-5ace3d163f37.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "spark_math_rock_004_bright_refactor",
+      "title": "Bright Refactor",
+      "lane": "spark_math_rock",
+      "mode": "Boost",
+      "mood": "spark",
+      "vocalType": "instrumental",
+      "energy": 4,
+      "attention": 3,
+      "tempo": "up",
+      "texture": "clean",
+      "style": [
+        "math rock",
+        "clean guitar",
+        "post rock lite"
+      ],
+      "useCase": [
+        "boost",
+        "code",
+        "design"
+      ],
+      "tags": "instrumental, math rock, clean guitar, boost, no vocals",
+      "prompt": "instrumental clean math rock for work sprint, bright interlocking guitar, tight drums, melodic bass, energetic but not chaotic, no vocals, crisp and controlled\n\nVariant cue: Bright Refactor. Keep the same lane function, but use a distinct melody, arrangement detail, and intro texture.",
+      "candidates": [
+        {
+          "id": "33cb8e04-d8fb-4ff2-a7b3-44b864e6051a",
+          "title": "Bright Refactor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/33cb8e04-d8fb-4ff2-a7b3-44b864e6051a.mp3",
+          "video_url": ""
+        },
+        {
+          "id": "8960eb5d-b01a-4735-9055-3d3415a5099d",
+          "title": "Bright Refactor",
+          "status": "complete",
+          "audio_url": "https://cdn1.suno.ai/8960eb5d-b01a-4735-9055-3d3415a5099d.mp3",
+          "video_url": ""
+        }
+      ],
+      "rejected": []
+    }
+  ]
+}

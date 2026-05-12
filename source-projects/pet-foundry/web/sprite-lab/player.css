@@ -1,0 +1,147 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f1e8;
+  --paper-2: #fffaf0;
+  --ink: #24231f;
+  --muted: #716d64;
+  --line: #d8d1c3;
+  --teal: #008d8b;
+  --teal-ink: #006665;
+  --coral: #d85f48;
+  --shadow: 0 18px 44px rgba(55, 48, 38, 0.12);
+  font-family: "Avenir Next", "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 141, 139, 0.14), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(216, 95, 72, 0.12), transparent 24%),
+    var(--paper);
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+.player-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.player-header,
+.controls-card,
+.stage-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 250, 240, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+}
+
+h1 { margin: 0; font-size: 24px; }
+p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+
+.player-actions { display: flex; gap: 10px; align-items: center; }
+button {
+  min-height: 52px;
+  border: 1px solid #bfb6a7;
+  border-radius: 12px;
+  padding: 0 18px;
+  color: var(--ink);
+  background: rgba(255,255,255,0.66);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.player-actions a {
+  min-height: 38px;
+  border: 1px solid #bfb6a7;
+  border-radius: 9px;
+  padding: 0 14px;
+  color: var(--ink);
+  background: rgba(255,255,255,0.66);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+button.active,
+button:hover,
+.player-actions a:hover {
+  color: white;
+  border-color: var(--teal-ink);
+  background: var(--teal);
+}
+
+.stage-card {
+  padding: 18px;
+}
+
+#petCanvas {
+  display: block;
+  width: 100%;
+  height: min(72vh, 640px);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  image-rendering: pixelated;
+}
+
+.controls-card {
+  padding: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.state-buttons {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.runtime-options {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.runtime-options label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .player-header { align-items: stretch; flex-direction: column; }
+  .state-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .runtime-options {
+    gap: 12px;
+  }
+}

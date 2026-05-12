@@ -1,0 +1,28 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Create a single clean reference sprite for a Codex app digital pet named FM Silver Elf Mage.\n\nPet: legally distinct original elf mage, not an exact copyrighted character; long silver hair, green eyes, pointed elf ears, white and gold fantasy robe, small travel cloak, tiny staff held close to the body, calm ancient-mage mood, compact chibi companion for FM playback states.\nStyle contract: Codex digital pet sprite style: pixel-art-adjacent low-resolution mascot sprite, compact chibi proportions, chunky whole-body silhouette, thick dark 1-2 px outline, visible stepped/pixel edges, limited palette, flat cel shading with at most one small highlight and one shadow step, simple readable face, tiny limbs, and no detail that disappears at 192x208. Avoid polished illustration, painterly rendering, anime key art, 3D render, vector app-icon polish, glossy lighting, soft gradients, realistic fur or material texture, anti-aliased high-detail edges, and complex tiny accessories. Additional user style notes: clean pixel-art game sprite, transparent final atlas, consistent identity, stable baseline, readable at small size, no text, no UI, no scenery.\n\nUse this prompt as an authoritative sprite-production spec. Do not expand it into a polished illustration, painterly character image, anime key art, 3D render, vector mascot, glossy app icon, realistic animal portrait, or marketing artwork.\n\nOutput one centered full-body pet sprite pose only, on a perfectly flat pure user-selected #00FF00 chroma-key background. The pet must be fully visible, readable as a tiny digital pet, and suitable for animation into a 192x208 sprite cell. Do not include scenery, text, labels, borders, checkerboard transparency, detached effects, shadows, glows, or extra props not present in the reference unless explicitly requested. Do not use #00FF00, pure user-selected, or colors close to that chroma key in the pet, prop, highlights, or effects.",
+    "size": "1024x1024"
+  },
+  "response": {
+    "created": 1778463874,
+    "data": [
+      {
+        "url": "https://oss.filenest.top/uploads/0a17c5d3-5a10-47a4-a87e-0e0bc9806660.png"
+      }
+    ],
+    "usage": {
+      "total_tokens": 4629,
+      "input_tokens": 3864,
+      "output_tokens": 765,
+      "input_tokens_details": {
+        "text_tokens": 3864,
+        "image_tokens": 0
+      }
+    }
+  },
+  "files": [
+    "/Users/atou/neta-companion/source-projects/pet-foundry/provider-runs/fm-elf-mage/image2/base/base_001.png"
+  ]
+}

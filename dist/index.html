@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#211018" />
+  <title>Neta Companion</title>
+  <meta name="description" content="An integrated Neta companion room with gaze, FM, and a draggable sprite companion." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23fff2d2'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-size='38' font-family='Arial' font-weight='900' fill='%232b1431'%3EN%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="companion-room" id="room">
+    <section class="gaze-world" aria-label="CuiMao 360 gaze world">
+      <div class="room-brand">
+        <span>Neta Companion</span>
+        <strong>360 gaze world</strong>
+      </div>
+
+      <div class="gaze-orbit" aria-hidden="true"></div>
+      <div class="gaze-portal">
+        <div class="cuimao-portrait" id="cuimaoPortrait">
+          <img class="cuimao-front show" id="cuimaoFront" src="public/cuimao/frame_front.webp" alt="" decoding="async" />
+        </div>
+      </div>
+
+      <div class="gaze-status">
+        <span>Gaze tracking</span>
+        <strong id="gazeStatus">Active</strong>
+      </div>
+
+      <div class="room-note">
+        <span>you are being watched</span>
+      </div>
+
+      <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
+    </section>
+
+    <aside class="fm-console" aria-label="Neta FM console">
+      <header class="console-header">
+        <div>
+          <span class="console-kicker">Neta FM</span>
+          <h1>Violet room radio</h1>
+        </div>
+        <div class="console-tools">
+          <button class="sprite-tune-button" id="spriteTuneBtn" type="button" aria-expanded="false" aria-controls="spriteTunePanel">Tune</button>
+          <a class="lab-link" href="public/sprite-lab/index.html">Sprite Lab</a>
+        </div>
+      </header>
+
+      <section class="sprite-tune-panel" id="spriteTunePanel" aria-label="Sprite tuning controls" hidden>
+        <div class="sprite-tune-head">
+          <span>Sprite tune</span>
+          <button id="spriteTuneClose" type="button" aria-label="Close sprite tuning">×</button>
+        </div>
+        <label class="tune-row">
+          <span>Size</span>
+          <input id="spriteSizeTune" type="range" min="0.82" max="1.32" step="0.01" value="1.08" />
+          <output id="spriteSizeValue">108%</output>
+        </label>
+        <label class="tune-row">
+          <span>Playing</span>
+          <input id="spritePlayingTune" type="range" min="0.45" max="1.2" step="0.05" value="0.72" />
+          <output id="spritePlayingValue">0.72×</output>
+        </label>
+        <label class="tune-row">
+          <span>Idle</span>
+          <input id="spriteIdleTune" type="range" min="0.6" max="1.4" step="0.05" value="1" />
+          <output id="spriteIdleValue">1.00×</output>
+        </label>
+        <label class="tune-row">
+          <span>Special</span>
+          <input id="spriteSpecialTune" type="range" min="0.6" max="1.4" step="0.05" value="1" />
+          <output id="spriteSpecialValue">1.00×</output>
+        </label>
+        <label class="tune-row">
+          <span>Shuffle</span>
+          <input id="spriteShuffleTune" type="range" min="5" max="16" step="1" value="9" />
+          <output id="spriteShuffleValue">9s</output>
+        </label>
+      </section>
+
+      <nav class="mobile-fm-tabs" aria-label="FM mobile panels">
+        <button class="mobile-tab active" type="button" data-fm-tab="player">Player</button>
+        <button class="mobile-tab" type="button" data-fm-tab="queue">Queue</button>
+      </nav>
+
+      <section class="now-card">
+        <div class="state-row">
+          <span class="state-chip" id="stateChip">Ready</span>
+          <span id="bitrate">128 kbps</span>
+        </div>
+        <div class="deck-row">
+          <div class="vinyl-deck" aria-hidden="true">
+            <div class="vinyl-disc" id="vinylDisc"><span id="discLabel">001</span></div>
+            <div class="tone-arm"></div>
+          </div>
+          <div class="track-copy">
+            <p class="track-index" id="trackKicker">Signal 001</p>
+            <h2 id="trackTitle">Violet Signal</h2>
+            <p id="trackSub">Suno History / opening transmission</p>
+          </div>
+        </div>
+
+        <div class="waveform" id="waveform" aria-hidden="true"></div>
+        <input id="progress" class="progress" type="range" min="0" max="1000" value="0" aria-label="Playback progress" />
+        <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+      </section>
+
+      <section class="transport-panel">
+        <button class="utility-button" id="shuffleBtn" aria-label="Shuffle mode">↝</button>
+        <button class="transport-button" id="prevBtn" aria-label="Previous track">‹</button>
+        <button class="play-button" id="playBtn">Play</button>
+        <button class="transport-button" id="nextBtn" aria-label="Next track">›</button>
+        <button class="utility-button" id="loopBtn" aria-label="Loop mode">↻</button>
+      </section>
+
+      <section class="queue-panel">
+        <div class="panel-head">
+          <span>Queue</span>
+          <strong id="queueCount">18 tracks</strong>
+        </div>
+        <div class="queue-list" id="queueList"></div>
+      </section>
+
+      <section class="dj-note">
+        <div class="panel-head">
+          <span>Companion sync</span>
+          <strong id="syncState">Idle</strong>
+        </div>
+        <p id="companionMood">The sprite is waiting for the room signal.</p>
+      </section>
+    </aside>
+
+    <section class="sprite-layer" aria-label="Draggable companion sprite">
+      <div class="sprite-dragger" id="spriteDragger" role="button" tabindex="0" aria-label="Tap or drag companion sprite">
+        <div class="drag-pill" id="dragPill">Drag me</div>
+        <div class="sprite-reaction" id="spriteReaction" aria-live="polite"></div>
+        <div class="sprite-particles" id="spriteParticles" aria-hidden="true"></div>
+        <div class="sprite-aura" aria-hidden="true"></div>
+        <div class="companion-sprite" id="companionSprite"></div>
+      </div>
+    </section>
+  </main>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="app.js"></script>
+</body>
+</html>

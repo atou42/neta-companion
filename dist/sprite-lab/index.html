@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>精灵帧实验室</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="app" class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <h1>精灵帧实验室</h1>
+            <p id="sheetName">sample-sheet.png</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <input id="sheetInput" type="file" accept="image/png,image/webp,image/jpeg" hidden />
+          <input id="jsonInput" type="file" accept="application/json,.json" hidden />
+          <button id="openSheetBtn" class="button primary" type="button">打开 Sheet</button>
+          <a id="playerLink" class="button" href="./player.html">运行预览</a>
+          <button id="importJsonBtn" class="button" type="button">导入 JSON</button>
+          <button id="exportSheetBtn" class="button" type="button">导出 PNG</button>
+          <button id="exportJsonBtn" class="button" type="button">导出 JSON</button>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <aside class="side-panel left-panel">
+          <section class="panel-section">
+            <div class="section-title">
+              <span>Sheet 设置</span>
+              <div class="section-actions">
+                <button id="petFoundryPresetBtn" class="text-button" type="button">Pet Foundry 预设</button>
+                <button id="sampleBtn" class="text-button" type="button">示例</button>
+              </div>
+            </div>
+            <dl class="sheet-stats">
+              <div><dt>尺寸</dt><dd id="sheetSize">768 x 384</dd></div>
+              <div><dt>单元格</dt><dd id="cellSize">96 x 128</dd></div>
+              <div><dt>警告</dt><dd id="warningCount">0</dd></div>
+            </dl>
+            <div class="layout-grid">
+              <label>
+                行数
+                <input id="rowCountInput" type="number" min="1" max="32" value="3" />
+              </label>
+              <label>
+                每行槽位
+                <input id="slotCountInput" type="number" min="1" max="32" value="8" />
+              </label>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title"><span>Agent 生成桥</span></div>
+            <div class="agent-bridge">
+              <label>
+                角色名称
+                <input id="agentPetNameInput" type="text" placeholder="例如：星星狐" autocomplete="off" />
+              </label>
+              <label>
+                角色描述 / 提示词
+                <textarea id="agentDescriptionInput" rows="4" placeholder="例如：一只小巧的 Q 版星空狐狸伙伴，蓝紫色毛发，额头有星星纹样，透明背景，适合做宠物 spritesheet。"></textarea>
+              </label>
+              <input id="agentNotesInput" type="hidden" value="保持角色身份一致；轮廓清晰；像素风邻近；动作可读；透明背景；不要文字、UI、场景背景。" />
+              <button id="agentGenerateBtn" class="button primary" type="button">生成 Sheet 并加载</button>
+              <details class="advanced-agent-controls">
+                <summary>高级：加载已有 run</summary>
+                <label>
+                  运行目录
+                  <input id="agentRunDirInput" type="text" placeholder="生成完成后会自动填写；例如 runs/starry-fox" />
+                </label>
+                <div class="button-row compact">
+                  <button id="agentLoadRunBtn" class="button" type="button">加载已有 Run</button>
+                  <button id="agentFinalizeRunBtn" class="button" type="button">Finalize 并加载</button>
+                </div>
+              </details>
+              <p id="agentStatus" class="status-text">已预设生成流程：你只需要填写角色名称和角色描述。</p>
+            </div>
+          </section>
+
+          <section class="panel-section grow">
+            <div class="section-title">
+              <span>动作行</span>
+              <button id="singleRowBtn" class="text-button" type="button">单行动作</button>
+            </div>
+            <div id="rowList" class="row-list" aria-label="Animation rows"></div>
+          </section>
+        </aside>
+
+        <section class="stage-column">
+          <div class="stage-toolbar">
+            <div class="segmented">
+              <button id="playBtn" class="segment active" type="button">播放</button>
+              <button id="pauseBtn" class="segment" type="button">暂停</button>
+            </div>
+            <label class="inline-control">
+              FPS
+              <input id="fpsInput" type="number" min="1" max="30" value="8" />
+            </label>
+            <label class="inline-control">
+              缩放
+              <input id="zoomInput" type="range" min="1" max="8" step="0.25" value="3" />
+            </label>
+            <label class="toggle">
+              <input id="ghostToggle" type="checkbox" checked />
+              残影
+            </label>
+            <label class="toggle">
+              <input id="gridToggle" type="checkbox" checked />
+              网格
+            </label>
+          </div>
+
+          <div class="stage-wrap">
+            <canvas id="stageCanvas" width="1160" height="700" aria-label="Sprite alignment canvas"></canvas>
+          </div>
+
+          <div class="timeline-bar">
+            <div class="transport">
+              <button id="prevFrameBtn" class="square-button" type="button" aria-label="Previous frame">‹</button>
+              <button id="nextFrameBtn" class="square-button" type="button" aria-label="Next frame">›</button>
+            </div>
+            <div id="timeline" class="timeline" aria-label="Frame timeline"></div>
+          </div>
+        </section>
+
+        <aside class="side-panel right-panel">
+          <section class="panel-section">
+            <div class="section-title"><span>预览</span></div>
+            <canvas id="previewCanvas" width="280" height="220" aria-label="Animation preview"></canvas>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title"><span>当前帧</span></div>
+            <div class="inspector-grid">
+              <label>
+                行名
+                <input id="rowNameInput" type="text" value="Idle" />
+              </label>
+              <label>
+                帧数
+                <input id="frameCountInput" type="number" min="1" max="32" value="6" />
+              </label>
+              <label>
+                当前帧
+                <input id="frameIndexInput" type="number" min="1" max="32" value="1" />
+              </label>
+              <label>
+                X
+                <input id="offsetXInput" type="number" step="1" value="0" />
+              </label>
+              <label>
+                Y
+                <input id="offsetYInput" type="number" step="1" value="0" />
+              </label>
+            </div>
+            <div class="nudge-pad" aria-label="逐帧微调">
+              <button id="nudgeUpBtn" class="square-button" type="button" title="上移 1px，Shift=8px">↑</button>
+              <button id="nudgeLeftBtn" class="square-button" type="button" title="左移 1px，Shift=8px">←</button>
+              <button id="nudgeDownBtn" class="square-button" type="button" title="下移 1px，Shift=8px">↓</button>
+              <button id="nudgeRightBtn" class="square-button" type="button" title="右移 1px，Shift=8px">→</button>
+            </div>
+            <p class="hint-text">提示：暂停后选择时间轴中的单帧，拖动画布或用方向键/按钮只移动当前帧。</p>
+            <div class="button-row">
+              <button id="resetFrameBtn" class="button" type="button">重置当前帧</button>
+              <button id="resetRowBtn" class="button" type="button">重置整行</button>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <div class="section-title"><span>读数</span></div>
+            <dl class="readout">
+              <div><dt>动作</dt><dd id="selectedAction">Idle</dd></div>
+              <div><dt>帧</dt><dd id="selectedFrame">1 / 6</dd></div>
+              <div><dt>偏移</dt><dd id="selectedOffset">0, 0</dd></div>
+              <div><dt>矩形</dt><dd id="selectedRect">0, 0, 96, 128</dd></div>
+            </dl>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

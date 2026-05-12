@@ -1,0 +1,12 @@
+{
+  "name": "pet-foundry",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:sprite-lab": "node --test tests/sprite_lab_core.test.mjs && npx playwright test tests/sprite_lab_browser.spec.mjs",
+    "serve:sprite-lab": "python3 -m http.server 4177 --directory web/sprite-lab"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "单张角色定调图，不是 spritesheet。画一个高质量 Q 版像素风网页 companion sprite 概念，角色方向参考芙莉莲的气质：小个子银白长发精灵魔法师，尖耳朵，清冷平静的绿色眼睛，细眉，表情淡淡的、有一点困倦和不屑；发型要轻盈干净，前发分束清楚，不能盖住眼睛；白色披肩与浅色长袍，金色细边，深色内衬，手持细长法杖。整体比例要纤细、优雅、安静，不要圆胖，不要幼儿化，不要巨头娃娃，不要土豆脸。像素艺术但要精致，清晰黑色轮廓，适合之后拆成 192x208 companion sprite。整张只画一个完整站姿角色，透明背景或纯净浅色背景，无文字，无 UI，无场景，无阴影地台。",
+    "size": "2048x2048"
+  },
+  "response": {
+    "created": 1778466697,
+    "data": [
+      {
+        "url": "https://oss.filenest.top/uploads/fce0d40f-8bf3-43c6-bfcb-3618b21c6a6c.png"
+      }
+    ],
+    "usage": {
+      "total_tokens": 4160,
+      "input_tokens": 592,
+      "output_tokens": 3568,
+      "input_tokens_details": {
+        "text_tokens": 592,
+        "image_tokens": 0
+      }
+    }
+  },
+  "files": [
+    "output/image2/frieren-concept/frieren-companion-concept_001.png"
+  ]
+}

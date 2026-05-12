@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "pet-foundry.companion.validation.v0",
+  "profile": "companion.v0",
+  "result": "pass",
+  "status": "loadable-candidate",
+  "sourceProfile": "codex-pet",
+  "checks": {
+    "ok": true,
+    "runDir": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage",
+    "petId": "fm-silver-elf-mage",
+    "displayName": "FM Silver Elf Mage",
+    "description": "A legally distinct chibi silver-haired elf mage companion for a web FM room, calm and slightly sleepy, with long silver hair, green eyes, small white-gold robe, tiny staff, readable pixel-art silhouette.",
+    "jobs": [
+      "base",
+      "failed",
+      "idle",
+      "jumping",
+      "review",
+      "running",
+      "running-left",
+      "running-right",
+      "waiting",
+      "waving"
+    ],
+    "spritesheet": {
+      "path": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/final/spritesheet.webp",
+      "width": 1536,
+      "height": 1872,
+      "mode": "RGBA",
+      "format": "WEBP",
+      "sha256": "sha256:d85f47c7987133e11164b8c83ed84c8e6c6c66f1d7349b6a0089d18352fde5a8"
+    },
+    "review": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/qa/review.json",
+    "upstreamValidation": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/final/validation.json",
+    "contactSheet": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/qa/contact-sheet.png"
+  }
+}

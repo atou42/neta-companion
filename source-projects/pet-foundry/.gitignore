@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+
+# node/browser test outputs
+node_modules/
+test-results/
+playwright-report/
+
+# generated/runtime outputs
+runs/
+output/
+tmp/
+dist/
+provider-runs/
+.cohub-goal/
+
+# logs/temp
+*.log
+*.response.json
+*.tmp
+
+# local secret/env files
+.env
+.env.*
+!.env.example
+*.key
+*.pem

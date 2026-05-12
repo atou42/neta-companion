@@ -1,0 +1,11 @@
+{
+  "assetId": "fm-silver-elf-mage",
+  "level": "loadable-candidate",
+  "eligible": true,
+  "allowedExports": [
+    "companion",
+    "codex-pet"
+  ],
+  "targetDirectory": "exports/",
+  "blockingReasons": []
+}

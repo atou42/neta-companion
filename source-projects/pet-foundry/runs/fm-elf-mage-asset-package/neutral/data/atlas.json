@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "pet-foundry.companion-atlas.v0",
+  "assetId": "fm-silver-elf-mage",
+  "image": "neutral/images/spritesheet.webp",
+  "geometry": {
+    "columns": 8,
+    "rows": 9,
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "width": 1536,
+    "height": 1872,
+    "background": {
+      "mode": "transparent"
+    }
+  },
+  "states": [
+    {
+      "id": "idle",
+      "row": 0,
+      "frames": 6,
+      "durationSpec": "280, 110, 110, 140, 140, 320 ms",
+      "loop": true
+    },
+    {
+      "id": "running-right",
+      "row": 1,
+      "frames": 8,
+      "durationSpec": "120 ms each, final 220 ms",
+      "loop": true
+    },
+    {
+      "id": "running-left",
+      "row": 2,
+      "frames": 8,
+      "durationSpec": "120 ms each, final 220 ms",
+      "loop": true
+    },
+    {
+      "id": "waving",
+      "row": 3,
+      "frames": 4,
+      "durationSpec": "140 ms each, final 280 ms",
+      "loop": true
+    },
+    {
+      "id": "jumping",
+      "row": 4,
+      "frames": 5,
+      "durationSpec": "140 ms each, final 280 ms",
+      "loop": true
+    },
+    {
+      "id": "failed",
+      "row": 5,
+      "frames": 8,
+      "durationSpec": "140 ms each, final 240 ms",
+      "loop": true
+    },
+    {
+      "id": "waiting",
+      "row": 6,
+      "frames": 6,
+      "durationSpec": "150 ms each, final 260 ms",
+      "loop": true
+    },
+    {
+      "id": "running",
+      "row": 7,
+      "frames": 6,
+      "durationSpec": "120 ms each, final 220 ms",
+      "loop": true
+    },
+    {
+      "id": "review",
+      "row": 8,
+      "frames": 6,
+      "durationSpec": "150 ms each, final 280 ms",
+      "loop": true
+    }
+  ],
+  "sourceProfile": "codex-pet"
+}

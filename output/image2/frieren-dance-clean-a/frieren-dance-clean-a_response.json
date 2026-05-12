@@ -1,0 +1,28 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Use the reference as the exact character identity. Create one clean horizontal 8-frame transparent-background pixel-art sprite strip. Same chibi Frieren-like silver-haired elf mage, same white gold outfit, same staff, same face and proportions. Action: natural gentle music dance loop, small knee bend, weight shift, staff tapping the beat, hair and cape swaying. Keep every frame same scale, same baseline, same camera, same art style. No extra props, no headphones, no text, no border, no scene, no duplicated characters.",
+    "size": "2048x1152",
+    "image": "https://neta.atou.cc/public/foundry/frieren-base-reference.png?v=base-ref-20260511"
+  },
+  "response": {
+    "created": 1778503912,
+    "data": [
+      {
+        "revised_prompt": "Create a clean horizontal 8-frame transparent-background pixel-art sprite strip using the provided reference character as the exact identity. Same chibi Frieren-like silver-haired elf mage, same white-and-gold outfit, same staff, same face, same proportions, same hairstyle, same accessories. One character only, no duplicates. Action loop: a natural gentle music dance with small knee bend, subtle weight shift, slight staff tapping on the beat, hair and cape swaying softly. Keep every frame the same scale, same baseline, same camera angle, same pixel-art style, same pose consistency for a seamless loop. Transparent background, no scene, no extra props, no headphones, no text, no border. Clean sprite-sheet layout: 8 evenly spaced frames in a single horizontal row.",
+        "url": "https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/experience_tmp/7598442749101409846/20260511/0744c1fc-675a-4f92-91f0-20a87e0e8bff.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKTP0VyX37NH37petROGRHWSl1dMsqFXw6nXRaM53bfs0z%2F20260511%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260511T125150Z&X-Tos-Expires=604800&X-Tos-Security-Token=nChBuOHRISXp0c0RTMXBZS3Q3.CiQKEE1XZExOQklNaUJjSGlnT3QSEHXPDswBEkqKtTf5pSD_Cv0Qi56H0AYY5LaH0AYg-v3I6QcoBDD5wKMuOiFSb2xlRm9yQXJrYmZmVG9zL1JvbGVGb3JBcmtiZmZUb3NCA2Fya1IQUm9sZUZvckFya2JmZlRvc1gDegNhcms.SUBhMLxAUBjeDv0pZXgxlG0KYAgk6hOY-OJSBLAnkBdGcXljSLFK6X79bXPMS8mv_zRP31mDH6smHa93qFaBRg&X-Tos-Signature=6265a70ebde22172f90aa6b1fa51adc624e06ef8a9a524099d12490d91020b91&X-Tos-SignedHeaders=host"
+      }
+    ],
+    "model": "gpt-image-2",
+    "object": "list",
+    "usage": {
+      "generated_images": 1,
+      "output_tokens": 17800,
+      "total_tokens": 17800
+    }
+  },
+  "files": [
+    "output/image2/frieren-dance-clean-a/frieren-dance-clean-a_001.png"
+  ]
+}

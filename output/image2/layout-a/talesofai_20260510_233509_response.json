@@ -1,0 +1,32 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Browser app UI concept mockup for Neta Companion, version A: one integrated page, no tabs. Left two thirds is a large warm illustrated 360 gaze stage using the Neta desk room feeling, a circular portrait portal on the left with an anime companion watching the cursor. Right one third is a vertical Neta FM radio column with queue, track title, play pause next controls, narrow progress rail, and status chip. A chibi pet-foundry companion sprite is a draggable full-screen overlay, floating partly over both left stage and right FM panel, with small drag handle, shadow, and status aura. Show state feedback for playing: waveform glow, sprite waving, ON AIR tag. Sophisticated web product screenshot, high fidelity UI, responsive desktop layout, warm peach plus violet plus black, no separate cards clutter, no marketing hero, no lorem ipsum, no browser chrome, no tabs.",
+    "size": "2048x1152",
+    "image": [
+      "https://neta.atou.cc/public/cuimao/bg.png",
+      "https://neta.atou.cc/public/cuimao/frame_front.webp"
+    ]
+  },
+  "response": {
+    "created": 1778427310,
+    "data": [
+      {
+        "url": "https://oss.filenest.top/uploads/410c226c-d824-42cd-b0c2-d44e46dbe5c9.png"
+      }
+    ],
+    "usage": {
+      "total_tokens": 8510,
+      "input_tokens": 2860,
+      "output_tokens": 5650,
+      "input_tokens_details": {
+        "text_tokens": 1740,
+        "image_tokens": 1120
+      }
+    }
+  },
+  "files": [
+    "output/image2/layout-a/talesofai_20260510_233509_001.png"
+  ]
+}

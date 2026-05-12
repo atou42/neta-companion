@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "asset-forge.import-hints.v1",
+  "assetId": "fm-silver-elf-mage",
+  "targets": [
+    "companion",
+    "codex-pet"
+  ],
+  "agentNeutralExport": "exports/companion/",
+  "profileExports": {
+    "codex-pet": {
+      "path": "exports/codex-pet/",
+      "copyExportDirectoryTo": "${CODEX_HOME:-$HOME/.codex}/pets/<pet-id>/"
+    }
+  }
+}

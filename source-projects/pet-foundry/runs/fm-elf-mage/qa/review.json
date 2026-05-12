@@ -1,0 +1,962 @@
+{
+  "ok": true,
+  "frames_root": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames",
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "idle",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/idle/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24957,
+          "bbox": [
+            7,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 255
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/idle/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24799,
+          "bbox": [
+            7,
+            5,
+            184,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 282
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/idle/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 25012,
+          "bbox": [
+            7,
+            5,
+            184,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 277
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/idle/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 25100,
+          "bbox": [
+            7,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 272
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/idle/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 25055,
+          "bbox": [
+            7,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 293
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/idle/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 25031,
+          "bbox": [
+            7,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 261
+        }
+      ]
+    },
+    {
+      "state": "running-right",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21325,
+          "bbox": [
+            7,
+            6,
+            184,
+            202
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 418
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20831,
+          "bbox": [
+            6,
+            9,
+            185,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 431
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20548,
+          "bbox": [
+            7,
+            11,
+            185,
+            197
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 363
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19385,
+          "bbox": [
+            11,
+            17,
+            181,
+            190
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 389
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20159,
+          "bbox": [
+            13,
+            9,
+            179,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 383
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19649,
+          "bbox": [
+            10,
+            13,
+            182,
+            194
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 391
+        },
+        {
+          "index": 6,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19441,
+          "bbox": [
+            13,
+            9,
+            179,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 438
+        },
+        {
+          "index": 7,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-right/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20316,
+          "bbox": [
+            11,
+            7,
+            181,
+            200
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 432
+        }
+      ]
+    },
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20316,
+          "bbox": [
+            11,
+            7,
+            181,
+            200
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 432
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19441,
+          "bbox": [
+            13,
+            9,
+            179,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 438
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19649,
+          "bbox": [
+            10,
+            13,
+            182,
+            194
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 391
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20159,
+          "bbox": [
+            13,
+            9,
+            179,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 383
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 19385,
+          "bbox": [
+            11,
+            17,
+            181,
+            190
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 389
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20548,
+          "bbox": [
+            7,
+            11,
+            185,
+            197
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 363
+        },
+        {
+          "index": 6,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 20831,
+          "bbox": [
+            6,
+            9,
+            185,
+            199
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 431
+        },
+        {
+          "index": 7,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running-left/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21325,
+          "bbox": [
+            7,
+            6,
+            184,
+            202
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 418
+        }
+      ]
+    },
+    {
+      "state": "waving",
+      "expected_frames": 4,
+      "actual_frames": 4,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waving/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24996,
+          "bbox": [
+            6,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 188
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waving/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24674,
+          "bbox": [
+            7,
+            5,
+            184,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 154
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waving/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24976,
+          "bbox": [
+            7,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 152
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waving/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 25014,
+          "bbox": [
+            6,
+            5,
+            185,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 160
+        }
+      ]
+    },
+    {
+      "state": "jumping",
+      "expected_frames": 5,
+      "actual_frames": 5,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/jumping/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23642,
+          "bbox": [
+            5,
+            13,
+            187,
+            194
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 11
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/jumping/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24237,
+          "bbox": [
+            8,
+            5,
+            183,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 5
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/jumping/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22925,
+          "bbox": [
+            5,
+            10,
+            187,
+            197
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 3
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/jumping/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24439,
+          "bbox": [
+            5,
+            5,
+            187,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 6
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/jumping/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23394,
+          "bbox": [
+            5,
+            12,
+            187,
+            195
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 15
+        }
+      ]
+    },
+    {
+      "state": "failed",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22143,
+          "bbox": [
+            20,
+            5,
+            172,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 209
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22176,
+          "bbox": [
+            23,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 178
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23341,
+          "bbox": [
+            20,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 200
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22569,
+          "bbox": [
+            22,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 209
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22090,
+          "bbox": [
+            22,
+            5,
+            169,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 233
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22321,
+          "bbox": [
+            23,
+            5,
+            168,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 231
+        },
+        {
+          "index": 6,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22082,
+          "bbox": [
+            26,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 221
+        },
+        {
+          "index": 7,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/failed/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21901,
+          "bbox": [
+            21,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 203
+        }
+      ]
+    },
+    {
+      "state": "waiting",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waiting/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23564,
+          "bbox": [
+            11,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 186
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waiting/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22863,
+          "bbox": [
+            15,
+            5,
+            176,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 164
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waiting/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23321,
+          "bbox": [
+            13,
+            5,
+            179,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 144
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waiting/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22952,
+          "bbox": [
+            14,
+            5,
+            177,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 176
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waiting/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 24198,
+          "bbox": [
+            11,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 182
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/waiting/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23602,
+          "bbox": [
+            12,
+            5,
+            180,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 165
+        }
+      ]
+    },
+    {
+      "state": "running",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23653,
+          "bbox": [
+            10,
+            5,
+            181,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 157
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22719,
+          "bbox": [
+            20,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 113
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 21808,
+          "bbox": [
+            25,
+            5,
+            166,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 149
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23397,
+          "bbox": [
+            16,
+            5,
+            176,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 188
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22283,
+          "bbox": [
+            22,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 103
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/running/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23937,
+          "bbox": [
+            8,
+            5,
+            183,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 165
+        }
+      ]
+    },
+    {
+      "state": "review",
+      "expected_frames": 6,
+      "actual_frames": 6,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/review/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23833,
+          "bbox": [
+            17,
+            5,
+            175,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 251
+        },
+        {
+          "index": 1,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/review/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23076,
+          "bbox": [
+            19,
+            5,
+            172,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 201
+        },
+        {
+          "index": 2,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/review/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23101,
+          "bbox": [
+            20,
+            5,
+            172,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 245
+        },
+        {
+          "index": 3,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/review/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 23086,
+          "bbox": [
+            19,
+            5,
+            173,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 201
+        },
+        {
+          "index": 4,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/review/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22712,
+          "bbox": [
+            22,
+            5,
+            170,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 152
+        },
+        {
+          "index": 5,
+          "file": "/Users/atou/neta-companion/source-projects/pet-foundry/runs/fm-elf-mage/frames/review/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 22574,
+          "bbox": [
+            21,
+            5,
+            171,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 161
+        }
+      ]
+    }
+  ]
+}

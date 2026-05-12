@@ -1,0 +1,28 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Use the reference as exact identity. Create one clean horizontal 8-frame transparent pixel-art sprite strip. Action: gentle side-to-side music dance, small knee bend, robe and twin tails sway, staff mostly stays vertical with tiny beat taps. Same character, same outfit, same staff, same scale, same baseline, same camera. No large jump, no extra props, no text, no border, no scene, no duplicated characters.",
+    "size": "2048x1152",
+    "image": "https://neta.atou.cc/public/foundry/frieren-base-reference.png?v=base-ref-20260511"
+  },
+  "response": {
+    "created": 1778505388,
+    "data": [
+      {
+        "revised_prompt": "Create one clean horizontal 8-frame transparent pixel-art sprite strip using the provided reference character as exact identity. Keep the same character, same outfit, same staff, same scale, same baseline, same camera angle, and the same overall design details. The character is a fantasy girl with long silver-white twin tails, teal eyes, a white-and-gold robe, brown boots, and a tall ornate staff with a red gem. Action across 8 frames: a gentle side-to-side music dance with subtle rhythmic motion, small knee bends, robe hem and twin tails swaying naturally, staff mostly staying vertical with tiny beat taps. Preserve pixel-art style, clean edges, transparent background, no border, no scene, no extra props, no text, no duplicated characters, no large jumps. Animate smoothly as a cohesive sprite sheet strip laid out horizontally with 8 evenly spaced frames, consistent silhouette and framing in every frame.",
+        "url": "https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/experience_tmp/7598442749101409846/20260511/b3d87aec-3c55-4d9f-b808-f3d382ad870b.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKTP0VyX37NH37petROGRHWSobp07ljX4UloNFkoKwuKF9%2F20260511%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260511T131627Z&X-Tos-Expires=604800&X-Tos-Security-Token=nChBuOHRISXp0c0RTMXBZS3Q3.CiQKEE1XZExOQklNaUJjSGlnT3QSEOuOlyaor0Yfi5vqYn9XXdsQl6yH0AYYucaH0AYg-v3I6QcoBDD5wKMuOiFSb2xlRm9yQXJrYmZmVG9zL1JvbGVGb3JBcmtiZmZUb3NCA2Fya1IQUm9sZUZvckFya2JmZlRvc1gDegNhcms.mZRcJiEx_VsI_HElG8mqcZQImax9tpInvuJpD421SdUHNYshjTPZglV0xLxSohzJwg1pX3oOIkh5Ra4u_mDpwQ&X-Tos-Signature=ee3e5d375e12c324f533a39af6db1c4ec4e14037efa73b3ef20b4600ff62bb54&X-Tos-SignedHeaders=host"
+      }
+    ],
+    "model": "gpt-image-2",
+    "object": "list",
+    "usage": {
+      "generated_images": 1,
+      "output_tokens": 17800,
+      "total_tokens": 17800
+    }
+  },
+  "files": [
+    "output/image2/frieren-dance-clean-e/frieren-dance-clean-e_001.png"
+  ]
+}

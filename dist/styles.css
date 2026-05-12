@@ -646,24 +646,61 @@ button {
   z-index: 2;
   top: 15px;
   right: 1px;
-  width: 58px;
+  width: 76px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transform: rotate(31deg);
+  transform-origin: 90% 50%;
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+
+.tone-arm::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  right: 15px;
+  top: 18px;
   height: 8px;
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(255, 242, 210, .92), rgba(255, 79, 168, .76));
-  transform: rotate(31deg);
-  transform-origin: 90% 50%;
   box-shadow: 0 7px 14px rgba(0, 0, 0, .3);
 }
 
 .tone-arm::after {
   content: "";
   position: absolute;
-  right: -6px;
-  top: -5px;
+  right: 6px;
+  top: 13px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
   background: var(--cream);
+}
+
+.tone-arm:hover {
+  filter: brightness(1.12);
+}
+
+.tone-arm:hover::before {
+  box-shadow: 0 9px 18px rgba(0, 0, 0, .34), 0 0 18px color-mix(in srgb, var(--wave-glow) 42%, transparent);
+}
+
+.tone-arm:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 12px;
+}
+
+.tone-arm:active {
+  transform: rotate(25deg) translateY(1px);
+}
+
+.room-playing .tone-arm {
+  transform: rotate(25deg);
 }
 
 .room-playing .vinyl-disc {
@@ -1401,8 +1438,22 @@ button {
   .tone-arm {
     top: 10px;
     right: -2px;
-    width: 36px;
+    width: 56px;
+    height: 40px;
+  }
+
+  .tone-arm::before {
+    left: 5px;
+    right: 12px;
+    top: 17px;
     height: 6px;
+  }
+
+  .tone-arm::after {
+    right: 5px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
   }
 
   .state-row {
@@ -1550,7 +1601,7 @@ button {
   }
 
   .tone-arm {
-    width: 34px;
+    width: 54px;
   }
 
   .state-row {

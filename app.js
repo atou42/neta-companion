@@ -11,6 +11,7 @@ const trackKicker = document.getElementById("trackKicker");
 const trackTitle = document.getElementById("trackTitle");
 const trackSub = document.getElementById("trackSub");
 const discLabel = document.getElementById("discLabel");
+const toneArmBtn = document.getElementById("toneArmBtn");
 const playBtn = document.getElementById("playBtn");
 const progress = document.getElementById("progress");
 const currentTimeEl = document.getElementById("currentTime");
@@ -592,6 +593,12 @@ function setStatus(status) {
   stateChip.textContent = labels[status] || "Ready";
   stateChip.className = `state-chip ${status}`;
   playBtn.textContent = status === "playing" ? "Pause" : "Play";
+  if (toneArmBtn) {
+    const isPlaying = status === "playing";
+    toneArmBtn.setAttribute("aria-pressed", String(isPlaying));
+    toneArmBtn.setAttribute("aria-label", isPlaying ? "Pause from tone arm" : "Play from tone arm");
+    toneArmBtn.title = isPlaying ? "Pause" : "Play";
+  }
   updateSpriteWalkForStatus(status);
   if (status !== "playing") clearPlayingShuffle();
   if (status === "ready") {
@@ -761,10 +768,12 @@ function buildWaveform() {
 }
 
 function setupTransport() {
-  document.getElementById("playBtn").addEventListener("click", () => {
+  const togglePlayback = () => {
     if (audio.paused) play();
     else pause();
-  });
+  };
+  document.getElementById("playBtn").addEventListener("click", togglePlayback);
+  toneArmBtn?.addEventListener("click", togglePlayback);
   document.getElementById("nextBtn").addEventListener("click", nextTrack);
   document.getElementById("prevBtn").addEventListener("click", previousTrack);
   document.getElementById("shuffleBtn").addEventListener("click", toggleShuffle);

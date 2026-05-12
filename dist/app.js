@@ -67,10 +67,10 @@ let shuffleQueue = [];
 let shuffleBackStack = [];
 
 const spriteActions = {
-  idle: { row: 0, frames: 8, label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 190 },
-  idleBook: { row: 1, frames: 8, label: "Book", mood: "The sprite is keeping a quiet note beside the radio.", tick: 210 },
-  idleLook: { row: 2, frames: 8, label: "Look", mood: "The sprite is looking around the room.", tick: 180 },
-  idleFocus: { row: 3, frames: 8, label: "Focus", mood: "The sprite is checking the staff signal.", tick: 170 },
+  idle: { row: 0, frames: 8, label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 320 },
+  idleBook: { row: 1, frames: 8, label: "Book", mood: "The sprite is keeping a quiet note beside the radio.", tick: 340 },
+  idleLook: { row: 2, frames: 8, label: "Look", mood: "The sprite is looking around the room.", tick: 360 },
+  idleFocus: { row: 3, frames: 8, label: "Focus", mood: "The sprite is checking the staff signal.", tick: 360 },
   playing: { row: 4, frames: 8, label: "Listen", mood: "The sprite is listening closely to the song.", tick: 190 },
   playingSoftStep: { row: 5, frames: 8, label: "Step", mood: "The sprite is moving gently with the song.", tick: 180 },
   playingFocus: { row: 6, frames: 8, label: "Beat", mood: "The sprite is keeping time with the staff signal.", tick: 185 },

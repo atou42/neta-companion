@@ -1,3 +1,5 @@
 .DS_Store
 .wrangler/
 .playwright-cli/
+scripts/__pycache__/
+output/playwright/

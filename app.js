@@ -36,7 +36,6 @@ const spritePlayingValue = document.getElementById("spritePlayingValue");
 const spriteIdleValue = document.getElementById("spriteIdleValue");
 const spriteSpecialValue = document.getElementById("spriteSpecialValue");
 const spriteShuffleValue = document.getElementById("spriteShuffleValue");
-const spriteSheetRows = 15;
 const spriteTuneStorageKey = "netaSpriteTune";
 const playerModeStorageKey = "netaFmPlayerMode";
 const spriteTuneDefaults = {
@@ -570,7 +569,7 @@ function updateProgress() {
 }
 
 function applySpriteFrame(action) {
-  spriteEl.style.backgroundPosition = `${(spriteFrame / 7) * 100}% ${(action.row / (spriteSheetRows - 1)) * 100}%`;
+  spriteEl.style.backgroundPosition = `-${spriteFrame * 192}px -${action.row * 208}px`;
 }
 
 function renderSprite(now = 0) {
@@ -699,6 +698,7 @@ function setupSpriteDrag() {
   let walkTimer = 0;
   let walking = false;
   let walkEndTimer = 0;
+  let grabFeedbackActive = false;
 
   function getViewportTier() {
     if (window.innerWidth <= 980 && window.innerWidth > window.innerHeight) return "landscape";
@@ -826,6 +826,16 @@ function setupSpriteDrag() {
     }
   }
 
+  function activateGrabFeedback() {
+    if (grabFeedbackActive) return;
+    grabFeedbackActive = true;
+    spriteDragger.classList.add("grabbed");
+    clearIdleShuffle();
+    setSpriteAction("grabbed");
+    showReaction(randomItem(grabMessages), 3200);
+    burstParticles("grab");
+  }
+
   function triggerSpriteTap() {
     spriteDragger.classList.add("poked");
     window.setTimeout(() => spriteDragger.classList.remove("poked"), 520);
@@ -865,11 +875,7 @@ function setupSpriteDrag() {
     movedSincePointerDown = false;
     grabbedPreviousAction = spriteAction;
     spriteDragger.classList.add("dragging");
-    spriteDragger.classList.add("grabbed");
-    clearIdleShuffle();
-    setSpriteAction("grabbed");
-    showReaction(randomItem(grabMessages), 3200);
-    burstParticles("grab");
+    grabFeedbackActive = false;
     const rect = spriteDragger.getBoundingClientRect();
     offsetX = event.clientX - (rect.left + rect.width / 2);
     offsetY = event.clientY - (rect.top + rect.height / 2);
@@ -882,8 +888,9 @@ function setupSpriteDrag() {
     pointerLastY = event.clientY;
     if (Math.hypot(pointerStartX - pointerLastX, pointerStartY - pointerLastY) > 8) {
       movedSincePointerDown = true;
+      activateGrabFeedback();
+      setPosition(event.clientX, event.clientY);
     }
-    setPosition(event.clientX, event.clientY);
   });
 
   function stopDrag(event) {
@@ -897,6 +904,7 @@ function setupSpriteDrag() {
     const wasCanceled = event.type === "pointercancel";
     dragging = false;
     activePointerId = null;
+    grabFeedbackActive = false;
     spriteDragger.classList.remove("dragging");
     spriteDragger.classList.remove("grabbed");
     spriteDragger.releasePointerCapture?.(event.pointerId);

@@ -919,7 +919,7 @@ button {
 }
 
 .sprite-dragger.walk-left {
-  --sprite-facing: -1;
+  --sprite-facing: 1;
 }
 
 .sprite-dragger.walk-right {
@@ -1018,11 +1018,7 @@ button {
   animation: none;
 }
 
-.room-playing .sprite-dragger[data-action="playingDrift"]:not(.grabbed):not(.walking):not(.poked) .companion-sprite {
-  animation: none;
-}
-
-.room-playing .sprite-dragger[data-action="playingStep"]:not(.grabbed):not(.walking):not(.poked) .companion-sprite {
+.room-playing .sprite-dragger[data-action="playingSoftStep"]:not(.grabbed):not(.walking):not(.poked) .companion-sprite {
   animation: none;
 }
 
@@ -1118,9 +1114,9 @@ button {
   width: 192px;
   height: 208px;
   image-rendering: pixelated;
-  background-image: url("public/foundry/companion-spritesheet.webp");
+  background-image: url("public/foundry/companion-spritesheet.webp?v=20260512-frieren15c");
   background-repeat: no-repeat;
-  background-size: 800% 1100%;
+  background-size: 1536px 3120px;
   background-position: 0% 0%;
   filter: drop-shadow(0 26px 28px rgba(23, 4, 20, .38));
   transform: scaleX(var(--sprite-facing)) scale(var(--sprite-scale));

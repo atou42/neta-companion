@@ -4,7 +4,7 @@
   "status": "production-contract",
   "target": {
     "publicSheet": "public/foundry/companion-spritesheet.webp",
-    "distSheet": "dist/foundry/companion-spritesheet.webp",
+    "distSheet": "dist/public/foundry/companion-spritesheet.webp",
     "publicBaseReference": "public/foundry/frieren-base-reference.png"
   },
   "atlas": {
@@ -156,6 +156,7 @@
     "maxOpaquePixelsInUnusedCells": 0,
     "maxChromaAdjacentPixelsPerFrame": 25,
     "minChromaKeyCoverageInProviderSource": 0.05,
+    "providerChromaKeyDistanceThreshold": 96,
     "maxSemiTransparentWhiteEdgePixelsPerFrame": 120,
     "maxIdleFootBaselineDriftPx": 1,
     "maxPlayingBodyAnchorDriftPx": 2,

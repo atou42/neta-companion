@@ -4,6 +4,7 @@ import json
 import shutil
 import sys
 from pathlib import Path
+from math import sqrt
 
 try:
     from PIL import Image
@@ -149,6 +150,7 @@ def inspect_provider_source(source_path, key_hex, contract):
     ensure_pillow()
     key_rgb = parse_hex_color(key_hex)
     min_coverage = float((contract.get("qualityGate") or {}).get("minChromaKeyCoverageInProviderSource", 0.05))
+    key_threshold = float((contract.get("qualityGate") or {}).get("providerChromaKeyDistanceThreshold", 32))
 
     try:
         with Image.open(source_path) as image:
@@ -163,7 +165,8 @@ def inspect_provider_source(source_path, key_hex, contract):
                     r, g, b, a = pixels[x, y]
                     if a < 255:
                         transparent_pixels += 1
-                    if a == 255 and abs(r - key_rgb[0]) <= 2 and abs(g - key_rgb[1]) <= 2 and abs(b - key_rgb[2]) <= 2:
+                    distance = sqrt((r - key_rgb[0]) ** 2 + (g - key_rgb[1]) ** 2 + (b - key_rgb[2]) ** 2)
+                    if a == 255 and distance <= key_threshold:
                         key_pixels += 1
 
             key_coverage = key_pixels / total if total else 0
@@ -171,7 +174,7 @@ def inspect_provider_source(source_path, key_hex, contract):
                 fail(f"Provider source must be opaque chroma-key art, not transparent: {source_path}")
             if key_coverage < min_coverage:
                 fail(
-                    f"Provider source {source_path} has {key_coverage:.2%} exact chroma-key pixels, "
+                    f"Provider source {source_path} has {key_coverage:.2%} chroma-key pixels within distance {key_threshold:g}, "
                     f"minimum is {min_coverage:.2%}"
                 )
 
@@ -179,6 +182,7 @@ def inspect_provider_source(source_path, key_hex, contract):
                 "path": str(source_path),
                 "size": list(image.size),
                 "chromaKeyCoverage": round(key_coverage, 4),
+                "chromaKeyDistanceThreshold": key_threshold,
             }
     except OSError as exc:
         fail(f"Provider source is not a readable image: {source_path}: {exc}")
@@ -228,6 +232,12 @@ def validate_manifest(run_dir, contract):
         for value in values:
             if not (run_dir / value).exists():
                 fail(f"QA file is missing: {run_dir / value}")
+
+    required_composites = (contract.get("qualityGate") or {}).get("requiredComposites") or []
+    composite_names = " ".join(str(value).lower() for value in qa.get("composites") or [])
+    for required in required_composites:
+        if str(required).lower() not in composite_names:
+            fail(f"Run manifest qa.composites must include a {required} composite")
 
     final_sheet = manifest.get("finalSheet")
     if not final_sheet:

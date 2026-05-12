@@ -1,0 +1,28 @@
+{
+  "endpoint": "https://new-api.talesofai.com/v1/images/generations",
+  "request": {
+    "model": "gpt-image-2",
+    "prompt": "Use the reference character: Frieren chibi pixel sprite. Make one horizontal 8-frame animation sprite sheet for track-switch casting. Same character height in every frame, same foot baseline, same camera, same scale, full body visible. Action: stand, turn slightly, raise staff, cast with pose only, lower staff, return to stand. No large spell effects, no particles, no zoom, no tiny frame, no text, no border. Solid pure #FF00FF background.",
+    "size": "2048x1152",
+    "image": "https://neta-sprite-ref.sobighead-c.workers.dev/base-candidate-ref_001.png"
+  },
+  "response": {
+    "created": 1778562160,
+    "data": [
+      {
+        "revised_prompt": "Create a horizontal 8-frame pixel art animation sprite sheet using the provided reference character: Frieren chibi pixel sprite. Style must match the reference exactly as a clean retro pixel sprite. Keep the same character height in every frame, same foot baseline, same camera angle, same scale, and full body visible in each frame. Arrange 8 equal frames in one row. Action sequence across frames: 1) stand idle, 2) slight turn of torso/head, 3) raise staff, 4) casting pose only (no spell VFX), 5) hold casting pose, 6) lower staff, 7) return toward idle, 8) stand idle. Keep the staff and body proportions consistent. No large spell effects, no particles, no zoom, no tiny frames, no text, no border. Use a solid pure #FF00FF background filling the entire image. Ensure the sprite is centered within each frame with consistent spacing and clean pixel edges.",
+        "url": "https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/experience_tmp/7598442749101409846/20260512/9318120c-2b04-4e09-bcd2-da680112d6d7.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Credential=AKTP0VyX37NH37petROGRHWSmjTQ23WfLlQ7NbijKDDqEg%2F20260512%2Fcn-beijing%2Ftos%2Frequest&X-Tos-Date=20260512T050239Z&X-Tos-Expires=604800&X-Tos-Security-Token=nChBuOHRISXp0c0RTMXBZS3Q3.CiQKEE1XZExOQklNaUJjSGlnT3QSEK3l_a4QjEsKvvg4YKE3VYYQguaK0AYYlv-K0AYg-v3I6QcoBDD5wKMuOiFSb2xlRm9yQXJrYmZmVG9zL1JvbGVGb3JBcmtiZmZUb3NCA2Fya1IQUm9sZUZvckFya2JmZlRvc1gDegNhcms.GjQ4HL7_iQSx3iYB-VllIR6AUqTdSahQmWLU2oVCfrdDgNkjy03hhH1tTI1Q0KO-_XEqWgKL3zg7Vk4fRnpMSQ&X-Tos-Signature=b5c31734d6a8ebfa188cda8b6c2439c5491e997fde300105692fa47d37221ee8&X-Tos-SignedHeaders=host"
+      }
+    ],
+    "model": "gpt-image-2",
+    "object": "list",
+    "usage": {
+      "generated_images": 1,
+      "output_tokens": 17800,
+      "total_tokens": 17800
+    }
+  },
+  "files": [
+    "output/sprite-production/frieren-v1/provider/rows/switching-cast/switching-cast_001.png"
+  ]
+}

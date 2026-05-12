@@ -5,6 +5,7 @@ const room = document.getElementById("room");
 const audio = document.getElementById("audio");
 const stateChip = document.getElementById("stateChip");
 const syncState = document.getElementById("syncState");
+const nowCard = document.querySelector(".now-card");
 const trackKicker = document.getElementById("trackKicker");
 const trackTitle = document.getElementById("trackTitle");
 const trackSub = document.getElementById("trackSub");
@@ -90,6 +91,17 @@ const spriteActions = {
 const idleActionNames = ["idle", "idleLook", "idleFocus"];
 const tapIdleActionNames = ["idle", "idleBook", "idleLook", "idleFocus"];
 const playingActionNames = ["playing", "playingSoftStep", "playingFocus"];
+
+const waveformMoodThemes = {
+  focus: { a: "#ff64b7", b: "#9a58ff", glow: "#ff4fa8", speed: 1.7, density: .72 },
+  flow: { a: "#ff76b9", b: "#68d9ff", glow: "#c45bff", speed: 1.35, density: .86 },
+  cozy: { a: "#ffd38a", b: "#ff70b5", glow: "#ff9f6e", speed: 1.95, density: .6 },
+  motion: { a: "#ff4fa8", b: "#ffc759", glow: "#ff4fa8", speed: 1.05, density: 1 },
+  night: { a: "#8c6dff", b: "#ff70d0", glow: "#8a5cff", speed: 2.15, density: .64 },
+  reset: { a: "#ffe0a3", b: "#8fded4", glow: "#ffd28a", speed: 2.25, density: .52 },
+  spark: { a: "#ff477e", b: "#ffe66d", glow: "#ff477e", speed: .9, density: 1.12 },
+  vocal: { a: "#fff0c9", b: "#ff5cac", glow: "#ff8fc8", speed: 1.45, density: .82 },
+};
 const tapMessages = ["换个姿势", "在这呢", "收到", "嗯？", "再点一下"];
 const listeningMessages = ["听这首", "换个节奏", "进入状态", "轻轻摇"];
 const grabMessages = ["抓住啦", "轻一点", "别晃太快", "在手里了"];
@@ -139,6 +151,49 @@ async function loadFmPlaylist() {
 function formatTime(value) {
   if (!Number.isFinite(value) || value < 0) return "0:00";
   return `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, "0")}`;
+}
+
+function hashString(value = "") {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function trackTheme(track) {
+  return waveformMoodThemes[track?.mood] || waveformMoodThemes.focus;
+}
+
+function setTrackVisuals(track) {
+  if (!nowCard || !track) return;
+  const theme = trackTheme(track);
+  const energy = clampNumber(track.energy, 1, 5, 2);
+  const density = Math.max(.45, theme.density + (energy - 3) * .08);
+  const tempoSpeed = track.tempo === "fast" ? .82 : track.tempo === "slow" ? 1.24 : 1;
+  nowCard.dataset.mood = track.mood || "focus";
+  nowCard.dataset.tempo = track.tempo || "mid";
+  nowCard.dataset.vocal = track.vocalType || "instrumental";
+  nowCard.style.setProperty("--wave-a", theme.a);
+  nowCard.style.setProperty("--wave-b", theme.b);
+  nowCard.style.setProperty("--wave-glow", theme.glow);
+  nowCard.style.setProperty("--wave-speed", `${Math.max(.72, theme.speed * tempoSpeed)}s`);
+  nowCard.style.setProperty("--disc-speed", `${Math.max(4.8, 9.2 - energy * .72)}s`);
+
+  const bars = Array.from(document.querySelectorAll("#waveform span"));
+  const seed = hashString(`${track.id || track.title || ""}:${track.mood || ""}:${track.tempo || ""}`);
+  const phase = (seed % 360) * Math.PI / 180;
+  bars.forEach((bar, index) => {
+    const wave = Math.sin(index * .62 + phase) * .5 + .5;
+    const pulse = Math.sin(index * 1.37 + phase * .7) * .5 + .5;
+    const accent = ((seed + index * 17) % 11) === 0 ? 1.24 : 1;
+    const voiceLift = track.vocalType === "vocal" && index % 7 === 0 ? 1.18 : 1;
+    const height = Math.round(clampNumber((18 + wave * 58 + pulse * 24) * density * accent * voiceLift, 14, 108));
+    bar.style.setProperty("--h", `${height}px`);
+    bar.style.setProperty("--peak", `${Math.round(clampNumber(height * (1.08 + energy * .05), 20, 122))}px`);
+    bar.style.setProperty("--d", `${(index * .028 + (seed % 7) * .018).toFixed(3)}s`);
+  });
 }
 
 function escapeHtml(value) {
@@ -483,6 +538,7 @@ function setStatus(status) {
 function renderTrack() {
   const track = currentTrack();
   if (!track) return;
+  setTrackVisuals(track);
   trackKicker.textContent = `Signal ${String(currentIndex + 1).padStart(3, "0")}`;
   discLabel.textContent = String(currentIndex + 1).padStart(3, "0");
   trackTitle.textContent = track.shortTitle;
@@ -616,9 +672,12 @@ function setupSpriteTune() {
 
 function buildWaveform() {
   const waveform = document.getElementById("waveform");
-  [24, 38, 18, 62, 44, 31, 70, 22, 55, 36, 28, 64, 42, 21, 58, 35, 76, 40, 26, 52, 30, 67, 46, 23, 60, 34, 72, 39, 25, 56, 33, 48].forEach((height, index) => {
+  if (!waveform) return;
+  waveform.innerHTML = "";
+  Array.from({ length: 44 }).forEach((_, index) => {
     const bar = document.createElement("span");
-    bar.style.setProperty("--h", `${height}px`);
+    bar.style.setProperty("--h", "42px");
+    bar.style.setProperty("--peak", "68px");
     bar.style.setProperty("--d", `${index * .035}s`);
     waveform.appendChild(bar);
   });

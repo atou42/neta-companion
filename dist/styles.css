@@ -275,13 +275,13 @@ button {
   }
 
   .now-card h2 {
-    font-size: clamp(30px, 3.4vw, 42px);
-    line-height: .88;
+    font-size: clamp(24px, 2.4vw, 32px);
+    line-height: .96;
   }
 
   .waveform {
-    height: 46px;
-    margin: 10px 0 8px;
+    height: 78px;
+    margin: 12px 0 8px;
   }
 
   .transport-panel {
@@ -476,7 +476,17 @@ button {
 .now-card {
   position: relative;
   overflow: hidden;
-  padding: 16px 18px;
+  --wave-a: var(--pink);
+  --wave-b: var(--violet);
+  --wave-glow: var(--pink);
+  --wave-speed: 1.5s;
+  --disc-speed: 7.5s;
+  padding: 18px 18px 16px;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255, 79, 168, .22), transparent 31%),
+    radial-gradient(circle at 82% 86%, color-mix(in srgb, var(--wave-b) 22%, transparent), transparent 34%),
+    linear-gradient(145deg, rgba(255, 247, 243, .045), transparent 42%),
+    var(--panel);
 }
 
 .now-card::before {
@@ -484,8 +494,21 @@ button {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 12%, rgba(255, 79, 168, .2), transparent 24%),
-    linear-gradient(120deg, rgba(255, 247, 243, .06), transparent 44%);
+    linear-gradient(90deg, rgba(255, 247, 243, .08) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, rgba(255, 247, 243, .045) 0 1px, transparent 1px 100%);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 54% 62%, rgba(0, 0, 0, .74), transparent 70%);
+  opacity: .34;
+  pointer-events: none;
+}
+
+.now-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 80px 18px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--wave-glow) 72%, transparent), transparent);
+  opacity: .62;
   pointer-events: none;
 }
 
@@ -533,27 +556,33 @@ button {
 }
 
 .track-index {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: var(--pink);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .now-card h2 {
   margin: 0;
-  font-size: clamp(32px, 3.6vw, 48px);
-  line-height: .88;
+  font-size: clamp(24px, 2.45vw, 34px);
+  line-height: .95;
   white-space: pre-line;
 }
 
 .now-card p:last-of-type {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
 }
 
 .deck-row {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 118px minmax(0, 1fr);
+  grid-template-columns: minmax(154px, 38%) minmax(0, 1fr);
   gap: 16px;
   align-items: center;
 }
@@ -564,7 +593,7 @@ button {
 
 .vinyl-deck {
   position: relative;
-  width: 112px;
+  width: clamp(154px, 10vw, 176px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -582,16 +611,16 @@ button {
 .vinyl-disc {
   position: relative;
   z-index: 1;
-  width: 96px;
+  width: calc(100% - 16px);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   border: 1px solid rgba(255, 242, 210, .38);
   border-radius: 50%;
   background:
-    radial-gradient(circle at center, #fff2d2 0 10%, #ff4fa8 10.5% 13%, transparent 13.5%),
+    radial-gradient(circle at center, #fff2d2 0 9%, var(--wave-a) 9.5% 12%, transparent 12.5%),
     repeating-radial-gradient(circle, rgba(255, 247, 243, .14) 0 2px, transparent 2px 7px),
-    conic-gradient(from 22deg, #2b112a, #ff4fa8, #ffc692, #a94cff, #2b112a);
+    conic-gradient(from 22deg, #2b112a, var(--wave-a), #ffc692, var(--wave-b), #2b112a);
   box-shadow:
     inset 0 0 0 12px rgba(10, 4, 12, .68),
     inset 0 0 22px rgba(255, 247, 243, .12),
@@ -617,7 +646,7 @@ button {
   z-index: 2;
   top: 15px;
   right: 1px;
-  width: 52px;
+  width: 58px;
   height: 8px;
   border-radius: 999px;
   background: linear-gradient(90deg, rgba(255, 242, 210, .92), rgba(255, 79, 168, .76));
@@ -638,7 +667,7 @@ button {
 }
 
 .room-playing .vinyl-disc {
-  animation: discSpin 7.5s linear infinite;
+  animation: discSpin var(--disc-speed) linear infinite;
 }
 
 .room-paused .vinyl-disc,
@@ -681,27 +710,85 @@ button {
 .waveform {
   position: relative;
   z-index: 1;
-  height: 56px;
-  margin: 14px 0 8px;
+  height: 96px;
+  margin: 16px 0 10px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  padding: 10px 11px;
   overflow: hidden;
+  border: 1px solid rgba(255, 247, 243, .08);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 247, 243, .06), transparent 38%),
+    repeating-linear-gradient(90deg, rgba(255, 247, 243, .08) 0 1px, transparent 1px 22px),
+    radial-gradient(circle at 18% 50%, color-mix(in srgb, var(--wave-glow) 26%, transparent), transparent 40%),
+    rgba(255, 247, 243, .035);
+}
+
+.waveform::before {
+  content: "";
+  position: absolute;
+  inset: 8px 10px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, transparent 0 8%, color-mix(in srgb, var(--wave-glow) 42%, transparent) 18%, transparent 34%);
+  opacity: 0;
+  transform: translateX(-48%);
+  pointer-events: none;
+}
+
+.waveform::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 247, 243, .28), transparent);
+  opacity: .58;
+  pointer-events: none;
 }
 
 .waveform span {
-  width: 5px;
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  max-width: 8px;
+  min-width: 3px;
   height: var(--h);
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--pink), var(--violet));
-  opacity: .36;
+  background: linear-gradient(180deg, var(--wave-a), color-mix(in srgb, var(--wave-a) 56%, var(--wave-b)), var(--wave-b));
+  box-shadow: 0 0 14px color-mix(in srgb, var(--wave-glow) 34%, transparent);
+  opacity: .62;
   transform-origin: center;
 }
 
+.now-card[data-vocal="vocal"] .waveform span:nth-child(7n + 1) {
+  background: linear-gradient(180deg, var(--cream), var(--wave-a));
+}
+
+.now-card[data-tempo="fast"] .waveform {
+  gap: 3px;
+}
+
+.now-card[data-mood="reset"] .waveform,
+.now-card[data-mood="cozy"] .waveform {
+  background:
+    linear-gradient(180deg, rgba(255, 247, 243, .075), transparent 42%),
+    repeating-linear-gradient(90deg, rgba(255, 247, 243, .07) 0 1px, transparent 1px 28px),
+    radial-gradient(circle at 24% 52%, color-mix(in srgb, var(--wave-glow) 24%, transparent), transparent 42%),
+    rgba(255, 247, 243, .035);
+}
+
 .room-playing .waveform span {
-  animation: wave 1.4s ease-in-out infinite;
+  animation: wave var(--wave-speed) ease-in-out infinite;
   animation-delay: var(--d);
   opacity: .92;
+}
+
+.room-playing .waveform::before {
+  animation: spectrumSweep calc(var(--wave-speed) * 2.8) linear infinite;
+  opacity: .68;
 }
 
 .room-switching .waveform span {
@@ -710,8 +797,13 @@ button {
 }
 
 @keyframes wave {
-  0%, 100% { transform: scaleY(.56); }
-  50% { transform: scaleY(1.12); }
+  0%, 100% { transform: scaleY(.72); filter: saturate(.9); }
+  42% { transform: scaleY(1.24); filter: saturate(1.24); }
+  66% { transform: scaleY(.92); }
+}
+
+@keyframes spectrumSweep {
+  to { transform: translateX(126%); }
 }
 
 .progress {
@@ -1278,16 +1370,16 @@ button {
   }
 
   .deck-row {
-    grid-template-columns: 78px minmax(0, 1fr);
+    grid-template-columns: 90px minmax(0, 1fr);
     gap: 10px;
   }
 
   .vinyl-deck {
-    width: 76px;
+    width: 88px;
   }
 
   .vinyl-disc {
-    width: 66px;
+    width: 76px;
   }
 
   .vinyl-disc span {
@@ -1317,8 +1409,8 @@ button {
   }
 
   .now-card h2 {
-    font-size: clamp(28px, 8vw, 38px);
-    line-height: .9;
+    font-size: clamp(24px, 6.6vw, 32px);
+    line-height: .96;
   }
 
   .now-card p:last-of-type {
@@ -1329,9 +1421,10 @@ button {
   }
 
   .waveform {
-    height: 46px;
+    height: 62px;
     margin: 9px 0 8px;
-    gap: 4px;
+    gap: 3px;
+    padding: 8px;
   }
 
   .waveform span {
@@ -1434,16 +1527,16 @@ button {
   }
 
   .deck-row {
-    grid-template-columns: 76px minmax(0, 1fr);
+    grid-template-columns: 88px minmax(0, 1fr);
     gap: 10px;
   }
 
   .vinyl-deck {
-    width: 74px;
+    width: 86px;
   }
 
   .vinyl-disc {
-    width: 64px;
+    width: 74px;
   }
 
   .tone-arm {
@@ -1459,7 +1552,7 @@ button {
   }
 
   .now-card h2 {
-    font-size: clamp(26px, 5vw, 34px);
+    font-size: clamp(23px, 4.8vw, 30px);
   }
 
   .now-card p:last-of-type {
@@ -1470,8 +1563,9 @@ button {
   }
 
   .waveform {
-    height: 38px;
+    height: 56px;
     margin: 8px 0 7px;
+    padding: 7px;
   }
 
   .transport-panel {

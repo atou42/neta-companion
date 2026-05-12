@@ -351,7 +351,6 @@ button {
   gap: 8px;
 }
 
-.lab-link,
 .sprite-tune-button {
   flex: 0 0 auto;
   min-height: 36px;
@@ -1192,7 +1191,6 @@ button {
     font-size: clamp(24px, 5.5vw, 34px);
   }
 
-  .lab-link,
   .sprite-tune-button {
     min-height: 34px;
     padding: 0 12px;

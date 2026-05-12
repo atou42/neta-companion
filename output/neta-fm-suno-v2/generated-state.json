@@ -1,0 +1,12 @@
+{
+  "updatedAt": "2026-05-12T12:25:49.237Z",
+  "queue": "output/neta-fm-suno-v2/queue-v2.json",
+  "log": "output/neta-fm-suno-v2/generated-log.jsonl",
+  "total": 128,
+  "completed": 128,
+  "pending": 0,
+  "intervalSeconds": 65,
+  "modelName": "chirp-fenix",
+  "dryRun": false,
+  "lastQueueId": "flow_citypop_long_002_afternoon_terminal"
+}

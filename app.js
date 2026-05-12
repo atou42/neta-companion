@@ -46,7 +46,7 @@ const spriteTuneDefaults = {
   idleSpeed: 1,
   specialSpeed: 1,
   shuffleEvery: 9,
-  walkEvery: 14,
+  walkEvery: 5,
 };
 
 let currentIndex = 0;

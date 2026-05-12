@@ -914,8 +914,8 @@ button {
 
 .sprite-dragger.walking {
   transition:
-    left 1.8s cubic-bezier(.22, 1, .36, 1),
-    top 1.8s cubic-bezier(.22, 1, .36, 1);
+    left var(--sprite-walk-duration, 1800ms) linear,
+    top var(--sprite-walk-duration, 1800ms) linear;
 }
 
 .sprite-dragger.walk-left {

@@ -788,8 +788,11 @@ function setupSpriteDrag() {
     const distance = Math.min(180, 76 + Math.random() * 110, window.innerWidth * .28);
     const nextX = clampValue(centerX + direction * distance, autoMinX, autoMaxX);
     const nextY = centerY + (Math.random() * 26 - 13);
+    const actualDistance = Math.hypot(nextX - centerX, nextY - centerY);
+    const walkDuration = Math.round(clampValue(actualDistance / 0.075, 900, 2600));
     offsetX = 0;
     offsetY = 0;
+    spriteDragger.style.setProperty("--sprite-walk-duration", `${walkDuration}ms`);
     spriteDragger.classList.add("walking", direction < 0 ? "walk-left" : "walk-right");
     spriteDragger.classList.remove(direction < 0 ? "walk-right" : "walk-left");
     setSpriteAction(direction < 0 ? "walkLeft" : "walkRight");
@@ -800,7 +803,7 @@ function setupSpriteDrag() {
       if (currentStatus === "ready") setIdleSpriteAction();
       else if (spriteActions[currentStatus]) setSpriteAction(currentStatus);
       scheduleSpriteWalk();
-    }, 1900);
+    }, walkDuration + 80);
   }
 
   updateSpriteWalkForStatus = (status) => {

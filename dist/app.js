@@ -84,7 +84,8 @@ const spriteActions = {
   poke: { row: 14, frames: 8, label: "Poke", mood: "The sprite noticed you.", tick: 75 },
 };
 
-const idleActionNames = ["idle", "idleBook", "idleLook", "idleFocus"];
+const idleActionNames = ["idle", "idleLook", "idleFocus"];
+const tapIdleActionNames = ["idle", "idleBook", "idleLook", "idleFocus"];
 const playingActionNames = ["playing", "playingSoftStep", "playingFocus"];
 const tapMessages = ["换个姿势", "在这呢", "收到", "嗯？", "再点一下"];
 const listeningMessages = ["听这首", "换个节奏", "进入状态", "轻轻摇"];
@@ -175,9 +176,9 @@ function pickIdleAction() {
 }
 
 function nextIdleAction() {
-  const current = idleActionNames.includes(spriteAction) ? spriteAction : lastIdleAction;
-  const index = idleActionNames.indexOf(current);
-  const actionName = idleActionNames[(index + 1 + idleActionNames.length) % idleActionNames.length];
+  const current = tapIdleActionNames.includes(spriteAction) ? spriteAction : lastIdleAction;
+  const index = tapIdleActionNames.indexOf(current);
+  const actionName = tapIdleActionNames[(index + 1 + tapIdleActionNames.length) % tapIdleActionNames.length];
   lastIdleAction = actionName;
   return actionName;
 }
@@ -420,7 +421,7 @@ function scheduleIdleShuffle() {
     if (currentStatus !== "ready") return;
     setSpriteAction(pickIdleAction());
     scheduleIdleShuffle();
-  }, 4200 + Math.random() * 5200);
+  }, 11000 + Math.random() * 7000);
 }
 
 function setIdleSpriteAction() {

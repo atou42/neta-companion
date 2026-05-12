@@ -36,7 +36,7 @@ const spritePlayingValue = document.getElementById("spritePlayingValue");
 const spriteIdleValue = document.getElementById("spriteIdleValue");
 const spriteSpecialValue = document.getElementById("spriteSpecialValue");
 const spriteShuffleValue = document.getElementById("spriteShuffleValue");
-const spriteSheetRows = 11;
+const spriteSheetRows = 15;
 const spriteTuneStorageKey = "netaSpriteTune";
 const playerModeStorageKey = "netaFmPlayerMode";
 const spriteTuneDefaults = {
@@ -59,6 +59,7 @@ let playingShuffleTimer = 0;
 let lastIdleAction = "idle";
 let lastPlayingAction = "playing";
 let reactionTimer = 0;
+let tapActionTimer = 0;
 let updateSpriteWalkForStatus = () => {};
 let spriteTune = { ...spriteTuneDefaults };
 let shuffleEnabled = false;
@@ -68,22 +69,24 @@ let shuffleBackStack = [];
 
 const spriteActions = {
   idle: { row: 0, frames: 8, label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 190 },
-  idleSway: { row: 1, frames: 8, label: "Sway", mood: "The sprite is quietly swaying with the room.", tick: 170 },
-  idleBounce: { row: 2, frames: 8, label: "Hop", mood: "The sprite is doing a tiny idle hop.", tick: 145 },
-  idleFocus: { row: 4, frames: 8, label: "Focus", mood: "The sprite is checking the staff signal.", tick: 170 },
-  grabbed: { row: 2, frames: 8, label: "Caught", mood: "The sprite is in your hand for a second.", tick: 90 },
-  walking: { row: 2, frames: 8, label: "Stroll", mood: "The sprite is wandering across the room.", tick: 105 },
-  playing: { row: 9, frames: 8, label: "Dance", mood: "The sprite is dancing with the song.", tick: 170 },
-  playingDrift: { row: 10, frames: 8, label: "Reverse", mood: "The sprite changes the rhythm for a moment.", tick: 185 },
-  playingFocus: { row: 9, frames: 8, label: "Beat", mood: "The sprite is keeping time with the staff signal.", tick: 160 },
-  paused: { row: 6, frames: 8, label: "Paused", mood: "The sprite is calm. The room is still watching.", tick: 220 },
-  switching: { row: 7, frames: 8, label: "Casting", mood: "The sprite is casting the next track into place.", tick: 80 },
-  loading: { row: 8, frames: 8, label: "Tuning", mood: "The sprite is tuning the signal.", tick: 135 },
-  error: { row: 5, frames: 8, label: "Lost", mood: "The sprite caught a broken signal.", tick: 180 },
+  idleBook: { row: 1, frames: 8, label: "Book", mood: "The sprite is keeping a quiet note beside the radio.", tick: 210 },
+  idleLook: { row: 2, frames: 8, label: "Look", mood: "The sprite is looking around the room.", tick: 180 },
+  idleFocus: { row: 3, frames: 8, label: "Focus", mood: "The sprite is checking the staff signal.", tick: 170 },
+  playing: { row: 4, frames: 8, label: "Listen", mood: "The sprite is listening closely to the song.", tick: 190 },
+  playingSoftStep: { row: 5, frames: 8, label: "Step", mood: "The sprite is moving gently with the song.", tick: 180 },
+  playingFocus: { row: 6, frames: 8, label: "Beat", mood: "The sprite is keeping time with the staff signal.", tick: 185 },
+  paused: { row: 7, frames: 8, label: "Paused", mood: "The sprite is calm. The room is still watching.", tick: 220 },
+  switching: { row: 8, frames: 8, label: "Casting", mood: "The sprite is casting the next track into place.", tick: 90 },
+  loading: { row: 9, frames: 8, label: "Tuning", mood: "The sprite is tuning the signal.", tick: 135 },
+  error: { row: 10, frames: 8, label: "Lost", mood: "The sprite caught a broken signal.", tick: 180 },
+  grabbed: { row: 11, frames: 8, label: "Caught", mood: "The sprite is in your hand for a second.", tick: 110 },
+  walkRight: { row: 12, frames: 8, label: "Right", mood: "The sprite is wandering across the room.", tick: 115 },
+  walkLeft: { row: 13, frames: 8, label: "Left", mood: "The sprite is wandering across the room.", tick: 115 },
+  poke: { row: 14, frames: 8, label: "Poke", mood: "The sprite noticed you.", tick: 75 },
 };
 
-const idleActionNames = ["idle", "idleSway", "idleBounce", "idleFocus"];
-const playingActionNames = ["playing", "playingDrift", "playingFocus"];
+const idleActionNames = ["idle", "idleBook", "idleLook", "idleFocus"];
+const playingActionNames = ["playing", "playingSoftStep", "playingFocus"];
 const tapMessages = ["换个姿势", "在这呢", "收到", "嗯？", "再点一下"];
 const listeningMessages = ["听这首", "换个节奏", "进入状态", "轻轻摇"];
 const grabMessages = ["抓住啦", "轻一点", "别晃太快", "在手里了"];
@@ -151,6 +154,8 @@ function setRoomClass(status) {
 }
 
 function setSpriteAction(actionName) {
+  window.clearTimeout(tapActionTimer);
+  tapActionTimer = 0;
   const action = spriteActions[actionName] || spriteActions.idle;
   if (spriteAction !== actionName) {
     spriteFrame = 0;
@@ -786,7 +791,7 @@ function setupSpriteDrag() {
     offsetY = 0;
     spriteDragger.classList.add("walking", direction < 0 ? "walk-left" : "walk-right");
     spriteDragger.classList.remove(direction < 0 ? "walk-right" : "walk-left");
-    setSpriteAction("walking");
+    setSpriteAction(direction < 0 ? "walkLeft" : "walkRight");
     setPosition(nextX, nextY);
     walkEndTimer = window.setTimeout(() => {
       walking = false;
@@ -826,18 +831,25 @@ function setupSpriteDrag() {
     window.setTimeout(() => spriteDragger.classList.remove("poked"), 520);
     showReaction(randomItem(currentStatus === "playing" ? listeningMessages : tapMessages), 2400);
     burstParticles("tap");
+    let nextAction = null;
     if (currentStatus === "playing") {
-      setSpriteAction(nextPlayingAction());
+      nextAction = nextPlayingAction();
       schedulePlayingShuffle();
     } else if (currentStatus === "ready") {
-      setSpriteAction(nextIdleAction());
+      nextAction = nextIdleAction();
       scheduleIdleShuffle();
       scheduleSpriteWalk();
     } else if (currentStatus === "paused") {
-      setSpriteAction(nextIdleAction());
+      nextAction = nextIdleAction();
     } else {
       restoreSpriteActionAfterDrag();
+      return;
     }
+    setSpriteAction("poke");
+    tapActionTimer = window.setTimeout(() => {
+      tapActionTimer = 0;
+      if (!spriteDragger.classList.contains("dragging")) setSpriteAction(nextAction);
+    }, 640);
   }
 
   spriteDragger.addEventListener("pointerdown", (event) => {

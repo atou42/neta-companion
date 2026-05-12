@@ -9,11 +9,11 @@
   },
   "atlas": {
     "columns": 8,
-    "rows": 11,
+    "rows": 15,
     "cellWidth": 192,
     "cellHeight": 208,
     "width": 1536,
-    "height": 2288
+    "height": 3120
   },
   "background": {
     "requiredKind": "chroma-key",
@@ -66,57 +66,81 @@
     },
     {
       "row": 2,
+      "name": "idle-look-around",
+      "frames": 8,
+      "purpose": "quietly looking around or noticing the room"
+    },
+    {
+      "row": 3,
+      "name": "idle-staff-check",
+      "frames": 8,
+      "purpose": "small staff check or focused idle variation"
+    },
+    {
+      "row": 4,
       "name": "playing-listen",
       "frames": 8,
       "purpose": "immersive listening, subtle limb motion, no whole-body shake"
     },
     {
-      "row": 3,
+      "row": 5,
       "name": "playing-soft-step",
       "frames": 8,
       "purpose": "gentle dance with readable arm, staff, hair, and robe motion"
     },
     {
-      "row": 4,
+      "row": 6,
       "name": "playing-staff-beat",
       "frames": 8,
       "purpose": "staff beat loop, grounded feet, stable body anchor"
     },
     {
-      "row": 5,
+      "row": 7,
       "name": "paused",
       "frames": 8,
       "purpose": "still, blink, book hold, resting"
     },
     {
-      "row": 6,
-      "name": "loading-tune",
-      "frames": 8,
-      "purpose": "checking staff signal or tuning radio"
-    },
-    {
-      "row": 7,
+      "row": 8,
       "name": "switching-cast",
       "frames": 8,
       "purpose": "obvious spell cast for track switching"
     },
     {
-      "row": 8,
+      "row": 9,
+      "name": "loading-tune",
+      "frames": 8,
+      "purpose": "checking staff signal or tuning radio"
+    },
+    {
+      "row": 10,
       "name": "error-lost-signal",
       "frames": 8,
       "purpose": "head down or signal lost reaction"
     },
     {
-      "row": 9,
+      "row": 11,
+      "name": "grabbed-lifted",
+      "frames": 8,
+      "purpose": "being lifted by the user during drag"
+    },
+    {
+      "row": 12,
       "name": "walk-right",
       "frames": 8,
       "purpose": "right walk for occasional wandering"
     },
     {
-      "row": 10,
+      "row": 13,
       "name": "walk-left",
       "frames": 8,
       "purpose": "left walk for occasional wandering"
+    },
+    {
+      "row": 14,
+      "name": "poke-reaction",
+      "frames": 8,
+      "purpose": "short click or tap feedback"
     }
   ],
   "sourceRules": {

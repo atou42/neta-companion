@@ -251,6 +251,7 @@ def main():
     parser.add_argument("--contract", default=str(DEFAULT_CONTRACT))
     parser.add_argument("--sheet")
     parser.add_argument("--run-dir")
+    parser.add_argument("--contract-only", action="store_true", help="Validate only the production contract.")
     parser.add_argument("--asset-only", action="store_true", help="Validate only contract and sheet dimensions.")
     parser.add_argument("--strict", action="store_true", help="Require production run provenance and stricter quality checks.")
     parser.add_argument("--promote", action="store_true", help="Copy a validated run final sheet to public and dist targets.")
@@ -261,7 +262,15 @@ def main():
         contract = load_json(contract_path)
         validate_contract(contract)
 
-        if args.run_dir:
+        if args.contract_only:
+            result = {
+                "ok": True,
+                "mode": "contract-only",
+                "contract": str(contract_path.relative_to(ROOT) if contract_path.is_relative_to(ROOT) else contract_path),
+                "atlas": contract["atlas"],
+                "states": [state["name"] for state in contract["states"]],
+            }
+        elif args.run_dir:
             run_dir = rel_path(args.run_dir)
             manifest, sheet_path = validate_manifest(run_dir, contract)
             stats = inspect_sheet(sheet_path, contract, strict_quality=args.strict)

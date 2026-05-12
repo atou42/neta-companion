@@ -8,6 +8,10 @@ This project combines three existing pieces into one web companion direction.
 
 `pet-foundry` is the companion asset layer. The FM page uses a Pet Foundry spritesheet as a live companion sprite that reacts to playback state.
 
+Sprite replacements must follow the production gate in `docs/sprite-production-flow.md`.
+The current contract lives at `public/foundry/sprite-production.json`.
+Do not replace `public/foundry/companion-spritesheet.webp` from concept art, transparent-background strips, or locally patched cells.
+
 Run locally with:
 
 ```bash

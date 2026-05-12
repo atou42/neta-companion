@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "neta.sprite-production.contract.v1",
+  "name": "frieren-fm-companion",
+  "status": "production-contract",
+  "target": {
+    "publicSheet": "public/foundry/companion-spritesheet.webp",
+    "distSheet": "dist/foundry/companion-spritesheet.webp",
+    "publicBaseReference": "public/foundry/frieren-base-reference.png"
+  },
+  "atlas": {
+    "columns": 8,
+    "rows": 11,
+    "cellWidth": 192,
+    "cellHeight": 208,
+    "width": 1536,
+    "height": 2288
+  },
+  "background": {
+    "requiredKind": "chroma-key",
+    "primary": {
+      "name": "pure magenta",
+      "hex": "#FF00FF",
+      "reason": "Frieren's white hair, white robe, gold trim, brown boots, staff, and green eyes stay far away from pure magenta. Pink and purple sprite effects are therefore forbidden in production frames."
+    },
+    "fallbacks": [
+      {
+        "name": "pure cyan",
+        "hex": "#00FFFF",
+        "reason": "Use only if magenta or pink effects must be present. Teal eye highlights and blue magic must be avoided."
+      },
+      {
+        "name": "pure green",
+        "hex": "#00FF00",
+        "reason": "Use only after visual inspection proves the eye and magic colors are not key-adjacent."
+      }
+    ],
+    "forbiddenSourceBackgrounds": [
+      "transparent",
+      "white",
+      "off-white",
+      "light gray",
+      "cream",
+      "beige",
+      "checkerboard"
+    ],
+    "forbiddenPromptPhrases": [
+      "transparent background",
+      "clean light background",
+      "pure white background",
+      "white background",
+      "checkerboard background"
+    ]
+  },
+  "states": [
+    {
+      "row": 0,
+      "name": "idle-breath",
+      "frames": 8,
+      "purpose": "quiet standing, breathing, blink"
+    },
+    {
+      "row": 1,
+      "name": "idle-book",
+      "frames": 8,
+      "purpose": "book or calm attention idle variation"
+    },
+    {
+      "row": 2,
+      "name": "playing-listen",
+      "frames": 8,
+      "purpose": "immersive listening, subtle limb motion, no whole-body shake"
+    },
+    {
+      "row": 3,
+      "name": "playing-soft-step",
+      "frames": 8,
+      "purpose": "gentle dance with readable arm, staff, hair, and robe motion"
+    },
+    {
+      "row": 4,
+      "name": "playing-staff-beat",
+      "frames": 8,
+      "purpose": "staff beat loop, grounded feet, stable body anchor"
+    },
+    {
+      "row": 5,
+      "name": "paused",
+      "frames": 8,
+      "purpose": "still, blink, book hold, resting"
+    },
+    {
+      "row": 6,
+      "name": "loading-tune",
+      "frames": 8,
+      "purpose": "checking staff signal or tuning radio"
+    },
+    {
+      "row": 7,
+      "name": "switching-cast",
+      "frames": 8,
+      "purpose": "obvious spell cast for track switching"
+    },
+    {
+      "row": 8,
+      "name": "error-lost-signal",
+      "frames": 8,
+      "purpose": "head down or signal lost reaction"
+    },
+    {
+      "row": 9,
+      "name": "walk-right",
+      "frames": 8,
+      "purpose": "right walk for occasional wandering"
+    },
+    {
+      "row": 10,
+      "name": "walk-left",
+      "frames": 8,
+      "purpose": "left walk for occasional wandering"
+    }
+  ],
+  "sourceRules": {
+    "conceptImagesCannotPublish": true,
+    "providerOriginalsRequired": true,
+    "productionManifestRequired": true,
+    "intermediateFormat": "png-rgba",
+    "finalFormat": "webp-rgba",
+    "finalSheetCanOnlyBePromotedFromValidatedRun": true,
+    "effectsPolicy": "Keep glow, status rings, particles, and floor marks in CSS when possible. Sprite frames should contain the body, outfit, hair, staff, and only hard-edged attached effects."
+  },
+  "qualityGate": {
+    "maxOpaquePixelsInUnusedCells": 0,
+    "maxChromaAdjacentPixelsPerFrame": 25,
+    "minChromaKeyCoverageInProviderSource": 0.05,
+    "maxSemiTransparentWhiteEdgePixelsPerFrame": 120,
+    "maxIdleFootBaselineDriftPx": 1,
+    "maxPlayingBodyAnchorDriftPx": 2,
+    "requiredComposites": [
+      "black",
+      "orange",
+      "room"
+    ],
+    "requiredPlaybackChecks": [
+      "actual-css-size",
+      "desktop",
+      "mobile"
+    ]
+  },
+  "legacyBaseline": {
+    "commit": "988aa2d",
+    "note": "The baseline captures the current live sheet before this production contract existed. Future replacements should pass this contract instead of using concept or transparent-background outputs directly."
+  }
+}

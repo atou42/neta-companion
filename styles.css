@@ -791,6 +791,16 @@ button {
   opacity: .68;
 }
 
+.room-playing .now-card[data-wave-source="audio"] .waveform span {
+  animation: none;
+  opacity: .96;
+  transition: height 80ms linear, opacity 120ms linear;
+}
+
+.room-playing .now-card[data-wave-source="audio"] .waveform::before {
+  opacity: .34;
+}
+
 .room-switching .waveform span {
   animation: wave .5s ease-in-out infinite;
   opacity: .72;

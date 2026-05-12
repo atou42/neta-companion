@@ -3,6 +3,7 @@ let tracks = [];
 
 const room = document.getElementById("room");
 const audio = document.getElementById("audio");
+audio.crossOrigin = "anonymous";
 const stateChip = document.getElementById("stateChip");
 const syncState = document.getElementById("syncState");
 const nowCard = document.querySelector(".now-card");
@@ -69,6 +70,12 @@ let shuffleEnabled = false;
 let repeatMode = "all";
 let shuffleQueue = [];
 let shuffleBackStack = [];
+let audioContext = null;
+let mediaSourceNode = null;
+let analyserNode = null;
+let frequencyData = null;
+let waveformFrame = 0;
+let liveWaveLevels = [];
 
 const spriteActions = {
   idle: { row: 0, frames: 8, label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 320 },
@@ -182,6 +189,7 @@ function setTrackVisuals(track) {
   nowCard.style.setProperty("--disc-speed", `${Math.max(4.8, 9.2 - energy * .72)}s`);
 
   const bars = Array.from(document.querySelectorAll("#waveform span"));
+  liveWaveLevels = new Array(bars.length).fill(0);
   const seed = hashString(`${track.id || track.title || ""}:${track.mood || ""}:${track.tempo || ""}`);
   const phase = (seed % 360) * Math.PI / 180;
   bars.forEach((bar, index) => {
@@ -194,6 +202,73 @@ function setTrackVisuals(track) {
     bar.style.setProperty("--peak", `${Math.round(clampNumber(height * (1.08 + energy * .05), 20, 122))}px`);
     bar.style.setProperty("--d", `${(index * .028 + (seed % 7) * .018).toFixed(3)}s`);
   });
+}
+
+function ensureAudioAnalysis() {
+  if (analyserNode) return true;
+  const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextCtor) {
+    nowCard.dataset.waveSource = "metadata";
+    return false;
+  }
+  try {
+    audioContext = audioContext || new AudioContextCtor();
+    mediaSourceNode = mediaSourceNode || audioContext.createMediaElementSource(audio);
+    analyserNode = audioContext.createAnalyser();
+    analyserNode.fftSize = 2048;
+    analyserNode.smoothingTimeConstant = .78;
+    frequencyData = new Uint8Array(analyserNode.frequencyBinCount);
+    mediaSourceNode.connect(analyserNode);
+    analyserNode.connect(audioContext.destination);
+    nowCard.dataset.waveSource = "audio";
+    return true;
+  } catch (error) {
+    console.warn("Audio analyser unavailable", error);
+    nowCard.dataset.waveSource = "metadata";
+    return false;
+  }
+}
+
+async function resumeAudioAnalysis() {
+  if (!ensureAudioAnalysis()) return false;
+  if (audioContext.state === "suspended") await audioContext.resume();
+  nowCard.dataset.waveSource = "audio";
+  startAudioWaveform();
+  return true;
+}
+
+function renderAudioWaveform() {
+  waveformFrame = 0;
+  if (!analyserNode || !frequencyData || audio.paused || currentStatus !== "playing") return;
+  analyserNode.getByteFrequencyData(frequencyData);
+  const bars = Array.from(document.querySelectorAll("#waveform span"));
+  if (!bars.length) return;
+  if (liveWaveLevels.length !== bars.length) liveWaveLevels = new Array(bars.length).fill(0);
+  const usableBins = Math.floor(frequencyData.length * .62);
+  bars.forEach((bar, index) => {
+    const startRatio = index / bars.length;
+    const endRatio = (index + 1) / bars.length;
+    const start = Math.floor(Math.pow(startRatio, 1.72) * usableBins);
+    const end = Math.max(start + 1, Math.floor(Math.pow(endRatio, 1.72) * usableBins));
+    let total = 0;
+    for (let bin = start; bin < end; bin += 1) total += frequencyData[bin];
+    const raw = total / ((end - start) * 255);
+    const curved = Math.pow(raw, .72);
+    liveWaveLevels[index] = liveWaveLevels[index] * .58 + curved * .42;
+    const height = Math.round(clampNumber(14 + liveWaveLevels[index] * 108, 14, 122));
+    bar.style.setProperty("--h", `${height}px`);
+    bar.style.setProperty("--peak", `${Math.round(clampNumber(height * 1.12, 20, 128))}px`);
+  });
+  waveformFrame = requestAnimationFrame(renderAudioWaveform);
+}
+
+function startAudioWaveform() {
+  if (!waveformFrame) waveformFrame = requestAnimationFrame(renderAudioWaveform);
+}
+
+function stopAudioWaveform() {
+  if (waveformFrame) cancelAnimationFrame(waveformFrame);
+  waveformFrame = 0;
 }
 
 function escapeHtml(value) {
@@ -576,6 +651,7 @@ function loadTrack(index, shouldPlay = currentStatus === "playing") {
 async function play() {
   try {
     setStatus("loading");
+    await resumeAudioAnalysis();
     await audio.play();
   } catch (error) {
     setStatus("error");
@@ -681,6 +757,7 @@ function buildWaveform() {
     bar.style.setProperty("--d", `${index * .035}s`);
     waveform.appendChild(bar);
   });
+  liveWaveLevels = new Array(waveform.children.length).fill(0);
 }
 
 function setupTransport() {
@@ -734,9 +811,11 @@ function setupMobileTabs() {
 function setupAudio() {
   audio.addEventListener("play", () => {
     setStatus("playing");
+    startAudioWaveform();
     renderQueue();
   });
   audio.addEventListener("pause", () => {
+    stopAudioWaveform();
     if (currentStatus !== "error" && currentStatus !== "switching") setStatus("paused");
     renderQueue();
   });

@@ -64,6 +64,7 @@ button {
   position: relative;
   min-width: 0;
   overflow: hidden;
+  contain: layout paint style;
   background:
     linear-gradient(90deg, rgba(255, 228, 189, .03), rgba(19, 7, 18, .24)),
     url("public/cuimao/bg.png") center / cover no-repeat;
@@ -152,6 +153,7 @@ button {
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
+  contain: layout paint style;
   background:
     radial-gradient(circle, rgba(255, 230, 194, .75), rgba(255, 218, 165, .44) 56%, rgba(255, 126, 182, .14) 100%);
   box-shadow: 0 34px 92px rgba(60, 25, 24, .34);
@@ -163,7 +165,7 @@ button {
   height: 100%;
   border-radius: 50%;
   background: url("public/cuimao/sprite.webp") 0% 0% / 1100% 1100% no-repeat;
-  will-change: background-position;
+  transform: translateZ(0);
 }
 
 .cuimao-front {
@@ -236,7 +238,9 @@ button {
   pointer-events: none;
   background: url("public/cuimao/cursor.png") center / contain no-repeat;
   filter: drop-shadow(0 5px 12px rgba(60, 24, 55, .36));
+  opacity: 0;
   transform: translate3d(-100px, -100px, 0);
+  will-change: transform, opacity;
 }
 
 .fm-console {
@@ -290,7 +294,8 @@ button {
 
   .utility-button,
   .transport-button,
-  .play-button {
+  .play-button,
+  .mute-button {
     min-height: 40px;
   }
 
@@ -757,10 +762,13 @@ button {
   border: 1px solid rgba(255, 247, 243, .08);
   border-radius: 18px;
   background:
-    linear-gradient(180deg, rgba(255, 247, 243, .06), transparent 38%),
-    repeating-linear-gradient(90deg, rgba(255, 247, 243, .08) 0 1px, transparent 1px 22px),
-    radial-gradient(circle at 18% 50%, color-mix(in srgb, var(--wave-glow) 26%, transparent), transparent 40%),
+    linear-gradient(180deg, rgba(255, 247, 243, .07), transparent 38%),
+    repeating-linear-gradient(90deg, rgba(255, 247, 243, .075) 0 1px, transparent 1px 24px),
+    radial-gradient(circle at 16% 46%, color-mix(in srgb, var(--wave-a) 30%, transparent), transparent 40%),
+    radial-gradient(circle at 82% 54%, color-mix(in srgb, var(--wave-c) 26%, transparent), transparent 42%),
+    linear-gradient(110deg, color-mix(in srgb, var(--wave-b) 13%, transparent), transparent 45%, color-mix(in srgb, var(--wave-d) 14%, transparent)),
     rgba(255, 247, 243, .035);
+  background-size: 100% 100%, auto, 120% 100%, 130% 100%, 220% 100%, auto;
 }
 
 .waveform::before {
@@ -768,7 +776,7 @@ button {
   position: absolute;
   inset: 8px 10px;
   border-radius: 14px;
-  background: linear-gradient(90deg, transparent 0 8%, color-mix(in srgb, var(--wave-glow) 42%, transparent) 18%, transparent 34%);
+  background: linear-gradient(90deg, transparent 0 8%, color-mix(in srgb, var(--wave-glow) 44%, transparent) 18%, color-mix(in srgb, var(--wave-c) 22%, transparent) 26%, transparent 42%);
   opacity: 0;
   transform: translateX(-48%);
   pointer-events: none;
@@ -781,7 +789,7 @@ button {
   right: 10px;
   top: 50%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 247, 243, .28), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--wave-d) 30%, rgba(255, 247, 243, .22)), transparent);
   opacity: .58;
   pointer-events: none;
 }
@@ -794,10 +802,22 @@ button {
   min-width: 3px;
   height: var(--h);
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--wave-a), color-mix(in srgb, var(--wave-a) 56%, var(--wave-b)), var(--wave-b));
+  background: linear-gradient(180deg, var(--wave-a), color-mix(in srgb, var(--wave-a) 48%, var(--wave-b)), var(--wave-b));
   box-shadow: 0 0 14px color-mix(in srgb, var(--wave-glow) 34%, transparent);
-  opacity: .62;
+  opacity: .72;
   transform-origin: center;
+}
+
+.waveform span:nth-child(4n + 1) {
+  background: linear-gradient(180deg, var(--wave-c), color-mix(in srgb, var(--wave-c) 52%, var(--wave-a)), var(--wave-a));
+}
+
+.waveform span:nth-child(4n + 2) {
+  background: linear-gradient(180deg, var(--wave-d), color-mix(in srgb, var(--wave-d) 42%, var(--wave-b)), var(--wave-b));
+}
+
+.waveform span:nth-child(4n + 3) {
+  background: linear-gradient(180deg, var(--cream), color-mix(in srgb, var(--wave-a) 48%, var(--wave-c)), var(--wave-b));
 }
 
 .now-card[data-vocal="vocal"] .waveform span:nth-child(7n + 1) {
@@ -823,8 +843,12 @@ button {
   opacity: .92;
 }
 
+.room-playing .waveform {
+  animation: waveColorShift var(--wave-shift-speed, 14s) ease-in-out infinite alternate;
+}
+
 .room-playing .waveform::before {
-  animation: spectrumSweep calc(var(--wave-speed) * 2.8) linear infinite;
+  animation: spectrumSweep var(--wave-shift-speed, 14s) linear infinite;
   opacity: .68;
 }
 
@@ -851,6 +875,11 @@ button {
 
 @keyframes spectrumSweep {
   to { transform: translateX(126%); }
+}
+
+@keyframes waveColorShift {
+  0% { background-position: 0 0, 0 0, 0% 0, 100% 0, 0% 0, 0 0; filter: saturate(calc(.92 + var(--wave-live, .24))); }
+  100% { background-position: 0 0, 12px 0, 100% 0, 0% 0, 100% 0, 0 0; filter: saturate(calc(1.08 + var(--wave-live, .24))); }
 }
 
 .progress {
@@ -880,7 +909,7 @@ button {
 
 .transport-panel {
   display: grid;
-  grid-template-columns: 42px 46px minmax(92px, 1fr) 46px 42px;
+  grid-template-columns: 42px 46px minmax(92px, 1fr) 46px minmax(108px, .74fr);
   gap: 10px;
   align-items: center;
   padding: 10px;
@@ -888,7 +917,8 @@ button {
 
 .utility-button,
 .transport-button,
-.play-button {
+.play-button,
+.mute-button {
   min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -912,12 +942,61 @@ button {
   box-shadow: inset 0 0 0 1px rgba(255, 79, 168, .28);
 }
 
-.utility-button[data-repeat="one"] {
+.mode-button[data-mode="one"] {
   font-size: 12px;
 }
 
-.utility-button[data-repeat="off"] {
+.mode-button[data-mode="off"] {
   color: var(--dim);
+}
+
+.volume-control {
+  min-width: 0;
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: 42px minmax(44px, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.mute-button {
+  padding: 0;
+  color: var(--cream);
+  font-size: 11px;
+}
+
+.mute-button.active {
+  color: var(--dim);
+  background: rgba(255, 247, 243, .05);
+}
+
+.volume-slider {
+  width: 100%;
+  min-width: 0;
+  height: 7px;
+  appearance: none;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--cream) 0 var(--volume, 82%), rgba(255, 247, 243, .15) var(--volume, 82%) 100%);
+  outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #2a1327;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 7px 16px rgba(0, 0, 0, .32);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 3px solid #2a1327;
+  border-radius: 50%;
+  background: var(--cream);
+  box-shadow: 0 7px 16px rgba(0, 0, 0, .32);
 }
 
 .queue-panel {
@@ -1497,16 +1576,27 @@ button {
   }
 
   .transport-panel {
-    grid-template-columns: 38px 42px minmax(88px, 1fr) 42px 38px;
+    grid-template-columns: 38px 42px minmax(82px, 1fr) 42px minmax(86px, .78fr);
     gap: 8px;
     padding: 9px;
   }
 
   .utility-button,
   .transport-button,
-  .play-button {
+  .play-button,
+  .mute-button {
     min-height: 38px;
     border-radius: 14px;
+  }
+
+  .volume-control {
+    min-height: 38px;
+    grid-template-columns: 34px minmax(40px, 1fr);
+    gap: 6px;
+  }
+
+  .mute-button {
+    font-size: 10px;
   }
 
   .queue-panel {
@@ -1630,12 +1720,18 @@ button {
   }
 
   .transport-panel {
+    grid-template-columns: 38px 40px minmax(78px, 1fr) 40px minmax(84px, .75fr);
     padding: 8px;
   }
 
   .utility-button,
   .transport-button,
-  .play-button {
+  .play-button,
+  .mute-button {
+    min-height: 36px;
+  }
+
+  .volume-control {
     min-height: 36px;
   }
 

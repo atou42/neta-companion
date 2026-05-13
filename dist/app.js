@@ -13,6 +13,9 @@ const trackSub = document.getElementById("trackSub");
 const discLabel = document.getElementById("discLabel");
 const toneArmBtn = document.getElementById("toneArmBtn");
 const playBtn = document.getElementById("playBtn");
+const playModeBtn = document.getElementById("playModeBtn");
+const muteBtn = document.getElementById("muteBtn");
+const volumeSlider = document.getElementById("volumeSlider");
 const progress = document.getElementById("progress");
 const currentTimeEl = document.getElementById("currentTime");
 const durationEl = document.getElementById("duration");
@@ -43,13 +46,14 @@ const spriteShuffleValue = document.getElementById("spriteShuffleValue");
 const spriteWalkValue = document.getElementById("spriteWalkValue");
 const spriteTuneStorageKey = "netaSpriteTune";
 const playerModeStorageKey = "netaFmPlayerMode";
+const volumeStorageKey = "netaFmVolume";
 const spriteTuneDefaults = {
   size: 1.08,
   playingSpeed: .72,
   idleSpeed: 1,
   specialSpeed: 1,
   shuffleEvery: 9,
-  walkEvery: 5,
+  walkEvery: 12,
 };
 
 let currentIndex = 0;
@@ -63,26 +67,32 @@ let idleShuffleTimer = 0;
 let playingShuffleTimer = 0;
 let lastIdleAction = "idle";
 let lastPlayingAction = "playing";
+let shouldStartWithQuietIdle = true;
 let reactionTimer = 0;
 let tapActionTimer = 0;
 let updateSpriteWalkForStatus = () => {};
 let spriteTune = { ...spriteTuneDefaults };
+let playMode = "list";
 let shuffleEnabled = false;
 let repeatMode = "all";
 let shuffleQueue = [];
 let shuffleBackStack = [];
+let lastAudibleVolume = .82;
+let outputVolume = .82;
+let outputMuted = false;
 let audioContext = null;
 let mediaSourceNode = null;
 let analyserNode = null;
+let gainNode = null;
 let frequencyData = null;
 let waveformFrame = 0;
 let liveWaveLevels = [];
 
 const spriteActions = {
-  idle: { row: 0, frames: 8, label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 320 },
-  idleBook: { row: 1, frames: 8, label: "Book", mood: "The sprite is keeping a quiet note beside the radio.", tick: 340 },
-  idleLook: { row: 2, frames: 8, label: "Look", mood: "The sprite is looking around the room.", tick: 360 },
-  idleFocus: { row: 3, frames: 8, label: "Focus", mood: "The sprite is checking the staff signal.", tick: 360 },
+  idle: { row: 0, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 4, 0, 6, 7, 6], label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 440 },
+  idleBook: { row: 1, frames: 8, sequence: [0, 2, 3, 2, 0, 4, 5, 6, 7, 6, 5, 4], label: "Book", mood: "The sprite is keeping a quiet note beside the radio.", tick: 460 },
+  idleLook: { row: 2, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 4, 0, 6, 7, 6], label: "Look", mood: "The sprite is looking around the room.", tick: 470 },
+  idleFocus: { row: 3, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 6, 7, 6, 5, 4], label: "Focus", mood: "The sprite is checking the staff signal.", tick: 470 },
   playing: { row: 4, frames: 8, label: "Listen", mood: "The sprite is listening closely to the song.", tick: 190 },
   playingSoftStep: { row: 5, frames: 8, label: "Step", mood: "The sprite is moving gently with the song.", tick: 180 },
   playingFocus: { row: 6, frames: 8, label: "Beat", mood: "The sprite is keeping time with the staff signal.", tick: 185 },
@@ -96,19 +106,19 @@ const spriteActions = {
   poke: { row: 14, frames: 8, label: "Poke", mood: "The sprite noticed you.", tick: 75 },
 };
 
-const idleActionNames = ["idle", "idleLook", "idleFocus"];
+const idleActionNames = ["idle", "idleBook", "idleLook", "idleFocus"];
 const tapIdleActionNames = ["idle", "idleBook", "idleLook", "idleFocus"];
 const playingActionNames = ["playing", "playingSoftStep", "playingFocus"];
 
 const waveformMoodThemes = {
-  focus: { a: "#ff64b7", b: "#9a58ff", glow: "#ff4fa8", speed: 1.7, density: .72 },
-  flow: { a: "#ff76b9", b: "#68d9ff", glow: "#c45bff", speed: 1.35, density: .86 },
-  cozy: { a: "#ffd38a", b: "#ff70b5", glow: "#ff9f6e", speed: 1.95, density: .6 },
-  motion: { a: "#ff4fa8", b: "#ffc759", glow: "#ff4fa8", speed: 1.05, density: 1 },
-  night: { a: "#8c6dff", b: "#ff70d0", glow: "#8a5cff", speed: 2.15, density: .64 },
-  reset: { a: "#ffe0a3", b: "#8fded4", glow: "#ffd28a", speed: 2.25, density: .52 },
-  spark: { a: "#ff477e", b: "#ffe66d", glow: "#ff477e", speed: .9, density: 1.12 },
-  vocal: { a: "#fff0c9", b: "#ff5cac", glow: "#ff8fc8", speed: 1.45, density: .82 },
+  focus: { a: "#ff64b7", b: "#9a58ff", c: "#5be4ff", d: "#ffe071", glow: "#ff4fa8", speed: 1.7, shift: 14, density: .72 },
+  flow: { a: "#ff76b9", b: "#68d9ff", c: "#8cffbd", d: "#d386ff", glow: "#c45bff", speed: 1.35, shift: 11, density: .86 },
+  cozy: { a: "#ffd38a", b: "#ff70b5", c: "#8fded4", d: "#fff2d2", glow: "#ff9f6e", speed: 1.95, shift: 18, density: .6 },
+  motion: { a: "#ff4fa8", b: "#ffc759", c: "#55e0ff", d: "#ff7d54", glow: "#ff4fa8", speed: 1.05, shift: 8, density: 1 },
+  night: { a: "#8c6dff", b: "#ff70d0", c: "#56d7ff", d: "#ffd778", glow: "#8a5cff", speed: 2.15, shift: 21, density: .64 },
+  reset: { a: "#ffe0a3", b: "#8fded4", c: "#ff83bc", d: "#b9a7ff", glow: "#ffd28a", speed: 2.25, shift: 24, density: .52 },
+  spark: { a: "#ff477e", b: "#ffe66d", c: "#6af7ff", d: "#b767ff", glow: "#ff477e", speed: .9, shift: 7, density: 1.12 },
+  vocal: { a: "#fff0c9", b: "#ff5cac", c: "#7fe9ff", d: "#c7ff84", glow: "#ff8fc8", speed: 1.45, shift: 12, density: .82 },
 };
 const tapMessages = ["换个姿势", "在这呢", "收到", "嗯？", "再点一下"];
 const listeningMessages = ["听这首", "换个节奏", "进入状态", "轻轻摇"];
@@ -185,8 +195,14 @@ function setTrackVisuals(track) {
   nowCard.dataset.vocal = track.vocalType || "instrumental";
   nowCard.style.setProperty("--wave-a", theme.a);
   nowCard.style.setProperty("--wave-b", theme.b);
+  nowCard.style.setProperty("--wave-c", theme.c);
+  nowCard.style.setProperty("--wave-d", theme.d);
   nowCard.style.setProperty("--wave-glow", theme.glow);
   nowCard.style.setProperty("--wave-speed", `${Math.max(.72, theme.speed * tempoSpeed)}s`);
+  nowCard.style.setProperty("--wave-shift-speed", `${Math.max(7, theme.shift - energy * .75)}s`);
+  nowCard.style.setProperty("--wave-energy", String(clampNumber(.7 + energy * .16, .8, 1.55, 1)));
+  nowCard.style.setProperty("--wave-density", String(density.toFixed(2)));
+  nowCard.style.setProperty("--wave-live", ".24");
   nowCard.style.setProperty("--disc-speed", `${Math.max(4.8, 9.2 - energy * .72)}s`);
 
   const bars = Array.from(document.querySelectorAll("#waveform span"));
@@ -202,6 +218,7 @@ function setTrackVisuals(track) {
     bar.style.setProperty("--h", `${height}px`);
     bar.style.setProperty("--peak", `${Math.round(clampNumber(height * (1.08 + energy * .05), 20, 122))}px`);
     bar.style.setProperty("--d", `${(index * .028 + (seed % 7) * .018).toFixed(3)}s`);
+    bar.style.setProperty("--tone", `${Math.round((index / Math.max(1, bars.length - 1)) * 100)}%`);
   });
 }
 
@@ -216,11 +233,14 @@ function ensureAudioAnalysis() {
     audioContext = audioContext || new AudioContextCtor();
     mediaSourceNode = mediaSourceNode || audioContext.createMediaElementSource(audio);
     analyserNode = audioContext.createAnalyser();
+    gainNode = gainNode || audioContext.createGain();
     analyserNode.fftSize = 2048;
     analyserNode.smoothingTimeConstant = .78;
     frequencyData = new Uint8Array(analyserNode.frequencyBinCount);
     mediaSourceNode.connect(analyserNode);
-    analyserNode.connect(audioContext.destination);
+    analyserNode.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    syncOutputVolume();
     nowCard.dataset.waveSource = "audio";
     return true;
   } catch (error) {
@@ -246,6 +266,7 @@ function renderAudioWaveform() {
   if (!bars.length) return;
   if (liveWaveLevels.length !== bars.length) liveWaveLevels = new Array(bars.length).fill(0);
   const usableBins = Math.floor(frequencyData.length * .62);
+  let liveTotal = 0;
   bars.forEach((bar, index) => {
     const startRatio = index / bars.length;
     const endRatio = (index + 1) / bars.length;
@@ -255,11 +276,13 @@ function renderAudioWaveform() {
     for (let bin = start; bin < end; bin += 1) total += frequencyData[bin];
     const raw = total / ((end - start) * 255);
     const curved = Math.pow(raw, .72);
+    liveTotal += curved;
     liveWaveLevels[index] = liveWaveLevels[index] * .58 + curved * .42;
     const height = Math.round(clampNumber(14 + liveWaveLevels[index] * 108, 14, 122));
     bar.style.setProperty("--h", `${height}px`);
     bar.style.setProperty("--peak", `${Math.round(clampNumber(height * 1.12, 20, 128))}px`);
   });
+  nowCard.style.setProperty("--wave-live", String(clampNumber(liveTotal / bars.length, .08, .95, .24).toFixed(3)));
   waveformFrame = requestAnimationFrame(renderAudioWaveform);
 }
 
@@ -303,6 +326,11 @@ function setSpriteAction(actionName) {
 }
 
 function pickIdleAction() {
+  if (shouldStartWithQuietIdle) {
+    shouldStartWithQuietIdle = false;
+    lastIdleAction = "idle";
+    return "idle";
+  }
   const choices = idleActionNames.filter((name) => name !== lastIdleAction);
   const actionName = choices[Math.floor(Math.random() * choices.length)] || "idle";
   lastIdleAction = actionName;
@@ -357,20 +385,40 @@ function randomItem(items) {
 function readPlayerMode() {
   try {
     const saved = JSON.parse(localStorage.getItem(playerModeStorageKey) || "{}");
-    return {
-      shuffle: saved.shuffle === true,
-      repeat: ["off", "all", "one"].includes(saved.repeat) ? saved.repeat : "all",
-    };
+    if (["list", "shuffle", "one", "off"].includes(saved.mode)) return saved.mode;
+    if (saved.shuffle === true) return "shuffle";
+    if (saved.repeat === "one") return "one";
+    if (saved.repeat === "off") return "off";
+    return "list";
   } catch {
-    return { shuffle: false, repeat: "all" };
+    return "list";
   }
 }
 
 function savePlayerMode() {
   localStorage.setItem(playerModeStorageKey, JSON.stringify({
+    mode: playMode,
     shuffle: shuffleEnabled,
     repeat: repeatMode,
   }));
+}
+
+function applyPlayerMode() {
+  const mapped = {
+    list: { shuffle: false, repeat: "all" },
+    shuffle: { shuffle: true, repeat: "all" },
+    one: { shuffle: false, repeat: "one" },
+    off: { shuffle: false, repeat: "off" },
+  }[playMode] || { shuffle: false, repeat: "all" };
+  const wasShuffle = shuffleEnabled;
+  shuffleEnabled = mapped.shuffle;
+  repeatMode = mapped.repeat;
+  audio.loop = false;
+  if (shuffleEnabled && (!wasShuffle || !shuffleQueue.length)) refillShuffleQueue();
+  if (!shuffleEnabled) {
+    shuffleQueue = [];
+    shuffleBackStack = [];
+  }
 }
 
 function shuffleIndexes(indexes) {
@@ -389,46 +437,125 @@ function refillShuffleQueue() {
 }
 
 function updatePlayerModeButtons() {
-  const shuffleBtn = document.getElementById("shuffleBtn");
-  const loopBtn = document.getElementById("loopBtn");
-  if (shuffleBtn) {
-    shuffleBtn.classList.toggle("active", shuffleEnabled);
-    shuffleBtn.setAttribute("aria-pressed", String(shuffleEnabled));
-    shuffleBtn.setAttribute("aria-label", shuffleEnabled ? "Shuffle on" : "Shuffle off");
-    shuffleBtn.title = shuffleEnabled ? "Shuffle on" : "Shuffle off";
-  }
-  if (loopBtn) {
-    loopBtn.classList.toggle("active", repeatMode !== "off");
-    loopBtn.dataset.repeat = repeatMode;
-    loopBtn.setAttribute("aria-label", repeatMode === "one" ? "Repeat one" : repeatMode === "all" ? "Repeat all" : "Repeat off");
-    loopBtn.title = repeatMode === "one" ? "Repeat one" : repeatMode === "all" ? "Repeat all" : "Repeat off";
-    loopBtn.textContent = repeatMode === "one" ? "↺1" : repeatMode === "all" ? "↻" : "→";
-  }
+  if (!playModeBtn) return;
+  const meta = {
+    list: { icon: "↻", label: "List loop" },
+    shuffle: { icon: "↝", label: "Shuffle play" },
+    one: { icon: "↺1", label: "Repeat one" },
+    off: { icon: "→", label: "Play once" },
+  }[playMode] || { icon: "↻", label: "List loop" };
+  playModeBtn.textContent = meta.icon;
+  playModeBtn.dataset.mode = playMode;
+  playModeBtn.classList.toggle("active", playMode !== "off");
+  playModeBtn.setAttribute("aria-label", meta.label);
+  playModeBtn.title = meta.label;
 }
 
 function setupPlayerMode() {
-  const saved = readPlayerMode();
-  shuffleEnabled = saved.shuffle;
-  repeatMode = saved.repeat;
-  if (shuffleEnabled) refillShuffleQueue();
+  playMode = readPlayerMode();
+  applyPlayerMode();
   updatePlayerModeButtons();
 }
 
-function toggleShuffle() {
-  shuffleEnabled = !shuffleEnabled;
-  shuffleBackStack = [];
-  if (shuffleEnabled) refillShuffleQueue();
-  else shuffleQueue = [];
+function cyclePlayerMode() {
+  const modes = ["list", "shuffle", "one", "off"];
+  const current = modes.indexOf(playMode);
+  playMode = modes[(current + 1) % modes.length] || "list";
+  applyPlayerMode();
   savePlayerMode();
   updatePlayerModeButtons();
 }
 
-function cycleRepeatMode() {
-  const next = { all: "one", one: "off", off: "all" };
-  repeatMode = next[repeatMode] || "all";
-  audio.loop = false;
-  savePlayerMode();
-  updatePlayerModeButtons();
+function readVolumeState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(volumeStorageKey) || "{}");
+    return {
+      volume: clampNumber(saved.volume, 0, 1, .82),
+      muted: saved.muted === true,
+    };
+  } catch {
+    return { volume: .82, muted: false };
+  }
+}
+
+function syncOutputVolume() {
+  const nextGain = outputMuted ? 0 : outputVolume;
+  try {
+    audio.volume = outputVolume;
+  } catch {
+    // Some mobile browsers expose volume but ignore or reject changes.
+  }
+  audio.muted = outputMuted;
+  if (gainNode && audioContext) {
+    const now = audioContext.currentTime;
+    gainNode.gain.cancelScheduledValues(now);
+    gainNode.gain.setTargetAtTime(nextGain, now, .015);
+  }
+  window.__netaAudioOutput = {
+    volume: outputVolume,
+    muted: outputMuted,
+    gain: nextGain,
+    hasGainNode: Boolean(gainNode),
+  };
+}
+
+function saveVolumeState() {
+  localStorage.setItem(volumeStorageKey, JSON.stringify({
+    volume: outputVolume,
+    muted: outputMuted,
+  }));
+}
+
+function updateVolumeUi() {
+  const percent = Math.round(outputVolume * 100);
+  if (volumeSlider) {
+    volumeSlider.value = String(percent);
+    volumeSlider.style.setProperty("--volume", `${percent}%`);
+  }
+  if (muteBtn) {
+    const muted = outputMuted || outputVolume === 0;
+    muteBtn.textContent = muted ? "Off" : "Vol";
+    muteBtn.classList.toggle("active", muted);
+    muteBtn.setAttribute("aria-pressed", String(muted));
+    muteBtn.setAttribute("aria-label", muted ? "Unmute audio" : "Mute audio");
+    muteBtn.title = muted ? "Unmute" : "Mute";
+  }
+}
+
+function applyVolumeState(volume, muted) {
+  outputVolume = clampNumber(volume, 0, 1, .82);
+  outputMuted = muted === true || outputVolume === 0;
+  if (outputVolume > 0) lastAudibleVolume = outputVolume;
+  syncOutputVolume();
+  updateVolumeUi();
+}
+
+function setupVolume() {
+  const saved = readVolumeState();
+  applyVolumeState(saved.volume, saved.muted);
+  const setFromSlider = (event) => {
+    const nextVolume = clampNumber(Number(event.currentTarget.value) / 100, 0, 1, .82);
+    outputVolume = nextVolume;
+    outputMuted = nextVolume === 0;
+    if (nextVolume > 0) lastAudibleVolume = nextVolume;
+    syncOutputVolume();
+    updateVolumeUi();
+    saveVolumeState();
+  };
+  volumeSlider?.addEventListener("input", setFromSlider);
+  volumeSlider?.addEventListener("change", setFromSlider);
+  muteBtn?.addEventListener("click", () => {
+    if (outputMuted || outputVolume === 0) {
+      outputMuted = false;
+      if (outputVolume === 0) outputVolume = lastAudibleVolume || .82;
+    } else {
+      if (outputVolume > 0) lastAudibleVolume = outputVolume;
+      outputMuted = true;
+    }
+    syncOutputVolume();
+    updateVolumeUi();
+    saveVolumeState();
+  });
 }
 
 function nextTrackIndex({ manual = false } = {}) {
@@ -660,6 +787,9 @@ async function play() {
     setStatus("loading");
     await resumeAudioAnalysis();
     await audio.play();
+    setStatus("playing");
+    startAudioWaveform();
+    renderQueue();
   } catch (error) {
     setStatus("error");
     companionMood.textContent = error?.message || "Playback failed.";
@@ -717,16 +847,24 @@ function updateProgress() {
   }
 }
 
+function spriteFrameIndex(action) {
+  if (Array.isArray(action.sequence) && action.sequence.length) {
+    return action.sequence[spriteFrame % action.sequence.length];
+  }
+  return spriteFrame % action.frames;
+}
+
 function applySpriteFrame(action) {
-  spriteEl.style.backgroundPosition = `-${spriteFrame * 192}px -${action.row * 208}px`;
+  spriteEl.style.backgroundPosition = `-${spriteFrameIndex(action) * 192}px -${action.row * 208}px`;
 }
 
 function renderSprite(now = 0) {
   const action = spriteActions[spriteAction] || spriteActions.idle;
   const speed = speedForSpriteAction(spriteAction);
   const tick = action.tick / Math.max(.1, speed);
+  const frameCount = Array.isArray(action.sequence) && action.sequence.length ? action.sequence.length : action.frames;
   if (now - spriteLastTick > tick) {
-    spriteFrame = (spriteFrame + 1) % action.frames;
+    spriteFrame = (spriteFrame + 1) % frameCount;
     spriteLastTick = now;
     applySpriteFrame(action);
   }
@@ -776,8 +914,7 @@ function setupTransport() {
   toneArmBtn?.addEventListener("click", togglePlayback);
   document.getElementById("nextBtn").addEventListener("click", nextTrack);
   document.getElementById("prevBtn").addEventListener("click", previousTrack);
-  document.getElementById("shuffleBtn").addEventListener("click", toggleShuffle);
-  document.getElementById("loopBtn").addEventListener("click", cycleRepeatMode);
+  playModeBtn?.addEventListener("click", cyclePlayerMode);
   queueList.addEventListener("click", (event) => {
     const item = event.target.closest(".queue-item");
     if (!item) return;
@@ -832,7 +969,11 @@ function setupAudio() {
     if (currentStatus !== "switching") setStatus("loading");
   });
   audio.addEventListener("canplay", () => {
-    if (!audio.paused && currentStatus !== "switching") setStatus("playing");
+    if (!audio.paused && currentStatus !== "switching") {
+      setStatus("playing");
+      startAudioWaveform();
+      renderQueue();
+    }
   });
   audio.addEventListener("loadedmetadata", updateProgress);
   audio.addEventListener("timeupdate", updateProgress);
@@ -980,7 +1121,7 @@ function setupSpriteDrag() {
       stopSpriteWalk();
       return;
     }
-    scheduleSpriteWalk(Math.max(900, spriteTune.walkEvery * 1000 * .55 + Math.random() * 3200));
+    scheduleSpriteWalk(Math.max(4200, spriteTune.walkEvery * 1000 + Math.random() * 4200));
   };
 
   function restoreSpriteActionAfterDrag() {
@@ -1115,19 +1256,28 @@ function setupCuiMao() {
   const frames = 121;
   const upWindow = 10;
   const angleKeys = [[10, 0], [30, 12], [45, 18], [60, 24], [75, 30], [90, 36], [105, 42], [120, 48], [135, 54], [150, 60], [165, 66], [180, 72], [195, 78], [210, 84], [225, 90], [240, 96], [255, 102], [270, 108], [285, 112], [300, 116], [315, 120], [330, 120], [350, 0]];
+  const hoverNoneQuery = window.matchMedia("(hover: none)");
   let rect = null;
+  let consoleLeft = Number.POSITIVE_INFINITY;
   let mouseX = -1000;
   let mouseY = -1000;
   let lastFrame = -1;
   let scheduled = false;
   let pointerOverFm = false;
+  let cursorVisible = false;
+  let lastFrontShown = true;
+  let lastStatusText = "";
+  let lastSpriteFollowAt = 0;
+  const gazePerf = { pointerMoves: 0, renders: 0, frameWrites: 0 };
+  window.__netaGazePerf = gazePerf;
 
   function updateRect() {
     rect = portrait.getBoundingClientRect();
+    consoleLeft = fmConsole.getBoundingClientRect().left;
   }
 
   function shouldLookAtSprite() {
-    if (window.matchMedia("(hover: none)").matches || window.innerWidth <= 980) return true;
+    if (hoverNoneQuery.matches || window.innerWidth <= 980) return true;
     return pointerOverFm;
   }
 
@@ -1154,15 +1304,41 @@ function setupCuiMao() {
   function setFrame(index) {
     if (index === lastFrame) return;
     lastFrame = index;
+    gazePerf.frameWrites += 1;
     const col = index % cols;
     const row = Math.floor(index / cols);
     portrait.style.backgroundPosition = `${(col / (cols - 1)) * 100}% ${(row / (cols - 1)) * 100}%`;
   }
 
+  function setFrontVisible(show) {
+    if (show === lastFrontShown) return;
+    lastFrontShown = show;
+    front.classList.toggle("show", show);
+  }
+
+  function setGazeStatus(text) {
+    if (text === lastStatusText) return;
+    lastStatusText = text;
+    gazeStatus.textContent = text;
+  }
+
+  function updateCursor(show) {
+    if (show === cursorVisible) {
+      if (show) cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      return;
+    }
+    cursorVisible = show;
+    cursor.style.opacity = show ? "1" : "0";
+    if (show) cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+  }
+
   function render() {
     scheduled = false;
+    gazePerf.renders += 1;
     if (!rect) updateRect();
-    if (shouldLookAtSprite()) updateSpriteTarget();
+    const lookingAtSprite = shouldLookAtSprite();
+    if (lookingAtSprite) updateSpriteTarget();
+    updateCursor(!lookingAtSprite);
     const cx = rect.left + rect.width * .5;
     const cy = rect.top + rect.height * .5;
     const dx = mouseX - cx;
@@ -1170,16 +1346,16 @@ function setupCuiMao() {
     const distance = Math.hypot(dx, dy);
     const radius = rect.width * .5;
     if (distance < radius * .18) {
-      front.classList.add("show");
+      setFrontVisible(true);
       setFrame(0);
-      gazeStatus.textContent = "Near";
+      setGazeStatus("Near");
       return;
     }
-    front.classList.remove("show");
+    setFrontVisible(false);
     let deg = Math.atan2(dx, -dy) * 180 / Math.PI;
     if (deg < 0) deg += 360;
     setFrame(angleToFrame(deg));
-    gazeStatus.textContent = "Active";
+    setGazeStatus("Active");
   }
 
   function schedule() {
@@ -1192,27 +1368,25 @@ function setupCuiMao() {
     updateRect();
     schedule();
   });
-  window.addEventListener("mousemove", (event) => {
-    const consoleRect = fmConsole.getBoundingClientRect();
-    pointerOverFm = event.clientX >= consoleRect.left;
+  window.addEventListener("pointermove", (event) => {
+    if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+    gazePerf.pointerMoves += 1;
+    pointerOverFm = event.clientX >= consoleLeft;
     mouseX = event.clientX;
     mouseY = event.clientY;
-    if (shouldLookAtSprite()) {
-      cursor.style.opacity = "0";
-      schedule();
-      return;
-    }
-    cursor.style.opacity = "1";
-    cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
     schedule();
   }, { passive: true });
   window.addEventListener("mouseleave", () => {
     if (shouldLookAtSprite()) return;
-    front.classList.add("show");
+    updateCursor(false);
+    setFrontVisible(true);
     setFrame(0);
   });
-  function followSpriteLoop() {
-    if (shouldLookAtSprite()) schedule();
+  function followSpriteLoop(now) {
+    if (shouldLookAtSprite() && now - lastSpriteFollowAt > 90) {
+      lastSpriteFollowAt = now;
+      schedule();
+    }
     requestAnimationFrame(followSpriteLoop);
   }
   updateRect();
@@ -1229,6 +1403,7 @@ async function bootstrap() {
     setupMobileTabs();
     setupAudio();
     setupPlayerMode();
+    setupVolume();
     setupSpriteTune();
     setupSpriteDrag();
     setupCuiMao();

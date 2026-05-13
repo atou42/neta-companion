@@ -79,8 +79,8 @@
         </label>
         <label class="tune-row">
           <span>Walk</span>
-          <input id="spriteWalkTune" type="range" min="0" max="30" step="1" value="5" />
-          <output id="spriteWalkValue">5s</output>
+          <input id="spriteWalkTune" type="range" min="0" max="30" step="1" value="12" />
+          <output id="spriteWalkValue">12s</output>
         </label>
       </section>
 
@@ -112,11 +112,14 @@
       </section>
 
       <section class="transport-panel">
-        <button class="utility-button" id="shuffleBtn" aria-label="Shuffle mode">↝</button>
+        <button class="utility-button mode-button" id="playModeBtn" aria-label="Playback mode">↻</button>
         <button class="transport-button" id="prevBtn" aria-label="Previous track">‹</button>
         <button class="play-button" id="playBtn">Play</button>
         <button class="transport-button" id="nextBtn" aria-label="Next track">›</button>
-        <button class="utility-button" id="loopBtn" aria-label="Loop mode">↻</button>
+        <div class="volume-control">
+          <button class="mute-button" id="muteBtn" type="button" aria-label="Mute audio" aria-pressed="false">Vol</button>
+          <input id="volumeSlider" class="volume-slider" type="range" min="0" max="100" value="82" aria-label="Volume" />
+        </div>
       </section>
 
       <section class="queue-panel">

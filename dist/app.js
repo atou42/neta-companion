@@ -17,6 +17,7 @@ const playModeBtn = document.getElementById("playModeBtn");
 const muteBtn = document.getElementById("muteBtn");
 const volumeSlider = document.getElementById("volumeSlider");
 const progress = document.getElementById("progress");
+const waveCanvas = document.getElementById("waveCanvas");
 const waveBars = document.getElementById("waveBars");
 const waveParticles = document.getElementById("waveParticles");
 const currentTimeEl = document.getElementById("currentTime");
@@ -89,6 +90,7 @@ let gainNode = null;
 let frequencyData = null;
 let waveformFrame = 0;
 let liveWaveLevels = [];
+let canvasWaveLevels = [];
 
 const spriteActions = {
   idle: { row: 0, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 4, 0, 6, 7, 6], label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 440 },
@@ -186,6 +188,162 @@ function trackTheme(track) {
   return waveformMoodThemes[track?.mood] || waveformMoodThemes.focus;
 }
 
+function hexToRgb(hex) {
+  const value = String(hex || "").trim().replace("#", "");
+  const full = value.length === 3 ? value.split("").map((char) => char + char).join("") : value;
+  const number = Number.parseInt(full, 16);
+  if (!Number.isFinite(number)) return { r: 255, g: 79, b: 168 };
+  return {
+    r: (number >> 16) & 255,
+    g: (number >> 8) & 255,
+    b: number & 255,
+  };
+}
+
+function rgba(hex, alpha) {
+  const color = hexToRgb(hex);
+  return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+}
+
+function drawWaveCanvas(timestamp = performance.now()) {
+  if (!waveCanvas || !nowCard) return;
+  const width = waveCanvas.clientWidth;
+  const height = waveCanvas.clientHeight;
+  if (width < 10 || height < 10) return;
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const targetWidth = Math.round(width * ratio);
+  const targetHeight = Math.round(height * ratio);
+  if (waveCanvas.width !== targetWidth || waveCanvas.height !== targetHeight) {
+    waveCanvas.width = targetWidth;
+    waveCanvas.height = targetHeight;
+  }
+  const ctx = waveCanvas.getContext("2d");
+  if (!ctx) return;
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.clearRect(0, 0, width, height);
+
+  const track = currentTrack();
+  const theme = trackTheme(track);
+  const bars = Math.max(34, canvasWaveLevels.length || liveWaveLevels.length || 52);
+  const live = Number.parseFloat(nowCard.style.getPropertyValue("--wave-live")) || .22;
+  const energy = clampNumber(track?.energy, 1, 5, 2);
+  const phase = timestamp / 880;
+  const levels = Array.from({ length: bars }, (_, index) => {
+    const source = liveWaveLevels[index];
+    if (Number.isFinite(source) && source > 0) return clampNumber(source, .05, 1, .2);
+    const wave = Math.sin(index * .42 + phase) * .5 + .5;
+    const pulse = Math.sin(index * .17 - phase * .74) * .5 + .5;
+    return clampNumber(.12 + wave * .28 + pulse * .16, .08, .64, .22);
+  });
+  canvasWaveLevels = levels;
+
+  const bg = ctx.createLinearGradient(0, 0, width, 0);
+  bg.addColorStop(0, rgba(theme.a, .2));
+  bg.addColorStop(.32, rgba(theme.b, .16));
+  bg.addColorStop(.58, rgba(theme.c, .18));
+  bg.addColorStop(1, rgba(theme.d, .16));
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, width, height);
+
+  const barWidth = width / bars;
+  levels.forEach((level, index) => {
+    const x = index * barWidth + barWidth * .22;
+    const barHeight = clampNumber(height * (.18 + level * .78), 10, height * .92, 20);
+    const y = (height - barHeight) / 2;
+    const gradient = ctx.createLinearGradient(0, y, 0, y + barHeight);
+    gradient.addColorStop(0, rgba(theme.d, .68));
+    gradient.addColorStop(.28, rgba(index % 3 === 0 ? theme.a : theme.c, .72));
+    gradient.addColorStop(.72, rgba(index % 2 === 0 ? theme.b : theme.a, .5));
+    gradient.addColorStop(1, rgba(theme.b, .18));
+    ctx.fillStyle = gradient;
+    ctx.shadowColor = rgba(theme.glow, .28);
+    ctx.shadowBlur = 8;
+    const radius = Math.max(2, barWidth * .22);
+    const drawWidth = Math.max(2, barWidth * .48);
+    ctx.beginPath();
+    ctx.roundRect(x, y, drawWidth, barHeight, radius);
+    ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+
+  const points = 22;
+  const center = height * (.5 + Math.sin(phase * .34) * .025);
+  const amplitude = height * (.1 + live * .18 + energy * .012);
+  const thickness = height * (.22 + live * .16);
+  const top = [];
+  const bottom = [];
+  for (let index = 0; index < points; index += 1) {
+    const t = index / (points - 1);
+    const levelIndex = Math.min(levels.length - 1, Math.floor(t * levels.length));
+    const level = levels[levelIndex] || .2;
+    const y = center
+      + Math.sin(t * Math.PI * 7 + phase) * amplitude * .55
+      + Math.sin(t * Math.PI * 3.2 - phase * .82) * amplitude * .38
+      + (level - .38) * amplitude * .72;
+    const localThickness = thickness * (.72 + level * .58);
+    top.push({ x: t * width, y: y - localThickness / 2 });
+    bottom.push({ x: t * width, y: y + localThickness / 2 });
+  }
+
+  const ribbonGradient = ctx.createLinearGradient(0, 0, width, 0);
+  ribbonGradient.addColorStop(0, rgba(theme.a, .88));
+  ribbonGradient.addColorStop(.28, rgba(theme.b, .82));
+  ribbonGradient.addColorStop(.52, rgba(theme.c, .86));
+  ribbonGradient.addColorStop(.76, rgba(theme.d, .82));
+  ribbonGradient.addColorStop(1, rgba(theme.a, .72));
+
+  ctx.save();
+  ctx.globalCompositeOperation = "lighter";
+  ctx.shadowColor = rgba(theme.glow, .62);
+  ctx.shadowBlur = 20 + live * 26;
+  ctx.fillStyle = ribbonGradient;
+  ctx.beginPath();
+  ctx.moveTo(top[0].x, top[0].y);
+  for (let index = 1; index < top.length; index += 1) {
+    const previous = top[index - 1];
+    const point = top[index];
+    ctx.quadraticCurveTo(previous.x, previous.y, (previous.x + point.x) / 2, (previous.y + point.y) / 2);
+  }
+  const lastTop = top[top.length - 1];
+  ctx.lineTo(lastTop.x, lastTop.y);
+  for (let index = bottom.length - 1; index > 0; index -= 1) {
+    const previous = bottom[index];
+    const point = bottom[index - 1];
+    ctx.quadraticCurveTo(previous.x, previous.y, (previous.x + point.x) / 2, (previous.y + point.y) / 2);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.shadowBlur = 11;
+  ctx.strokeStyle = "rgba(255, 247, 243, .78)";
+  ctx.lineWidth = 2.4;
+  ctx.beginPath();
+  top.forEach((point, index) => {
+    const bottomPoint = bottom[index];
+    const y = (point.y + bottomPoint.y) / 2;
+    if (index === 0) ctx.moveTo(point.x, y);
+    else {
+      const previous = top[index - 1];
+      const previousBottom = bottom[index - 1];
+      ctx.quadraticCurveTo(previous.x, (previous.y + previousBottom.y) / 2, (previous.x + point.x) / 2, ((previous.y + previousBottom.y) / 2 + y) / 2);
+    }
+  });
+  ctx.stroke();
+
+  const particleCount = 18;
+  for (let index = 0; index < particleCount; index += 1) {
+    const t = ((index * .137 + phase * .018) % 1 + 1) % 1;
+    const y = height * (.18 + ((index * 37) % 61) / 100) + Math.sin(phase + index) * 4;
+    const size = 1.2 + (index % 4) * .55;
+    ctx.fillStyle = rgba(index % 3 === 0 ? theme.d : theme.c, .32 + live * .38);
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    ctx.arc(t * width, y, size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
 function setTrackVisuals(track) {
   if (!nowCard || !track) return;
   const theme = trackTheme(track);
@@ -242,6 +400,7 @@ function setTrackVisuals(track) {
     bar.style.setProperty("--d", `${(index * .028 + (seed % 7) * .018).toFixed(3)}s`);
     bar.style.setProperty("--tone", `${Math.round((index / Math.max(1, bars.length - 1)) * 100)}%`);
   });
+  drawWaveCanvas();
 }
 
 function ensureAudioAnalysis() {
@@ -332,6 +491,7 @@ function renderAudioWaveform() {
   nowCard.style.setProperty("--wave-sweep-opacity", (.24 + live * .42).toFixed(3));
   nowCard.style.setProperty("--wave-mid-scale", (.9 + mid * .18).toFixed(3));
   nowCard.style.setProperty("--wave-low-scale", (1 + low * .26).toFixed(3));
+  drawWaveCanvas();
   waveformFrame = requestAnimationFrame(renderAudioWaveform);
 }
 
@@ -791,6 +951,7 @@ function setStatus(status) {
   else if (status === "loading") setSpriteAction("loading");
   else if (status === "error") setSpriteAction("error");
   else setIdleSpriteAction();
+  drawWaveCanvas();
 }
 
 function renderTrack() {
@@ -963,6 +1124,8 @@ function buildWaveform() {
     });
   }
   liveWaveLevels = new Array(waveBars.children.length).fill(0);
+  canvasWaveLevels = new Array(waveBars.children.length).fill(.18);
+  drawWaveCanvas();
 }
 
 function setupTransport() {

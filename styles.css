@@ -796,6 +796,18 @@ button {
   pointer-events: none;
 }
 
+.wave-canvas {
+  position: absolute;
+  inset: 10px 12px;
+  z-index: 3;
+  width: calc(100% - 24px);
+  height: calc(100% - 20px);
+  border-radius: 14px;
+  opacity: .94;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 .wave-bars {
   position: absolute;
   inset: 10px 12px;
@@ -818,7 +830,7 @@ button {
     linear-gradient(180deg, rgba(255, 255, 255, .62), transparent 26%),
     linear-gradient(180deg, var(--wave-a, #ff64b7), color-mix(in srgb, var(--wave-b, #9a58ff) 72%, var(--wave-c, #5be4ff)), var(--wave-b, #9a58ff));
   box-shadow: 0 0 var(--wave-glow-size, 11px) color-mix(in srgb, var(--wave-glow, #ff4fa8) 36%, transparent);
-  opacity: var(--wave-bar-opacity, .54);
+  opacity: .28;
   transform-origin: center;
   filter: saturate(var(--wave-saturate, 1.18));
 }
@@ -890,7 +902,7 @@ button {
     linear-gradient(90deg, var(--wave-a, #ff64b7), var(--wave-b, #9a58ff) 26%, var(--wave-c, #5be4ff) 52%, color-mix(in srgb, var(--wave-d, #ffe071) 80%, var(--wave-c, #5be4ff)) 76%, var(--wave-a, #ff64b7));
   background-size: 180% 100%, 220% 100%;
   filter: blur(8px);
-  opacity: var(--wave-liquid-opacity, .5);
+  opacity: .32;
   mix-blend-mode: screen;
   animation: liquidFlow var(--wave-liquid-speed, 10s) ease-in-out infinite alternate;
 }
@@ -905,7 +917,7 @@ button {
   box-shadow:
     0 0 16px color-mix(in srgb, var(--wave-glow, #ff4fa8) 56%, transparent),
     0 0 28px color-mix(in srgb, var(--wave-c, #5be4ff) 24%, transparent);
-  opacity: var(--wave-core-opacity, .6);
+  opacity: .38;
   mix-blend-mode: screen;
   animation: liquidFlow var(--wave-liquid-fast, 7s) ease-in-out infinite alternate-reverse;
 }
@@ -960,7 +972,7 @@ button {
 .room-paused .wave-liquid,
 .room-ready .wave-liquid {
   transform: scaleY(.82);
-  opacity: .72;
+  opacity: .38;
 }
 
 .room-paused .wave-particles span,
@@ -1713,6 +1725,12 @@ button {
     gap: 2px;
   }
 
+  .wave-canvas {
+    inset: 8px 9px;
+    width: calc(100% - 18px);
+    height: calc(100% - 16px);
+  }
+
   .wave-bars span {
     width: 4px;
     min-width: 2px;
@@ -1875,6 +1893,12 @@ button {
 
   .wave-bars {
     inset: 7px 9px;
+  }
+
+  .wave-canvas {
+    inset: 7px 9px;
+    width: calc(100% - 18px);
+    height: calc(100% - 14px);
   }
 
   .wave-liquid {

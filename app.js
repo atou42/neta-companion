@@ -17,6 +17,8 @@ const playModeBtn = document.getElementById("playModeBtn");
 const muteBtn = document.getElementById("muteBtn");
 const volumeSlider = document.getElementById("volumeSlider");
 const progress = document.getElementById("progress");
+const waveBars = document.getElementById("waveBars");
+const waveParticles = document.getElementById("waveParticles");
 const currentTimeEl = document.getElementById("currentTime");
 const durationEl = document.getElementById("duration");
 const queueList = document.getElementById("queueList");
@@ -189,6 +191,7 @@ function setTrackVisuals(track) {
   const theme = trackTheme(track);
   const energy = clampNumber(track.energy, 1, 5, 2);
   const density = Math.max(.45, theme.density + (energy - 3) * .08);
+  const ribbonDepth = clampNumber(.78 + energy * .12 + theme.density * .18, .9, 1.62, 1.15);
   const tempoSpeed = track.tempo === "fast" ? .82 : track.tempo === "slow" ? 1.24 : 1;
   nowCard.dataset.mood = track.mood || "focus";
   nowCard.dataset.tempo = track.tempo || "mid";
@@ -200,12 +203,31 @@ function setTrackVisuals(track) {
   nowCard.style.setProperty("--wave-glow", theme.glow);
   nowCard.style.setProperty("--wave-speed", `${Math.max(.72, theme.speed * tempoSpeed)}s`);
   nowCard.style.setProperty("--wave-shift-speed", `${Math.max(7, theme.shift - energy * .75)}s`);
+  const liquidSpeed = Math.max(5.4, theme.shift * .72 * tempoSpeed);
+  nowCard.style.setProperty("--wave-liquid-speed", `${liquidSpeed}s`);
+  nowCard.style.setProperty("--wave-liquid-fast", `${Math.max(4.2, liquidSpeed * .74)}s`);
   nowCard.style.setProperty("--wave-energy", String(clampNumber(.7 + energy * .16, .8, 1.55, 1)));
   nowCard.style.setProperty("--wave-density", String(density.toFixed(2)));
+  nowCard.style.setProperty("--wave-particle-speed", `${(3.7 + density * .9).toFixed(2)}s`);
+  nowCard.style.setProperty("--wave-depth", String(ribbonDepth.toFixed(2)));
   nowCard.style.setProperty("--wave-live", ".24");
+  nowCard.style.setProperty("--wave-low", ".18");
+  nowCard.style.setProperty("--wave-mid", ".18");
+  nowCard.style.setProperty("--wave-high", ".18");
+  nowCard.style.setProperty("--wave-glow-size", "11px");
+  nowCard.style.setProperty("--wave-bar-opacity", ".5");
+  nowCard.style.setProperty("--wave-saturate", "1.18");
+  nowCard.style.setProperty("--wave-y", "0px");
+  nowCard.style.setProperty("--wave-scale", ".96");
+  nowCard.style.setProperty("--wave-liquid-opacity", ".5");
+  nowCard.style.setProperty("--wave-core-opacity", ".68");
+  nowCard.style.setProperty("--wave-particle-opacity", ".24");
+  nowCard.style.setProperty("--wave-sweep-opacity", ".34");
+  nowCard.style.setProperty("--wave-mid-scale", ".93");
+  nowCard.style.setProperty("--wave-low-scale", "1.05");
   nowCard.style.setProperty("--disc-speed", `${Math.max(4.8, 9.2 - energy * .72)}s`);
 
-  const bars = Array.from(document.querySelectorAll("#waveform span"));
+  const bars = Array.from(waveBars?.querySelectorAll("span") || []);
   liveWaveLevels = new Array(bars.length).fill(0);
   const seed = hashString(`${track.id || track.title || ""}:${track.mood || ""}:${track.tempo || ""}`);
   const phase = (seed % 360) * Math.PI / 180;
@@ -262,11 +284,14 @@ function renderAudioWaveform() {
   waveformFrame = 0;
   if (!analyserNode || !frequencyData || audio.paused || currentStatus !== "playing") return;
   analyserNode.getByteFrequencyData(frequencyData);
-  const bars = Array.from(document.querySelectorAll("#waveform span"));
+  const bars = Array.from(waveBars?.querySelectorAll("span") || []);
   if (!bars.length) return;
   if (liveWaveLevels.length !== bars.length) liveWaveLevels = new Array(bars.length).fill(0);
   const usableBins = Math.floor(frequencyData.length * .62);
   let liveTotal = 0;
+  let lowTotal = 0;
+  let midTotal = 0;
+  let highTotal = 0;
   bars.forEach((bar, index) => {
     const startRatio = index / bars.length;
     const endRatio = (index + 1) / bars.length;
@@ -277,12 +302,36 @@ function renderAudioWaveform() {
     const raw = total / ((end - start) * 255);
     const curved = Math.pow(raw, .72);
     liveTotal += curved;
+    if (index < bars.length * .28) lowTotal += curved;
+    else if (index < bars.length * .68) midTotal += curved;
+    else highTotal += curved;
     liveWaveLevels[index] = liveWaveLevels[index] * .58 + curved * .42;
     const height = Math.round(clampNumber(14 + liveWaveLevels[index] * 108, 14, 122));
     bar.style.setProperty("--h", `${height}px`);
     bar.style.setProperty("--peak", `${Math.round(clampNumber(height * 1.12, 20, 128))}px`);
   });
-  nowCard.style.setProperty("--wave-live", String(clampNumber(liveTotal / bars.length, .08, .95, .24).toFixed(3)));
+  const lowCount = Math.max(1, Math.floor(bars.length * .28));
+  const midCount = Math.max(1, Math.floor(bars.length * .4));
+  const highCount = Math.max(1, bars.length - lowCount - midCount);
+  const live = clampNumber(liveTotal / bars.length, .08, .95, .24);
+  const low = clampNumber(lowTotal / lowCount, .05, .98, .18);
+  const mid = clampNumber(midTotal / midCount, .05, .98, .18);
+  const high = clampNumber(highTotal / highCount, .05, .98, .18);
+  nowCard.style.setProperty("--wave-live", live.toFixed(3));
+  nowCard.style.setProperty("--wave-low", low.toFixed(3));
+  nowCard.style.setProperty("--wave-mid", mid.toFixed(3));
+  nowCard.style.setProperty("--wave-high", high.toFixed(3));
+  nowCard.style.setProperty("--wave-glow-size", `${(7 + live * 18).toFixed(1)}px`);
+  nowCard.style.setProperty("--wave-bar-opacity", clampNumber(.36 + live * .38, .42, .82, .5).toFixed(3));
+  nowCard.style.setProperty("--wave-saturate", (1 + live * .8).toFixed(3));
+  nowCard.style.setProperty("--wave-y", `${((low - high) * 8).toFixed(2)}px`);
+  nowCard.style.setProperty("--wave-scale", (.84 + live * .48).toFixed(3));
+  nowCard.style.setProperty("--wave-liquid-opacity", (.38 + live * .52).toFixed(3));
+  nowCard.style.setProperty("--wave-core-opacity", (.62 + live * .35).toFixed(3));
+  nowCard.style.setProperty("--wave-particle-opacity", (.1 + live * .58).toFixed(3));
+  nowCard.style.setProperty("--wave-sweep-opacity", (.24 + live * .42).toFixed(3));
+  nowCard.style.setProperty("--wave-mid-scale", (.9 + mid * .18).toFixed(3));
+  nowCard.style.setProperty("--wave-low-scale", (1 + low * .26).toFixed(3));
   waveformFrame = requestAnimationFrame(renderAudioWaveform);
 }
 
@@ -892,17 +941,28 @@ function setupSpriteTune() {
 }
 
 function buildWaveform() {
-  const waveform = document.getElementById("waveform");
-  if (!waveform) return;
-  waveform.innerHTML = "";
-  Array.from({ length: 44 }).forEach((_, index) => {
+  if (!waveBars) return;
+  waveBars.innerHTML = "";
+  Array.from({ length: 52 }).forEach((_, index) => {
     const bar = document.createElement("span");
     bar.style.setProperty("--h", "42px");
     bar.style.setProperty("--peak", "68px");
     bar.style.setProperty("--d", `${index * .035}s`);
-    waveform.appendChild(bar);
+    bar.style.setProperty("--tone", `${Math.round((index / 51) * 100)}%`);
+    waveBars.appendChild(bar);
   });
-  liveWaveLevels = new Array(waveform.children.length).fill(0);
+  if (waveParticles) {
+    waveParticles.innerHTML = "";
+    Array.from({ length: 12 }).forEach((_, index) => {
+      const particle = document.createElement("span");
+      particle.style.setProperty("--px", `${8 + ((index * 23) % 86)}%`);
+      particle.style.setProperty("--py", `${16 + ((index * 37) % 66)}%`);
+      particle.style.setProperty("--ps", `${2 + (index % 4)}px`);
+      particle.style.setProperty("--pd", `${(index * .31).toFixed(2)}s`);
+      waveParticles.appendChild(particle);
+    });
+  }
+  liveWaveLevels = new Array(waveBars.children.length).fill(0);
 }
 
 function setupTransport() {

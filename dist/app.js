@@ -114,6 +114,8 @@ let lastWaveCanvasDraw = 0;
 let waveCanvasResizeObserver = null;
 window.__netaSpriteDragging = false;
 window.__netaSpriteDragTarget = null;
+window.__netaSpriteLookTarget = null;
+window.__netaSpriteMotion = null;
 
 const spriteActions = {
   idle: { row: 0, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 4, 0, 6, 7, 6], label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 440 },
@@ -1464,6 +1466,7 @@ function setupSpriteDrag() {
     const nextY = clampValue(clientY - offsetY, minY, maxY);
     spriteDragger.style.setProperty("--sprite-x", `${nextX}px`);
     spriteDragger.style.setProperty("--sprite-y", `${nextY}px`);
+    window.__netaSpriteLookTarget = { x: nextX, y: nextY - spriteHeight * .08 };
   }
 
   function scheduleDragPosition(clientX, clientY) {
@@ -1502,6 +1505,7 @@ function setupSpriteDrag() {
   function stopSpriteWalk() {
     clearSpriteWalkTimers();
     walking = false;
+    window.__netaSpriteMotion = null;
     spriteDragger.classList.remove("walking", "walk-left", "walk-right");
   }
 
@@ -1545,6 +1549,14 @@ function setupSpriteDrag() {
     const walkDuration = Math.round(clampValue(actualDistance / 0.075, 900, 2600));
     offsetX = 0;
     offsetY = 0;
+    window.__netaSpriteMotion = {
+      startX: centerX,
+      startY: centerY - spriteHeight * .08,
+      endX: nextX,
+      endY: nextY - spriteHeight * .08,
+      startedAt: performance.now(),
+      duration: walkDuration,
+    };
     spriteDragger.style.setProperty("--sprite-walk-duration", `${walkDuration}ms`);
     spriteDragger.classList.add("walking", direction < 0 ? "walk-left" : "walk-right");
     spriteDragger.classList.remove(direction < 0 ? "walk-right" : "walk-left");
@@ -1552,6 +1564,8 @@ function setupSpriteDrag() {
     setPosition(nextX, nextY);
     walkEndTimer = window.setTimeout(() => {
       walking = false;
+      window.__netaSpriteMotion = null;
+      window.__netaSpriteLookTarget = { x: nextX, y: nextY - spriteHeight * .08 };
       spriteDragger.classList.remove("walking", "walk-left", "walk-right");
       if (currentStatus === "ready") setIdleSpriteAction();
       else if (currentStatus === "playing") {
@@ -1629,6 +1643,7 @@ function setupSpriteDrag() {
     stopSpriteWalk();
     window.__netaSpriteDragging = true;
     window.__netaSpriteDragTarget = { x: event.clientX, y: event.clientY };
+    window.__netaSpriteMotion = null;
     dragging = true;
     activePointerId = event.pointerId;
     pointerStartX = event.clientX;
@@ -1744,9 +1759,23 @@ function setupCuiMao() {
       mouseY = window.__netaSpriteDragTarget.y;
       return;
     }
+    if (window.__netaSpriteMotion) {
+      const motion = window.__netaSpriteMotion;
+      const rawProgress = Math.min(1, Math.max(0, (performance.now() - motion.startedAt) / Math.max(1, motion.duration)));
+      const progress = rawProgress * rawProgress * (3 - 2 * rawProgress);
+      mouseX = motion.startX + (motion.endX - motion.startX) * progress;
+      mouseY = motion.startY + (motion.endY - motion.startY) * progress;
+      return;
+    }
+    if (window.__netaSpriteLookTarget) {
+      mouseX = window.__netaSpriteLookTarget.x;
+      mouseY = window.__netaSpriteLookTarget.y;
+      return;
+    }
     const spriteRect = spriteDragger.getBoundingClientRect();
     mouseX = spriteRect.left + spriteRect.width * .5;
     mouseY = spriteRect.top + spriteRect.height * .42;
+    window.__netaSpriteLookTarget = { x: mouseX, y: mouseY };
   }
 
   function angleToFrame(deg) {
@@ -1846,7 +1875,8 @@ function setupCuiMao() {
     setFrame(0);
   });
   function followSpriteLoop(now) {
-    if (shouldLookAtSprite() && now - lastSpriteFollowAt > 90) {
+    const followInterval = window.__netaSpriteDragging || window.__netaSpriteMotion ? 16 : 48;
+    if (shouldLookAtSprite() && now - lastSpriteFollowAt > followInterval) {
       lastSpriteFollowAt = now;
       schedule();
     }

@@ -1172,7 +1172,7 @@ function setupTransport() {
       shuffleBackStack.push(currentIndex);
       shuffleQueue = shuffleQueue.filter((index) => index !== Number(item.dataset.index));
     }
-    switchTrack(Number(item.dataset.index));
+    switchTrack(Number(item.dataset.index), { shouldPlay: true });
   });
   progress.addEventListener("input", () => {
     isSeeking = true;

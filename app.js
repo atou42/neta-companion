@@ -1,4 +1,13 @@
 const playlistUrl = "fm/playlist.json";
+const spriteVariantsUrl = "public/foundry/sprite-variants.json";
+const spriteAtlas = {
+  columns: 8,
+  rows: 15,
+  cellWidth: 192,
+  cellHeight: 208,
+  width: 1536,
+  height: 3120,
+};
 let tracks = [];
 
 const room = document.getElementById("room");
@@ -35,6 +44,9 @@ const mobileTabButtons = Array.from(document.querySelectorAll("[data-fm-tab]"));
 const spriteTuneBtn = document.getElementById("spriteTuneBtn");
 const spriteTunePanel = document.getElementById("spriteTunePanel");
 const spriteTuneClose = document.getElementById("spriteTuneClose");
+const spriteVariantField = document.getElementById("spriteVariantField");
+const spriteVariantSelect = document.getElementById("spriteVariantSelect");
+const spriteVariantStatus = document.getElementById("spriteVariantStatus");
 const spriteSizeTune = document.getElementById("spriteSizeTune");
 const spritePlayingTune = document.getElementById("spritePlayingTune");
 const spriteIdleTune = document.getElementById("spriteIdleTune");
@@ -48,6 +60,7 @@ const spriteSpecialValue = document.getElementById("spriteSpecialValue");
 const spriteShuffleValue = document.getElementById("spriteShuffleValue");
 const spriteWalkValue = document.getElementById("spriteWalkValue");
 const spriteTuneStorageKey = "netaSpriteTune";
+const spriteVariantStorageKey = "netaSpriteVariant";
 const playerModeStorageKey = "netaFmPlayerMode";
 const volumeStorageKey = "netaFmVolume";
 const spriteTuneDefaults = {
@@ -75,6 +88,10 @@ let reactionTimer = 0;
 let tapActionTimer = 0;
 let updateSpriteWalkForStatus = () => {};
 let spriteTune = { ...spriteTuneDefaults };
+let spriteVariantManifest = null;
+let spriteVariants = [];
+let activeSpriteVariantId = "frieren-stable";
+let loadingSpriteVariantId = "";
 let playMode = "list";
 let shuffleEnabled = false;
 let repeatMode = "all";
@@ -96,6 +113,7 @@ let waveCanvasHeight = 0;
 let lastWaveCanvasDraw = 0;
 let waveCanvasResizeObserver = null;
 window.__netaSpriteDragging = false;
+window.__netaSpriteDragTarget = null;
 
 const spriteActions = {
   idle: { row: 0, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 4, 0, 6, 7, 6], label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 440 },
@@ -609,6 +627,156 @@ function randomItem(items) {
   return items[Math.floor(Math.random() * items.length)] || "";
 }
 
+function sameAtlas(atlas) {
+  return Boolean(atlas)
+    && atlas.columns === spriteAtlas.columns
+    && atlas.rows === spriteAtlas.rows
+    && atlas.cellWidth === spriteAtlas.cellWidth
+    && atlas.cellHeight === spriteAtlas.cellHeight
+    && atlas.width === spriteAtlas.width
+    && atlas.height === spriteAtlas.height;
+}
+
+function visibleSpriteVariants() {
+  return spriteVariants.filter((variant) => variant.status === "stable" || variant.status === "candidate");
+}
+
+function spriteVariantById(variantId) {
+  return spriteVariants.find((variant) => variant.id === variantId);
+}
+
+function normalizeSpriteVariantsManifest(manifest) {
+  if (!manifest || manifest.schemaVersion !== "neta.sprite-variants.v1") {
+    throw new Error("Sprite variants manifest has an invalid schema.");
+  }
+  if (!Array.isArray(manifest.variants) || manifest.variants.length < 1) {
+    throw new Error("Sprite variants manifest has no variants.");
+  }
+  const ids = new Set();
+  const normalized = manifest.variants.map((variant) => {
+    if (!variant || typeof variant.id !== "string" || !variant.id.trim()) {
+      throw new Error("Sprite variant is missing an id.");
+    }
+    if (ids.has(variant.id)) {
+      throw new Error(`Duplicate sprite variant id: ${variant.id}`);
+    }
+    ids.add(variant.id);
+    if (!["stable", "candidate", "archive"].includes(variant.status)) {
+      throw new Error(`Sprite variant ${variant.id} has an invalid status.`);
+    }
+    if (typeof variant.sheet !== "string" || !variant.sheet.trim() || /^https?:\/\//i.test(variant.sheet)) {
+      throw new Error(`Sprite variant ${variant.id} has an invalid sheet path.`);
+    }
+    if (!sameAtlas(variant.atlas)) {
+      throw new Error(`Sprite variant ${variant.id} does not match the current atlas.`);
+    }
+    return {
+      ...variant,
+      label: typeof variant.label === "string" && variant.label.trim() ? variant.label.trim() : variant.id,
+      version: typeof variant.version === "string" && variant.version.trim() ? variant.version.trim() : manifest.cacheVersion,
+    };
+  });
+  if (!ids.has(manifest.defaultVariant)) {
+    throw new Error(`Default sprite variant is missing: ${manifest.defaultVariant}`);
+  }
+  const visible = normalized.filter((variant) => variant.status === "stable" || variant.status === "candidate");
+  if (!visible.length) {
+    throw new Error("Sprite variants manifest has no displayable variants.");
+  }
+  spriteVariantManifest = manifest;
+  spriteVariants = normalized;
+  activeSpriteVariantId = manifest.defaultVariant;
+}
+
+function spriteSheetUrl(variant) {
+  const version = encodeURIComponent(variant.version || spriteVariantManifest?.cacheVersion || "1");
+  return `${variant.sheet}?v=${version}`;
+}
+
+function setSpriteVariantStatus(variant, text, isError = false) {
+  if (!spriteVariantStatus) return;
+  spriteVariantStatus.textContent = text || (variant?.status === "candidate" ? "Candidate" : "Stable");
+  spriteVariantStatus.classList.toggle("candidate", !isError && variant?.status === "candidate");
+  spriteVariantStatus.classList.toggle("error", isError);
+}
+
+function renderSpriteVariantOptions() {
+  const variants = visibleSpriteVariants();
+  if (!spriteVariantField || !spriteVariantSelect || variants.length < 2) {
+    if (spriteVariantField) spriteVariantField.hidden = true;
+    return;
+  }
+  spriteVariantSelect.replaceChildren(...variants.map((variant) => {
+    const option = document.createElement("option");
+    option.value = variant.id;
+    option.textContent = `${variant.label} · ${variant.status === "candidate" ? "Candidate" : "Stable"}`;
+    return option;
+  }));
+  spriteVariantSelect.value = activeSpriteVariantId;
+  spriteVariantField.hidden = false;
+  setSpriteVariantStatus(spriteVariantById(activeSpriteVariantId));
+}
+
+function preloadSpriteSheet(variant) {
+  const url = spriteSheetUrl(variant);
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => {
+      if (image.naturalWidth !== spriteAtlas.width || image.naturalHeight !== spriteAtlas.height) {
+        reject(new Error(`Sprite variant ${variant.id} is ${image.naturalWidth}x${image.naturalHeight}, expected ${spriteAtlas.width}x${spriteAtlas.height}.`));
+        return;
+      }
+      resolve(url);
+    };
+    image.onerror = () => reject(new Error(`Sprite variant ${variant.id} failed to load: ${url}`));
+    image.src = url;
+  });
+}
+
+async function applySpriteVariant(variantId, persist = false) {
+  const variant = spriteVariantById(variantId);
+  const previousVariant = spriteVariantById(activeSpriteVariantId);
+  if (!variant || !["stable", "candidate"].includes(variant.status)) {
+    throw new Error(`Sprite variant is not available: ${variantId}`);
+  }
+  loadingSpriteVariantId = variant.id;
+  if (spriteVariantSelect) spriteVariantSelect.disabled = true;
+  setSpriteVariantStatus(variant, "Loading");
+  try {
+    const url = await preloadSpriteSheet(variant);
+    spriteEl?.style.setProperty("--sprite-sheet", `url("${url.replaceAll("\"", "%22")}")`);
+    activeSpriteVariantId = variant.id;
+    if (persist) localStorage.setItem(spriteVariantStorageKey, variant.id);
+    if (spriteVariantSelect) spriteVariantSelect.value = variant.id;
+    setSpriteVariantStatus(variant);
+  } catch (error) {
+    console.error("[sprite-variant]", error);
+    if (spriteVariantSelect && previousVariant) spriteVariantSelect.value = previousVariant.id;
+    setSpriteVariantStatus(previousVariant || variant, "Error", true);
+    showReaction("sprite load failed", 1600);
+  } finally {
+    loadingSpriteVariantId = "";
+    if (spriteVariantSelect) spriteVariantSelect.disabled = false;
+  }
+}
+
+async function loadSpriteVariants() {
+  try {
+    const response = await fetch(`${spriteVariantsUrl}?v=20260514`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Sprite variants manifest failed to load: ${response.status}`);
+    normalizeSpriteVariantsManifest(await response.json());
+    renderSpriteVariantOptions();
+    const savedVariant = localStorage.getItem(spriteVariantStorageKey);
+    const targetVariant = spriteVariantById(savedVariant) && ["stable", "candidate"].includes(spriteVariantById(savedVariant).status)
+      ? savedVariant
+      : spriteVariantManifest.defaultVariant;
+    if (targetVariant !== activeSpriteVariantId) await applySpriteVariant(targetVariant, false);
+  } catch (error) {
+    console.error("[sprite-variant]", error);
+    if (spriteVariantField) spriteVariantField.hidden = true;
+  }
+}
+
 function readPlayerMode() {
   try {
     const saved = JSON.parse(localStorage.getItem(playerModeStorageKey) || "{}");
@@ -1118,6 +1286,13 @@ function setupSpriteTune() {
   spriteSpecialTune?.addEventListener("input", (event) => setSpriteTuneValue("specialSpeed", event.currentTarget.value));
   spriteShuffleTune?.addEventListener("input", (event) => setSpriteTuneValue("shuffleEvery", event.currentTarget.value));
   spriteWalkTune?.addEventListener("input", (event) => setSpriteTuneValue("walkEvery", event.currentTarget.value));
+  spriteVariantSelect?.addEventListener("change", (event) => {
+    const variantId = event.currentTarget.value;
+    if (variantId && variantId !== activeSpriteVariantId && variantId !== loadingSpriteVariantId) {
+      applySpriteVariant(variantId, true);
+    }
+  });
+  loadSpriteVariants();
 }
 
 function buildWaveform() {
@@ -1453,6 +1628,7 @@ function setupSpriteDrag() {
     if (dragging || event.isPrimary === false) return;
     stopSpriteWalk();
     window.__netaSpriteDragging = true;
+    window.__netaSpriteDragTarget = { x: event.clientX, y: event.clientY };
     dragging = true;
     activePointerId = event.pointerId;
     pointerStartX = event.clientX;
@@ -1474,6 +1650,7 @@ function setupSpriteDrag() {
     if (!dragging || event.pointerId !== activePointerId) return;
     pointerLastX = event.clientX;
     pointerLastY = event.clientY;
+    window.__netaSpriteDragTarget = { x: event.clientX, y: event.clientY };
     if (Math.hypot(pointerStartX - pointerLastX, pointerStartY - pointerLastY) > 8) {
       movedSincePointerDown = true;
       activateGrabFeedback();
@@ -1497,6 +1674,7 @@ function setupSpriteDrag() {
     }
     dragging = false;
     window.__netaSpriteDragging = false;
+    window.__netaSpriteDragTarget = null;
     activePointerId = null;
     grabFeedbackActive = false;
     spriteDragger.classList.remove("dragging");
@@ -1561,6 +1739,11 @@ function setupCuiMao() {
   }
 
   function updateSpriteTarget() {
+    if (window.__netaSpriteDragging && window.__netaSpriteDragTarget) {
+      mouseX = window.__netaSpriteDragTarget.x;
+      mouseY = window.__netaSpriteDragTarget.y;
+      return;
+    }
     const spriteRect = spriteDragger.getBoundingClientRect();
     mouseX = spriteRect.left + spriteRect.width * .5;
     mouseY = spriteRect.top + spriteRect.height * .42;

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "neta.sprite-variants.v1",
+  "cacheVersion": "20260514-sprite-variants",
+  "defaultVariant": "frieren-stable",
+  "variants": [
+    {
+      "id": "frieren-stable",
+      "label": "Frieren stable",
+      "status": "stable",
+      "sheet": "public/foundry/companion-spritesheet.webp",
+      "contract": "public/foundry/sprite-production.json",
+      "atlas": {
+        "columns": 8,
+        "rows": 15,
+        "cellWidth": 192,
+        "cellHeight": 208,
+        "width": 1536,
+        "height": 3120
+      },
+      "hash": "sha256-d0401d43380c176f1dc3c4d9bc113683456f87081a2739726ddb1df8da378785",
+      "version": "20260512-frieren15d",
+      "source": {
+        "kind": "production-run",
+        "runDir": "output/sprite-production/frieren-v1",
+        "qa": [
+          "output/sprite-production/frieren-v1/qa/contact-black.png",
+          "output/sprite-production/frieren-v1/qa/contact-orange.png",
+          "output/sprite-production/frieren-v1/qa/contact-room.png"
+        ]
+      }
+    },
+    {
+      "id": "frieren-support-only",
+      "label": "Frieren clean edge",
+      "status": "candidate",
+      "sheet": "public/foundry/variants/frieren-support-only/companion-spritesheet.webp",
+      "contract": "public/foundry/sprite-production.json",
+      "atlas": {
+        "columns": 8,
+        "rows": 15,
+        "cellWidth": 192,
+        "cellHeight": 208,
+        "width": 1536,
+        "height": 3120
+      },
+      "hash": "sha256-f7e48bb4a5ae92b157854f27259a9e692e45173175645c21035a055b472abe5c",
+      "version": "20260514-support-only",
+      "source": {
+        "kind": "candidate-sheet",
+        "runDir": "output/image2-fullsheet-hybrid",
+        "qa": [
+          "output/image2-fullsheet-hybrid/full-sheet-hybrid-support-only-overview.png",
+          "output/image2-fullsheet-hybrid/selected-rows-hybrid-support-only-comparison.png"
+        ]
+      }
+    }
+  ]
+}

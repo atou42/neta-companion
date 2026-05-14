@@ -1010,8 +1010,9 @@ function pause() {
   audio.pause();
 }
 
-function switchTrack(nextIndex) {
-  wasPlayingBeforeSwitch = currentStatus === "playing" || currentStatus === "loading";
+function switchTrack(nextIndex, options = {}) {
+  const shouldPlay = options.shouldPlay ?? (currentStatus === "playing" || currentStatus === "loading");
+  wasPlayingBeforeSwitch = shouldPlay;
   setStatus("switching");
   window.setTimeout(() => loadTrack(nextIndex, wasPlayingBeforeSwitch), 720);
 }
@@ -1040,7 +1041,7 @@ function finishTrack() {
     renderQueue();
     return;
   }
-  switchTrack(nextIndex);
+  switchTrack(nextIndex, { shouldPlay: true });
 }
 
 function updateProgress() {

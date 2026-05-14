@@ -1270,24 +1270,30 @@ button {
 
 .sprite-dragger {
   position: absolute;
-  left: 56vw;
-  top: 66vh;
+  left: 0;
+  top: 0;
+  --sprite-x: 56vw;
+  --sprite-y: 66vh;
   --sprite-facing: 1;
   width: 220px;
   height: 250px;
   display: grid;
   place-items: center;
-  transform: translate(-50%, -50%);
+  transform: translate3d(var(--sprite-x), var(--sprite-y), 0) translate(-50%, -50%);
   pointer-events: auto;
   touch-action: none;
   cursor: grab;
   outline: none;
+  contain: layout paint style;
+  will-change: transform;
 }
 
 .sprite-dragger.walking {
-  transition:
-    left var(--sprite-walk-duration, 1800ms) linear,
-    top var(--sprite-walk-duration, 1800ms) linear;
+  transition: transform var(--sprite-walk-duration, 1800ms) linear;
+}
+
+.sprite-dragger.dragging {
+  transition: none;
 }
 
 .sprite-dragger.walk-left {
@@ -1599,9 +1605,9 @@ button {
   }
 
   .sprite-dragger {
-    left: 72vw;
-    top: 52vh;
-    transform: translate(-50%, -50%) scale(.82);
+    --sprite-x: 72vw;
+    --sprite-y: 52vh;
+    transform: translate3d(var(--sprite-x), var(--sprite-y), 0) translate(-50%, -50%) scale(.82);
   }
 }
 
@@ -1794,9 +1800,9 @@ button {
   }
 
   .sprite-dragger {
-    left: 72vw;
-    top: 37vh;
-    transform: translate(-50%, -50%) scale(.66);
+    --sprite-x: 72vw;
+    --sprite-y: 37vh;
+    transform: translate3d(var(--sprite-x), var(--sprite-y), 0) translate(-50%, -50%) scale(.66);
   }
 
   .drag-pill {
@@ -1930,9 +1936,9 @@ button {
   }
 
   .sprite-dragger {
-    left: 42vw;
-    top: 62vh;
-    transform: translate(-50%, -50%) scale(.56);
+    --sprite-x: 42vw;
+    --sprite-y: 62vh;
+    transform: translate3d(var(--sprite-x), var(--sprite-y), 0) translate(-50%, -50%) scale(.56);
   }
 
   .drag-pill {

@@ -91,6 +91,11 @@ let frequencyData = null;
 let waveformFrame = 0;
 let liveWaveLevels = [];
 let canvasWaveLevels = [];
+let waveCanvasWidth = 0;
+let waveCanvasHeight = 0;
+let lastWaveCanvasDraw = 0;
+let waveCanvasResizeObserver = null;
+window.__netaSpriteDragging = false;
 
 const spriteActions = {
   idle: { row: 0, frames: 8, sequence: [0, 1, 2, 1, 0, 4, 5, 4, 0, 6, 7, 6], label: "Idle", mood: "The sprite is waiting for the room signal.", tick: 440 },
@@ -205,18 +210,31 @@ function rgba(hex, alpha) {
   return `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
 }
 
-function drawWaveCanvas(timestamp = performance.now()) {
-  if (!waveCanvas || !nowCard) return;
-  const width = waveCanvas.clientWidth;
-  const height = waveCanvas.clientHeight;
-  if (width < 10 || height < 10) return;
+function syncWaveCanvasSize() {
+  if (!waveCanvas) return false;
+  const rect = waveCanvas.getBoundingClientRect();
+  waveCanvasWidth = Math.round(rect.width);
+  waveCanvasHeight = Math.round(rect.height);
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
-  const targetWidth = Math.round(width * ratio);
-  const targetHeight = Math.round(height * ratio);
-  if (waveCanvas.width !== targetWidth || waveCanvas.height !== targetHeight) {
+  const targetWidth = Math.round(waveCanvasWidth * ratio);
+  const targetHeight = Math.round(waveCanvasHeight * ratio);
+  if (targetWidth > 0 && targetHeight > 0 && (waveCanvas.width !== targetWidth || waveCanvas.height !== targetHeight)) {
     waveCanvas.width = targetWidth;
     waveCanvas.height = targetHeight;
   }
+  return waveCanvasWidth > 0 && waveCanvasHeight > 0;
+}
+
+function drawWaveCanvas(timestamp = performance.now(), force = false) {
+  if (!waveCanvas || !nowCard) return;
+  const minDrawInterval = window.__netaSpriteDragging ? 100 : 34;
+  if (!force && timestamp - lastWaveCanvasDraw < minDrawInterval) return;
+  if ((waveCanvasWidth <= 0 || waveCanvasHeight <= 0) && !syncWaveCanvasSize()) return;
+  lastWaveCanvasDraw = timestamp;
+  const width = waveCanvasWidth;
+  const height = waveCanvasHeight;
+  if (width < 10 || height < 10) return;
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
   const ctx = waveCanvas.getContext("2d");
   if (!ctx) return;
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -400,7 +418,7 @@ function setTrackVisuals(track) {
     bar.style.setProperty("--d", `${(index * .028 + (seed % 7) * .018).toFixed(3)}s`);
     bar.style.setProperty("--tone", `${Math.round((index / Math.max(1, bars.length - 1)) * 100)}%`);
   });
-  drawWaveCanvas();
+  drawWaveCanvas(performance.now(), true);
 }
 
 function ensureAudioAnalysis() {
@@ -491,7 +509,7 @@ function renderAudioWaveform() {
   nowCard.style.setProperty("--wave-sweep-opacity", (.24 + live * .42).toFixed(3));
   nowCard.style.setProperty("--wave-mid-scale", (.9 + mid * .18).toFixed(3));
   nowCard.style.setProperty("--wave-low-scale", (1 + low * .26).toFixed(3));
-  drawWaveCanvas();
+  drawWaveCanvas(performance.now());
   waveformFrame = requestAnimationFrame(renderAudioWaveform);
 }
 
@@ -951,7 +969,7 @@ function setStatus(status) {
   else if (status === "loading") setSpriteAction("loading");
   else if (status === "error") setSpriteAction("error");
   else setIdleSpriteAction();
-  drawWaveCanvas();
+  drawWaveCanvas(performance.now(), true);
 }
 
 function renderTrack() {
@@ -1104,6 +1122,14 @@ function setupSpriteTune() {
 
 function buildWaveform() {
   if (!waveBars) return;
+  syncWaveCanvasSize();
+  if (waveCanvas && !waveCanvasResizeObserver && "ResizeObserver" in window) {
+    waveCanvasResizeObserver = new ResizeObserver(() => {
+      syncWaveCanvasSize();
+      drawWaveCanvas(performance.now(), true);
+    });
+    waveCanvasResizeObserver.observe(waveCanvas);
+  }
   waveBars.innerHTML = "";
   Array.from({ length: 52 }).forEach((_, index) => {
     const bar = document.createElement("span");
@@ -1126,7 +1152,7 @@ function buildWaveform() {
   }
   liveWaveLevels = new Array(waveBars.children.length).fill(0);
   canvasWaveLevels = new Array(waveBars.children.length).fill(.18);
-  drawWaveCanvas();
+  drawWaveCanvas(performance.now(), true);
 }
 
 function setupTransport() {
@@ -1222,6 +1248,11 @@ function setupSpriteDrag() {
   let walking = false;
   let walkEndTimer = 0;
   let grabFeedbackActive = false;
+  let spriteWidth = 220;
+  let spriteHeight = 250;
+  let pendingDragX = 0;
+  let pendingDragY = 0;
+  let dragPositionFrame = 0;
 
   function getViewportTier() {
     if (window.innerWidth <= 980 && window.innerWidth > window.innerHeight) return "landscape";
@@ -1241,21 +1272,38 @@ function setupSpriteDrag() {
     return Math.min(max, Math.max(min, value));
   }
 
-  function setPosition(clientX, clientY) {
+  function readSpriteBounds() {
     const rect = spriteDragger.getBoundingClientRect();
-    const marginX = Math.max(48, Math.ceil(rect.width / 2));
-    const marginY = Math.max(48, Math.ceil(rect.height / 2));
-    const minY = Math.max(marginY, Math.ceil(rect.height / 2 + 58));
+    spriteWidth = rect.width;
+    spriteHeight = rect.height;
+    return rect;
+  }
+
+  function setPosition(clientX, clientY) {
+    const marginX = Math.max(48, Math.ceil(spriteWidth / 2));
+    const marginY = Math.max(48, Math.ceil(spriteHeight / 2));
+    const minY = Math.max(marginY, Math.ceil(spriteHeight / 2 + 58));
     const maxX = Math.max(marginX, window.innerWidth - marginX);
     const maxY = Math.max(minY, window.innerHeight - marginY);
     const nextX = clampValue(clientX - offsetX, marginX, maxX);
     const nextY = clampValue(clientY - offsetY, minY, maxY);
-    spriteDragger.style.left = `clamp(${marginX}px, ${nextX}px, calc(100vw - ${marginX}px))`;
-    spriteDragger.style.top = `clamp(${minY}px, ${nextY}px, calc(100svh - ${marginY}px))`;
+    spriteDragger.style.setProperty("--sprite-x", `${nextX}px`);
+    spriteDragger.style.setProperty("--sprite-y", `${nextY}px`);
+  }
+
+  function scheduleDragPosition(clientX, clientY) {
+    pendingDragX = clientX;
+    pendingDragY = clientY;
+    if (dragPositionFrame) return;
+    dragPositionFrame = requestAnimationFrame(() => {
+      dragPositionFrame = 0;
+      setPosition(pendingDragX, pendingDragY);
+    });
   }
 
   function keepSpriteInViewport() {
     const nextTier = getViewportTier();
+    const rect = readSpriteBounds();
     if (nextTier !== viewportTier) {
       viewportTier = nextTier;
       offsetX = 0;
@@ -1264,7 +1312,6 @@ function setupSpriteDrag() {
       setPosition(x, y);
       return;
     }
-    const rect = spriteDragger.getBoundingClientRect();
     offsetX = 0;
     offsetY = 0;
     setPosition(rect.left + rect.width / 2, rect.top + rect.height / 2);
@@ -1304,7 +1351,7 @@ function setupSpriteDrag() {
     walking = true;
     clearIdleShuffle();
     clearPlayingShuffle();
-    const rect = spriteDragger.getBoundingClientRect();
+    const rect = readSpriteBounds();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     const tier = getViewportTier();
@@ -1405,6 +1452,7 @@ function setupSpriteDrag() {
   spriteDragger.addEventListener("pointerdown", (event) => {
     if (dragging || event.isPrimary === false) return;
     stopSpriteWalk();
+    window.__netaSpriteDragging = true;
     dragging = true;
     activePointerId = event.pointerId;
     pointerStartX = event.clientX;
@@ -1416,7 +1464,7 @@ function setupSpriteDrag() {
     grabbedPreviousAction = spriteAction;
     spriteDragger.classList.add("dragging");
     grabFeedbackActive = false;
-    const rect = spriteDragger.getBoundingClientRect();
+    const rect = readSpriteBounds();
     offsetX = event.clientX - (rect.left + rect.width / 2);
     offsetY = event.clientY - (rect.top + rect.height / 2);
     spriteDragger.setPointerCapture?.(event.pointerId);
@@ -1429,7 +1477,7 @@ function setupSpriteDrag() {
     if (Math.hypot(pointerStartX - pointerLastX, pointerStartY - pointerLastY) > 8) {
       movedSincePointerDown = true;
       activateGrabFeedback();
-      setPosition(event.clientX, event.clientY);
+      scheduleDragPosition(event.clientX, event.clientY);
     }
   });
 
@@ -1442,7 +1490,13 @@ function setupSpriteDrag() {
     const travel = Math.hypot(pointerStartX - pointerLastX, pointerStartY - pointerLastY);
     const wasTap = travel < 12 && performance.now() - pointerStartAt < 900 && !movedSincePointerDown;
     const wasCanceled = event.type === "pointercancel";
+    if (dragPositionFrame) {
+      cancelAnimationFrame(dragPositionFrame);
+      dragPositionFrame = 0;
+      setPosition(pointerLastX, pointerLastY);
+    }
     dragging = false;
+    window.__netaSpriteDragging = false;
     activePointerId = null;
     grabFeedbackActive = false;
     spriteDragger.classList.remove("dragging");
@@ -1501,6 +1555,7 @@ function setupCuiMao() {
   }
 
   function shouldLookAtSprite() {
+    if (window.__netaSpriteDragging) return true;
     if (hoverNoneQuery.matches || window.innerWidth <= 980) return true;
     return pointerOverFm;
   }
@@ -1595,6 +1650,7 @@ function setupCuiMao() {
   window.addEventListener("pointermove", (event) => {
     if (event.pointerType && event.pointerType !== "mouse" && event.pointerType !== "pen") return;
     gazePerf.pointerMoves += 1;
+    if (window.__netaSpriteDragging) return;
     pointerOverFm = event.clientX >= consoleLeft;
     mouseX = event.clientX;
     mouseY = event.clientY;
